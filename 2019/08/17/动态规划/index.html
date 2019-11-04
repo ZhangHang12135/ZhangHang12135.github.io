@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊">
+<meta name="keywords" content="算法,面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="/2019/08/17/动态规划/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/17/动态规划/getClimbing_digui.png">
+<meta property="og:image" content="/17/动态规划/Tree.png">
+<meta property="og:image" content="/17/动态规划/beiwanglu.png">
+<meta property="og:image" content="/17/动态规划/MinCoins.png">
+<meta property="og:updated_time" content="2019-11-04T02:33:48.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划">
+<meta name="twitter:description" content="算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊">
+<meta name="twitter:image" content="/17/动态规划/getClimbing_digui.png">
+
+
+
+
+
+
+  <link rel="canonical" href="/2019/08/17/动态规划/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>动态规划 | H.S.</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.S.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">成功的人抄袭，伟大的人剽窃</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2019/08/17/动态规划/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动态规划
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-17 09:40:23" itemprop="dateCreated datePublished" datetime="2019-08-17T09:40:23+08:00">2019-08-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-04 10:33:48" itemprop="dateModified" datetime="2019-11-04T10:33:48+08:00">2019-11-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊<br><a id="more"></a></p>
+<h3 id="何为动态规划"><a href="#何为动态规划" class="headerlink" title="何为动态规划"></a>何为动态规划</h3><p>&emsp;&emsp;将一个复杂的问题简单化，是不是和分治法很像。其实不然，动态规划的子问题，是相互依赖的，一步一步来的，缺一不可。<br>这里的话，我会用几个经典问题来解释动态规划</p>
+<blockquote>
+<p>动态规划分为三个步骤</p>
+<ul>
+<li>定义子问题(最优子结构)</li>
+<li>实现要反复执行来解决子问题的部分（状态转移方程）</li>
+<li>识别并求解边界条件（边界）</li>
+</ul>
+</blockquote>
+<h3 id="爬楼梯问题"><a href="#爬楼梯问题" class="headerlink" title="爬楼梯问题"></a>爬楼梯问题</h3><p>&emsp;&emsp;有一个10级的楼梯，你现在再最下面，你一次可以走1阶，或者2阶。那么，你走到第10阶有多少种方案。例子：2，2，2，2，2是一种方案；1，1，1，1，1，1，1，1，1，1也是一种</p>
+<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>&emsp;&emsp;如果我们用穷举法来想的话，是否可行呢？好吧，我想不出来。既然从0到1无法求解，那我们为何不从1到0呢</p>
+<ol>
+<li>将设现在只需要走一步就可以到顶了，那么问题是不是就变成了从第9阶到第10阶，或者第8阶到第10阶</li>
+<li>假设到第10阶的问题为F(10),第9阶的问题为F(9),依次类推</li>
+<li>那么F(10)的方案数就是F(9)走1步，或者F(8)走2步</li>
+<li>那么F(10) = F(9) + F(8)，依此可以推出<blockquote>
+<ul>
+<li>F(9) = F(8) + F(7);</li>
+<li>F(8) = F(7) + F(6) </li>
+<li>…</li>
+<li>F(3) = F(2) + F(1)</li>
+<li>F(2) = 2</li>
+<li>F(1) = 1</li>
+</ul>
+</blockquote>
+</li>
+<li>状态转移方程 F(n) = F(n-1) + F(n-2) (n &gt;= 3)</li>
+<li>F(2)和F(1)就是问题的边界</li>
+<li>F(9)和F(8)就相当于是F(10)的最优子结构<h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4></li>
+<li><strong>递归求解</strong><br>看到上面的状态转移方程，是不是很像斐波那契数列，想到这里，递归就呼之欲出了<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClimbingWays</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> getClimbingWays(n<span class="number">-2</span>) + getClimbingWays(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/17/动态规划/getClimbing_digui.png" alt="递归式"><br>当台阶数达到40以上的时候，就运行的很慢了。我们可以分析一下时间复杂度。发现，每一个步都有两种方案。或者可以将其，画在一个二叉树上。那么时间复杂度就是整个树的节点树O(2^n).指数形式的;<br><img src="/17/动态规划/Tree.png" alt="二叉树"><br>细心的你肯定会发现，左右子树之间有重复的子树，那么我们是不是可以将已经计算过的之，存到一个哈希表中呢?一种优化的方案诞生了，备忘录算法</p>
+<ol start="2">
+<li><strong>备忘录算法</strong><br>如先前所说的一样，将已经计算的值存入哈希表中<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClimbingWays</span>(<span class="params">n,map</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!map[n])&#123;</span><br><span class="line">        map[n] = getClimbingWays(n<span class="number">-2</span>,map) + getClimbingWays(n<span class="number">-1</span>,map);</span><br><span class="line">        <span class="keyword">return</span> map[n];</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> map[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/17/动态规划/beiwanglu.png" alt="备忘录算法"><br>可以很明显的发现，算法得到了很大的提升。其时间复杂度只有O(n);但是其空间复杂度也是O(n);那么我们能不能在空间上优化呢？</p>
+<ol start="3">
+<li><strong>动态规划算法</strong><br>想想想！你可能会发现，每一次的状态只依赖于他的前两个状态，那么我们就可以只存储前两个的状态<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClimbingWays</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">        b = <span class="number">2</span>,</span><br><span class="line">        temp = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++)&#123;</span><br><span class="line">       temp = a + b;</span><br><span class="line">       a = b;</span><br><span class="line">       b = temp;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>前面两个方案都是自顶向下，而动态规划是自底向上的。一步一步计算出来的,空间复杂度只有O(1),时间复杂度还是O(n);</p>
+<h3 id="最少硬币找零问题"><a href="#最少硬币找零问题" class="headerlink" title="最少硬币找零问题"></a>最少硬币找零问题</h3><p>&emsp;&emsp;有如下几种硬币，d1 = 1元，d2 = 5元，d3 = 10元，d4 = 25元<br>现在我们需要找零36元，可用25+10+1;<br>书中的代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// coins = [1,5,10,25]</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MinCoinChange</span>(<span class="params">coins</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> cache = &#123;&#125;; <span class="comment">// 缓存对象</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.makeChange = <span class="function"><span class="keyword">function</span>(<span class="params">amount</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> me = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">if</span>(!amount)&#123;</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cache[amount])&#123;</span><br><span class="line">            <span class="keyword">return</span> cache[amount];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> min = [], newMin, newAmount;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coins.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> coin = coins[i];</span><br><span class="line">            newAmount = amount - coin;</span><br><span class="line">            <span class="keyword">if</span>(newAmount &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                newMin = me.makeChange(newAmount);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(newAmount &gt;= <span class="number">0</span> &amp;&amp; </span><br><span class="line">            (newMin.length &lt; min.length<span class="number">-1</span> || !min.length) &amp;&amp;</span><br><span class="line">            (newMin.length || !newAmount))&#123;</span><br><span class="line">                min = [coin].concat(newMin);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'new Min '</span>+ min + <span class="string">' for '</span> + amount);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (cache[amount] = min)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> m1 = <span class="keyword">new</span> MinCoinChange([<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">25</span>]);</span><br><span class="line">m1.makeChange(<span class="number">36</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这里的代码是第二版的，可能会有部分问题，最新的代码可以<mark><a href="https://github.com/loiane/javascript-datastructures-algorithms/blob/master/src/js/algorithms/dynamic-programing/min-coin-change.js" target="_blank" rel="noopener">参考这里</a></mark><br>输出如下：<br><img src="/17/动态规划/MinCoins.png" alt="36的最小硬币找零"><br>这里的输出很明显的，解释了动态规划的过程。这里的话，我们需要转变一个思维过程，就是不能从大问题到小问题，而应该是小问题组成大问题。并且还需要做有效的缓存，不能全部缓存（全部缓存就是备忘录算法了）。一定要记住是自底向上。最终求解；<br>顺便提一下，找零问题也可以用贪心算法来做，但是结果不一定准确。就是用最大零钱去找，不够就用第二大的，依次类推；<br>这里是<mark><a href="https://leetcode-cn.com/problems/coin-change/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-wei-lai-bu-ke/" target="_blank" rel="noopener">leetcode上的题解</a></mark>,别看官方题解（有问题）</p>
+<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><p>&emsp;&emsp;给定一个固定大小，能够携重W的背包，以及一组有价值和重量的物体，找出一个最佳解决方案，使得装入背包的物品总重量不超过W,且总价值最大。<br>物品|重量|价值<br>:-:|:-:|:-:<br>1|2kg|3<br>2|3kg|4<br>3|4kg|5<br>假设背包只能装10kg的物品,求最大价值怎么装？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">knapSack</span>(<span class="params">capacity, weights, values, n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i, w, a, b, ks = [];</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= n; i++)&#123; <span class="comment">//1 初始化寻找解决方案的矩阵ks[n+1][capacity+1]</span></span><br><span class="line">        ks[i] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(w = <span class="number">0</span>; w &lt;= capacity; w++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span> || w == <span class="number">0</span>)&#123; <span class="comment">//2 忽略索引为0 的</span></span><br><span class="line">                ks[i][w] = <span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (weights[i<span class="number">-1</span>] &lt;= w)&#123; <span class="comment">// 物品i的重量要小于约束才有可能成为解决方案的一部分</span></span><br><span class="line">                a = values[i<span class="number">-1</span>] + ks[i<span class="number">-1</span>][w-weights[i<span class="number">-1</span>]];</span><br><span class="line">                b = ks[i<span class="number">-1</span>][w];</span><br><span class="line">                ks[i][w] = (a &gt; b) ? a : b; <span class="comment">//4 当找到可以构成解决方案的物品，选择价值最大的那个</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ks[i][w] = ks[i<span class="number">-1</span>][w] <span class="comment">// 5 若超出用之前的值就可以了</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    findValue(n, capacity, ks,weights,values);</span><br><span class="line">    <span class="keyword">return</span> ks[n][capacity];<span class="comment">//6 问题的解决方案就在右下角最后一个格子里</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findValue</span>(<span class="params">n, capacity, ks, weights, values</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = n, k = capacity;</span><br><span class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span> &amp;&amp; k &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ks[i][k] !== ks[i<span class="number">-1</span>][k])&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'物品'</span>+i+<span class="string">',重量: '</span>+ weights[i<span class="number">-1</span>] +<span class="string">', 价值：'</span>+values[i<span class="number">-1</span>]);</span><br><span class="line">            i--;</span><br><span class="line">            k = k - weights[i<span class="number">-1</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h3><p>找出两个字符串中最长的公共子序列</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li>[学习javascript数据结构与算法（第2版）]</li>
+<li><a href="https://juejin.im/post/5a29d52cf265da43333e4da7" target="_blank" rel="noopener">掘金-漫画：什么是动态规划</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/17/手撸bind-call-apply/" rel="next" title="手撸bind,call,apply">
+                <i class="fa fa-chevron-left"></i> 手撸bind,call,apply
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/27/js事件循环/" rel="prev" title="js事件循环">
+                js事件循环 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="灰沙">
+            
+              <p class="site-author-name" itemprop="name">灰沙</p>
+              <p class="site-description motion-element" itemprop="description">前端个人博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为动态规划"><span class="nav-number">1.</span> <span class="nav-text">何为动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬楼梯问题"><span class="nav-number">2.</span> <span class="nav-text">爬楼梯问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题分析"><span class="nav-number">2.1.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题求解"><span class="nav-number">2.2.</span> <span class="nav-text">问题求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最少硬币找零问题"><span class="nav-number">3.</span> <span class="nav-text">最少硬币找零问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背包问题"><span class="nav-number">4.</span> <span class="nav-text">背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长公共子序列"><span class="nav-number">5.</span> <span class="nav-text">最长公共子序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
