@@ -102,14 +102,14 @@
 <meta property="og:site_name" content="H.S.">
 <meta property="og:description" content="原本只是想上传本地图片，结果url一直不对，不过好在还是解决了。一张本地图片引发的血案！！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/26/hexo的本地图片上传/hexoPath.png">
-<meta property="og:image" content="/26/hexo的本地图片上传/newPublic.png">
-<meta property="og:image" content="/26/hexo的本地图片上传/changeindex.png">
+<meta property="og:image" content="/2019/02/26/hexo的本地图片上传/hexoPath.png">
+<meta property="og:image" content="/2019/02/26/hexo的本地图片上传/newPublic.png">
+<meta property="og:image" content="/2019/02/26/hexo的本地图片上传/changeindex.png">
 <meta property="og:updated_time" content="2019-09-25T03:05:34.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo的本地图片上传">
 <meta name="twitter:description" content="原本只是想上传本地图片，结果url一直不对，不过好在还是解决了。一张本地图片引发的血案！！">
-<meta name="twitter:image" content="/26/hexo的本地图片上传/hexoPath.png">
+<meta name="twitter:image" content="/2019/02/26/hexo的本地图片上传/hexoPath.png">
 
 
 
@@ -454,12 +454,12 @@
 <p>post_asset_folder 选项设为 true 来打开。</p>
 </blockquote>
 </li>
-<li><p>这个时候，你再执行hexo new [title]时,会生成一个和md文件名相同的文件夹，如图：<br><img src="/26/hexo的本地图片上传/hexoPath.png" alt="新的_posts目录"></p>
+<li><p>这个时候，你再执行hexo new [title]时,会生成一个和md文件名相同的文件夹，如图：<br><img src="/2019/02/26/hexo的本地图片上传/hexoPath.png" alt="新的_posts目录"></p>
 </li>
 <li><p>将你所需要的图片放到这个同名的文件夹里,然后你再使用md语法的图片插入<br>例如这里的文件夹名为test,图片名为test.png</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](test.png)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>部署到本地服务器<br>你会发现图片还是没有。但是你会发现，图片再服务器里面是有的<br><img src="/26/hexo的本地图片上传/newPublic.png" alt="新的public"><br>那么问题应该还是路径问题了,你会发现，路径是这样的</p>
+<li><p>部署到本地服务器<br>你会发现图片还是没有。但是你会发现，图片再服务器里面是有的<br><img src="/2019/02/26/hexo的本地图片上传/newPublic.png" alt="新的public"><br>那么问题应该还是路径问题了,你会发现，路径是这样的</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> = <span class="string">"26/CSS的媒体查询/mediaType.png"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -469,7 +469,7 @@
 </blockquote>
 <p>查看官方文档，所给出的解决办法是使用新的图片引入方式，不过我试了的，依旧不行。<br>仔细想想，应该是插件的js处理，对于路径出了偏差</p>
 <ol start="6">
-<li><p><strong>重点解决办法</strong><br>修改hexo-asset-image插件中的index.js<br>如下：<br><img src="/26/hexo的本地图片上传/changeindex.png" alt="原index.js"><br><strong>将其中红框中的代码修改为如下</strong></p>
+<li><p><strong>重点解决办法</strong><br>修改hexo-asset-image插件中的index.js<br>如下：<br><img src="/2019/02/26/hexo的本地图片上传/changeindex.png" alt="原index.js"><br><strong>将其中红框中的代码修改为如下</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> beginPos = getPosition(link, <span class="string">'/'</span>, <span class="number">1</span>) + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>最后，代码三连</p>

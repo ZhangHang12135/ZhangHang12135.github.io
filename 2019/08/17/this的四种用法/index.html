@@ -95,19 +95,19 @@
 
 
   <meta name="description" content="这个是我最近面试的时候，经常用到的一个问题，总结一下记住一句话，this永远指向最后调用它的作用域 全局对象中（window或者global） 12345function this_one() &amp;#123;    console.log(this);&amp;#125;this_one();//window 浏览器环境 || global(node)console.log(this) // window">
-<meta name="keywords" content="面试,node.js">
+<meta name="keywords" content="node.js,面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="this的四种用法">
 <meta property="og:url" content="/2019/08/17/this的四种用法/index.html">
 <meta property="og:site_name" content="H.S.">
 <meta property="og:description" content="这个是我最近面试的时候，经常用到的一个问题，总结一下记住一句话，this永远指向最后调用它的作用域 全局对象中（window或者global） 12345function this_one() &amp;#123;    console.log(this);&amp;#125;this_one();//window 浏览器环境 || global(node)console.log(this) // window">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/17/this的四种用法/this_one.png">
+<meta property="og:image" content="/2019/08/17/this的四种用法/this_one.png">
 <meta property="og:updated_time" content="2019-11-04T02:41:55.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this的四种用法">
 <meta name="twitter:description" content="这个是我最近面试的时候，经常用到的一个问题，总结一下记住一句话，this永远指向最后调用它的作用域 全局对象中（window或者global） 12345function this_one() &amp;#123;    console.log(this);&amp;#125;this_one();//window 浏览器环境 || global(node)console.log(this) // window">
-<meta name="twitter:image" content="/17/this的四种用法/this_one.png">
+<meta name="twitter:image" content="/2019/08/17/this的四种用法/this_one.png">
 
 
 
@@ -442,7 +442,7 @@
         <p>这个是我最近面试的时候，经常用到的一个问题，总结一下<br><br><strong>记住一句话，this永远指向最后调用它的作用域</strong></p>
 <h3 id="全局对象中（window或者global）"><a href="#全局对象中（window或者global）" class="headerlink" title="全局对象中（window或者global）"></a>全局对象中（window或者global）</h3> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">this_one</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">this_one();<span class="comment">//window 浏览器环境 || global(node)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// window || global</span></span><br></pre></td></tr></table></figure>
  <a id="more"></a>
-<p> <img src="/17/this的四种用法/this_one.png" alt="this的第一种用法（全局对象）"><br>这里的话我就不详细展开了，其实这一点还是适用那句话的，调用this的正是兜底的对象window或者global</p>
+<p> <img src="/2019/08/17/this的四种用法/this_one.png" alt="this的第一种用法（全局对象）"><br>这里的话我就不详细展开了，其实这一点还是适用那句话的，调用this的正是兜底的对象window或者global</p>
 <h3 id="对象（函数）内部"><a href="#对象（函数）内部" class="headerlink" title="对象（函数）内部"></a>对象（函数）内部</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let a = 2;</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>; <span class="comment">//这里不能用let声明，因为let声明的变量不在全局作用域，而是在次级作用域script</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    test</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 2</span></span><br><span class="line">obj.test() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 <h3 id="new出的实例"><a href="#new出的实例" class="headerlink" title="new出的实例"></a>new出的实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name; <span class="comment">//其实还是同样的道理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person(<span class="string">'努力'</span>); <span class="comment">// 这里才调用构造函数,所以this是指代表实例p1的</span></span><br></pre></td></tr></table></figure>
 <h3 id="bind-call-apply改变this"><a href="#bind-call-apply改变this" class="headerlink" title="bind,call,apply改变this"></a>bind,call,apply改变this</h3><p>老实说，前面的三种都说明了同样的道理，谁用就是谁的<br>魔幻的js总是会出现奇幻的东西，<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'Window'</span>;</span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a : <span class="string">'obj1'</span>,</span><br><span class="line">    say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a : <span class="string">'obj2'</span>,</span><br><span class="line">    say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj1.say(); <span class="comment">// obj1</span></span><br><span class="line">obj2.say(); <span class="comment">// obj2</span></span><br><span class="line">obj1.say.bind()(); <span class="comment">// Window</span></span><br><span class="line">obj1.say.call(obj2); <span class="comment">// obj2</span></span><br><span class="line">obj1.say.apply(obj2); <span class="comment">// obj2</span></span><br></pre></td></tr></table></figure></p>
@@ -471,9 +471,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面试/" rel="tag"># 面试</a>
-          
             <a href="/tags/node-js/" rel="tag"># node.js</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
           
         </div>
       
