@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。">
+<meta name="keywords" content="css,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《css选择器世界》总结">
+<meta property="og:url" content="/2019/11/28/《css选择器世界》总结/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/cover.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/hover-del.png">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/target-1.png">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/target-panel.gif">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/placeholder-1.png">
+<meta property="og:updated_time" content="2019-11-30T09:35:18.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《css选择器世界》总结">
+<meta name="twitter:description" content="《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。">
+<meta name="twitter:image" content="/2019/11/28/《css选择器世界》总结/cover.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="/2019/11/28/《css选择器世界》总结/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《css选择器世界》总结 | H.S.</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.S.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">成功的人抄袭，伟大的人剽窃</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2019/11/28/《css选择器世界》总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《css选择器世界》总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-28 10:23:40" itemprop="dateCreated datePublished" datetime="2019-11-28T10:23:40+08:00">2019-11-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-30 17:35:18" itemprop="dateModified" datetime="2019-11-30T17:35:18+08:00">2019-11-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div style="width:100%;"><img src="/2019/11/28/《css选择器世界》总结/cover.jpg"><br>《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。<br></div><br><a id="more"></a></p>
+<h3 id="输入框聚焦，文字高亮"><a href="#输入框聚焦，文字高亮" class="headerlink" title="输入框聚焦，文字高亮"></a>输入框聚焦，文字高亮</h3><h4 id="flex方案-推荐"><a href="#flex方案-推荐" class="headerlink" title="flex方案(推荐)"></a>flex方案(推荐)</h4><p><div class="cs-flex"><br>    <input class="cs-input"><label class="cs-label">用户：</label><br></div></p>
+<style type="text/css">
+.cs-flex {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+.cs-input {
+    width: 200px;
+}
+.cs-label {
+    width: 64px;
+}
+:focus ~ .cs-label {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>这一方法主要是通过flex-direction:row-reverse调换元素的水平呈现顺序来实现DOM位置和视觉位置不一样。书上说，这个方法的唯一问题是兼容性了，用户群是外部用户的桌面慎用，移动端无碍。不是很懂前面那句话的意思，真人实测，chrome,firefox,opera,IE11,Edge都可以使用。毕竟都9021年了。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-flex"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"cs-input"</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"cs-label"</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-flex</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: inline-flex;</span></span><br><span class="line"><span class="undefined">    flex-direction: row-reverse;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-input</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 64px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    color: darkblue;</span></span><br><span class="line"><span class="undefined">    text-shadow: 0 0 10px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="float浮动实现"><a href="#float浮动实现" class="headerlink" title="float浮动实现"></a>float浮动实现</h4><p><div class="cs-float"><input class="cs-input"><label class="cs-label">用户：</label></div></p>
+<style type="text/css">
+.cs-float {
+    width: 268px;
+}
+.cs-float .cs-input {
+    float: right;
+    width: 200px;
+}
+.cs-float .cs-label {
+    display: block;
+    overflow: hidden;
+    line-height: normal;
+}
+:focus ~ .cs-label,
+:focus ~ span {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>这个方案主要就是把输入框浮动到右侧了，兼容性极佳。不兼容IE8的话，可以使用calc来计算输入框的宽度。书中说这个不能实现多个元素的前面选择符效果。也对，每多一个，你就要重新计算宽度。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-float"</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"cs-input"</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"cs-label"</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-float</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 268px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-float</span> <span class="selector-class">.cs-input</span> &#123;</span></span><br><span class="line"><span class="undefined">    float: right;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-float</span> <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: block;</span></span><br><span class="line"><span class="undefined">    overflow: hidden;</span></span><br><span class="line"><span class="undefined">    line-height: normal;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    color: darkblue;</span></span><br><span class="line"><span class="undefined">    text-shadow: 0 0 10px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="absolute绝对定位"><a href="#absolute绝对定位" class="headerlink" title="absolute绝对定位"></a>absolute绝对定位</h4><p><div class="cs-absolute"><input class="cs-input"><label class="cs-label">用户：</label></div></p>
+<style type="text/css">
+.cs-absolute {
+    width: 268px;
+    position: relative;
+}
+.cs-absolute .cs-input {
+    width: 200px;
+    margin-left: 64px;
+}
+.cs-absolute .cs-label {
+    position: absolute;
+    left: 0;
+}
+.cs-absolute:focus ~ .cs-label {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>这个方案兼容性不错，但是你会发现一个问题，对DOM结构要求比较高，页面元素一多起来，这个的控制成本就比较高了。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-absolute"</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"cs-input"</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"cs-label"</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 268px;</span></span><br><span class="line"><span class="undefined">    position: relative;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span> <span class="selector-class">.cs-input</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 200px;</span></span><br><span class="line"><span class="undefined">    margin-left: 64px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span> <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    position: absolute;</span></span><br><span class="line"><span class="undefined">    left: 0;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    color: darkblue;</span></span><br><span class="line"><span class="undefined">    text-shadow: 0 0 10px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="direction属性实现"><a href="#direction属性实现" class="headerlink" title="direction属性实现"></a>direction属性实现</h4><p><div class="cs-direction"><input class="cs-input"><label class="cs-label">用户：</label></div></p>
+<style type="text/css">
+.cs-direction {
+    direction: rtl;
+    display: inline-block;
+}
+.cs-direction .cs-input,
+.cs-direction .cs-label {
+    direction: ltr;
+}
+.cs-direction .cs-label{
+    display: inline-block;
+}
+.cs-direction:focus ~ .cs-label {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>借助direction属性改变文档流的顺序可以轻松实现DOM位置和视觉位置的调换。唯一不足的就是它必须针对内联元素。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-direction"</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"cs-input"</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"cs-label"</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> &#123;</span></span><br><span class="line"><span class="undefined">    direction: rtl;</span></span><br><span class="line"><span class="undefined">    display: inline-block;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> <span class="selector-class">.cs-input</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    direction: ltr;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> <span class="selector-class">.cs-label</span>&#123;</span></span><br><span class="line"><span class="undefined">    display: inline-block;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="undefined">    color: darkblue;</span></span><br><span class="line"><span class="undefined">    text-shadow: 0 0 10px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="focus-within-实现-推荐"><a href="#focus-within-实现-推荐" class="headerlink" title=":focus-within 实现(推荐)"></a>:focus-within 实现(推荐)</h4><p><div class="cs-normal"><label class="cs-label">用户：</label><input class="cs-input"></div></p>
+<style type="text/css">
+.cs-normal:focus-within .cs-label{
+    color: darkblue;
+    text-shadow: 0 0 1px;
+}
+</style>
+
+<p>:focus-within整体焦点伪类。只要不兼容IE就行.它是正常的DOM流，简直不能太完美<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-normal"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"cs-label"</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"cs-input"</span> /&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-normal</span><span class="selector-pseudo">:focus-within</span> <span class="selector-class">.cs-label</span>&#123;</span></span><br><span class="line"><span class="undefined">    color: darkblue;</span></span><br><span class="line"><span class="undefined">    text-shadow: 0 0 1px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="css属性选择器搜索过滤"><a href="#css属性选择器搜索过滤" class="headerlink" title="css属性选择器搜索过滤"></a>css属性选择器搜索过滤</h3><p>借助属性选择器来辅助我们实现搜索过滤效果，如通讯录、城市列表，这样做性能高，代码少</p>
+<p><input id="css-search" type="search" placeholder="输入城市名称或拼音"></p>
+<ul class="filter"><li data-search="重庆市chongqing">重庆市</li><li data-search="哈尔滨市haerbing">哈尔滨市</li><li data-search="长春市changchun">长春市</li><li data-search="兰州市lanzhou">兰州市</li><li data-search="北京市beijing">北京市</li><li data-search="杭州市hangzhou">杭州市</li><li data-search="长沙市changsha">长沙市</li><li data-search="沈阳市shenyang">沈阳市</li><li data-search="成都市chengdu">成都市</li><li data-search="合肥市hefei">合肥市</li><li data-search="天津市tianjin">天津市</li><li data-search="西安市xian">西安市</li><li data-search="武汉市wuhan">武汉市</li><li data-search="济南市jinan">济南市</li><li data-search="广州市guangzhou">广州市</li><li data-search="南京市nanjing">南京市</li><li data-search="上海市shanghai">上海市</li><li data-search="昆明市kunming">昆明市</li><li data-search="郑州市zhangzhou">郑州市</li><li data-search="贵阳市guiyang">贵阳市</li><li data-search="西宁市xining">西宁市</li><li data-search="海口市haikou">海口市</li><li data-search="南昌市nanchang">南昌市</li><li data-search="香港 特区xianggang">香港 特区</li><li data-search="澳门 特区aomen">澳门 特区</li></ul>
+
+<style type="text/css">
+.filter{
+    width: 200px;
+}
+[data-search] {
+    border: 1px solid #ddd;
+    padding: 1px 10px;
+    font-size: 9px;
+}
+</style>
+
+<script type="text/javascript">
+    let eleStyle = document.createElement('style');
+    document.head.appendChild(eleStyle);
+    // 文本框输入
+    let input = document.querySelector('#css-search');
+    input.addEventListener('input', function(){
+        let value = this.value.trim();
+        eleStyle.innerHTML = value ? '[data-search]:not([data-search*="'+ value + '"]){ display: none;}' : '';
+    });
+</script>
+
+<p>这里只有最简单的功能展示，没有其它的过渡啊，动画啊之类的，所以用户体验不会很好。这一点，肯定就需要各位自己去写啦。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"css-search"</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">placeholder</span>=<span class="string">"输入城市名称或拼音"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"filter"</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"重庆市chongqing"</span>&gt;</span>重庆市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"哈尔滨市haerbing"</span>&gt;</span>哈尔滨市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"长春市changchun"</span>&gt;</span>长春市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"兰州市lanzhou"</span>&gt;</span>兰州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"北京市beijing"</span>&gt;</span>北京市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"杭州市hangzhou"</span>&gt;</span>杭州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"长沙市changsha"</span>&gt;</span>长沙市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"沈阳市shenyang"</span>&gt;</span>沈阳市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"成都市chengdu"</span>&gt;</span>成都市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"合肥市hefei"</span>&gt;</span>合肥市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"天津市tianjin"</span>&gt;</span>天津市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"西安市xian"</span>&gt;</span>西安市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"武汉市wuhan"</span>&gt;</span>武汉市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"济南市jinan"</span>&gt;</span>济南市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"广州市guangzhou"</span>&gt;</span>广州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"南京市nanjing"</span>&gt;</span>南京市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"上海市shanghai"</span>&gt;</span>上海市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"昆明市kunming"</span>&gt;</span>昆明市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"郑州市zhangzhou"</span>&gt;</span>郑州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"贵阳市guiyang"</span>&gt;</span>贵阳市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"西宁市xining"</span>&gt;</span>西宁市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"海口市haikou"</span>&gt;</span>海口市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"南昌市nanchang"</span>&gt;</span>南昌市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"香港 特区xianggang"</span>&gt;</span>香港 特区<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">"澳门 特区aomen"</span>&gt;</span>澳门 特区<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> eleStyle = <span class="built_in">document</span>.createElement(<span class="string">'style'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.head.appendChild(eleStyle);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 文本框输入</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> input = <span class="built_in">document</span>.querySelector(<span class="string">'#css-search'</span>);</span></span><br><span class="line"><span class="javascript">    input.addEventListener(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> value = <span class="keyword">this</span>.value.trim();</span></span><br><span class="line"><span class="javascript">        eleStyle.innerHTML = value ? <span class="string">'[data-search]:not([data-search*="'</span>+ value + <span class="string">'"])&#123; display: none;&#125;'</span> : <span class="string">''</span>;</span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="hover显示优化"><a href="#hover显示优化" class="headerlink" title=":hover显示优化"></a>:hover显示优化</h3><p>通过增加延时来优化体验。这里模拟一个tooltip提示。</p>
+<p><div style="position: relative"><button class="hover-del">删除</button></div></p>
+<style type="text/css">
+.hover-del {
+    background-color: skyblue;
+    border-radius: 5%;
+    border: 1px solid lightskyblue;
+}
+.hover-del::before {
+    content: 'delete';
+    position: absolute;
+    top: -41.5px;
+    left: 0px;
+    color: #fff;
+    border-radius: 5%;
+    background-color: rgba(0,0,0,.6);
+}
+.hover-del::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    border-top: 10px solid rgba(0,0,0,.6);
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.hover-del::before, .hover-del::after {
+    transition: visibility 0s .2s;
+    visibility: hidden;
+}
+.hover-del:hover::before, .hover-del:hover::after {
+    visibility: visible;
+}
+</style>
+
+<p>完整代码如下，可以看看那个画三角形的。嘿嘿嘿！<br><img src="/2019/11/28/《css选择器世界》总结/hover-del.png" alt="hover优化代码"><br>当然这里，还可以添加:focus来优化体验，这里我就不写了。将最后的:hover换成:focus即可</p>
+<h3 id="target交互布局技术"><a href="#target交互布局技术" class="headerlink" title=":target交互布局技术"></a>:target交互布局技术</h3><p>:target是IE9及以上版本的浏览器都支持的一个伪类，与URL地址中的锚点定位强关联的伪类。<br>事先申明这种技术的应用于，js被禁用或者页面还没加载完全的清空下使用，这种方案就是一种兜底的方案。</p>
+<h4 id="展开与收起效果"><a href="#展开与收起效果" class="headerlink" title="展开与收起效果"></a>展开与收起效果</h4><p><strong>性感真人，在线忧伤</strong></p>
+<p></p><p>无论我们最后生疏到什么样子，曾经对你的好都是真的。希望你不后悔认识我，也是真的快乐过。就算终有一散，但别辜负相遇。如果能回到从前，我会选择不认识你。不是我后悔，是我不能面对现在的结局。</p><div id="articleMore" hidden></div><a href="#articleMore" class="cs-button" data-open="true">阅读更多</a><p class="cs-more-p"> 茶凉了，就别再续了，再续也不是原来的味道了。人走了，就别再留了，在留下也不是原来的感觉了。情没了，就别回味了，再回味也不是原来的心情了。慢慢的都会远，渐渐的都会淡。拥有时好好珍惜，离开了默默祝福。人生的旅途，没有人是应该要陪你走到最后的。</p><a href="#123" class="cs-button" data-open="false">收起</a><p></p>
+<style type="text/css">
+.cs-button{
+    display: block;
+    text-align: center;
+    background-color: deepskyblue;
+    color: #fff;
+    padding: 5px;
+    margin-top: 1em;
+    cursor: pointer;
+}
+.cs-more-p, [data-open='false'] {
+    display: none;
+}
+:target ~ [data-open='true'] {
+    display: none;
+}
+:target ~ .cs-more-p,
+:target ~ [data-open='false'] {
+    display: block;
+}
+</style>
+
+<p>上述css的实现原理是把锚链元素放在最前面，然后通过兄弟选择符<code>~</code>来控制对应元素的显影变化<br><img src="/2019/11/28/《css选择器世界》总结/target-1.png" alt=":target实现收缩展开"></p>
+<h4 id="选项卡效果"><a href="#选项卡效果" class="headerlink" title="选项卡效果"></a>选项卡效果</h4><p>这里的hexo框架不知道做了什么，我直接写html会和预期的不一样,我就直接放张鑫旭大佬的demo效果图了<br><img src="/2019/11/28/《css选择器世界》总结/target-panel.gif" alt="选项卡效果"><br>利用display:none元素作为锚链元素，利用兄弟选择器控制状态变化,就没有页面跳动的糟糕体验了。不过呢，这种技术肯定不是最完美的。没有任何事物是十全十美的。所以啊，推荐再此方案上在加上js的控制。这样就完美的多了.<br>推荐思路：</p>
+<blockquote>
+<ol>
+<li>默认按照：target伪类交互技术实现，与一个类名标志量关联。</li>
+<li>js也正常实现交互。js加载完成之后移除类名标志量，交互交给js.</li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-tab-x"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">id</span>=<span class="string">"tabPanel2"</span> <span class="attr">class</span>=<span class="string">"cs-tab-anchor-2"</span> <span class="attr">hidden</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">id</span>=<span class="string">"tabPanel3"</span> <span class="attr">class</span>=<span class="string">"cs-tab-anchor-3"</span> <span class="attr">hidden</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-tab"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#tabPanel1"</span> <span class="attr">class</span>=<span class="string">"cs-tab-li"</span>&gt;</span>选项卡1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#tabPanel2"</span> <span class="attr">class</span>=<span class="string">"cs-tab-li"</span>&gt;</span>选项卡2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#tabPanel3"</span> <span class="attr">class</span>=<span class="string">"cs-tab-li"</span>&gt;</span>选项卡3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-panel"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-panel-li"</span>&gt;</span>面板内容1<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-panel-li"</span>&gt;</span>面板内容2<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs-panel-li"</span>&gt;</span>面板内容3<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-x</span>&#123;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    margin: auto;</span></span><br><span class="line"><span class="undefined">    text-align: left;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab</span>&#123;</span></span><br><span class="line"><span class="undefined">    display: inline-block;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-li</span>&#123;</span></span><br><span class="line"><span class="undefined">    display: inline-block;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#f0f0f0</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line"><span class="undefined">    padding: 5px 10px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:target)</span> + <span class="selector-pseudo">:not(</span><span class="selector-pseudo">:target)</span> ~ <span class="selector-class">.cs-tab</span> <span class="selector-class">.cs-tab-li</span><span class="selector-pseudo">:first-child</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-tab</span> <span class="selector-class">.cs-tab-li</span><span class="selector-pseudo">:nth-of-type(2)</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-3</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-tab</span> <span class="selector-class">.cs-tab-li</span><span class="selector-pseudo">:nth-of-type(3)</span> &#123;</span></span><br><span class="line"><span class="undefined">    background-color: deepskyblue;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-panel-li</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: none;</span></span><br><span class="line"><span class="undefined">    padding: 20px;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ccc</span>;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:target)</span> + <span class="selector-pseudo">:not(</span><span class="selector-pseudo">:target)</span> ~ <span class="selector-class">.cs-panel</span> <span class="selector-class">.cs-panel-li</span><span class="selector-pseudo">:first-child</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-panel</span> <span class="selector-class">.cs-panel-li</span><span class="selector-pseudo">:nth-of-type(2)</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-3</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-panel</span> <span class="selector-class">.cs-panel-li</span><span class="selector-pseudo">:nth-of-type(3)</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: block;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="placeholder-show的应用"><a href="#placeholder-show的应用" class="headerlink" title=":placeholder-show的应用"></a>:placeholder-show的应用</h3><h4 id="Material-Design-风格占位符交互"><a href="#Material-Design-风格占位符交互" class="headerlink" title="Material Design 风格占位符交互"></a>Material Design 风格占位符交互</h4><p>利用:placeholder-shown伪类匹配输入框中没有输入的时候，来实现。老实说，我真的被这种思路惊艳到了。</p>
+<p><div class="input-fill-x"><input class="input-control input-fill" placeholder="邮箱"> <label class="input-label">邮箱</label></div><div class="input-outline-x"><input class="input-control input-outline" placeholder="用户名"> <label class="input-label">用户名</label></div><div class="textarea-outline-x"><textarea class="input-control textarea-outline" cols="25" rows="3" placeholder="评论"></textarea><label class="input-label">评论</label></div></p>
+<style type="text/css">
+.input-fill-x, .input-outline-x, .textarea-outline-x {
+    width: webkit-fit-content;
+    width: moz-fit-content;
+    width: fit-content;
+    display: inline-block;
+    position: relative;
+    margin-right: 20px;
+}
+.input-fill-x {
+    border-bottom: 1px solid #d0d0d5;
+}
+/* 底部边框动画 */
+.input-fill-x::after {
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #2486ff;
+    left: 0; 
+    right: 0; 
+    bottom: -1px;
+    transform: scaleX(0);
+    transition: transform .25s;
+}
+.input-fill-x:focus-within::after {
+  transform: scaleX(1);
+}
+.input-fill {
+    padding: 20px 16px 6px;
+    border: 1px solid transparent;
+    background: #f5f5f5;
+}
+.input-outline,
+.textarea-outline {
+  padding: 13px 16px 13px;
+  border: 1px solid #d0d0d5;
+  border-radius: 4px;
+  transition: border-color .25s;
+}
+.input-outline:focus,
+.textarea-outline:focus {
+  border-color: #2486ff;
+}
+/* 默认placeholder颜色透明不可见 */
+.input-control:placeholder-shown::placeholder {
+    color: transparent;
+}
+.input-control:not(:placeholder-shown) ~ .input-label,
+.input-control:focus ~ .input-label {
+    color: #2486ff;
+    transform: scale(0.75) translate(0px, -32px);
+}
+/* 填充样式下label定位 */
+.input-fill:not(:placeholder-shown) ~ .input-label,
+.input-fill:focus ~ .input-label {
+  transform: scale(0.75) translateY(-14px);
+}
+/* 线框交互下有个白色背景 */
+.input-outline ~ .input-label,
+.textarea-outline ~ .input-label {
+  background-color: #fff;
+}
+.input-control {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    outline: none;
+}
+.input-label {
+    position: absolute;
+    font-size: 16px;
+    line-height: 1.5;
+    left: 16px; top: 14px;
+    color: #a2a9b6; 
+    padding: 0 2px;
+    transform-origin: 0 0;
+    pointer-events: none;
+    transition: all.25s;
+}
+</style>
+
+<p>这里的思路是这样的，首先让placeholder透明，然后让兄弟元素label采用绝对定位去占那个位置，然后输入框或得焦点的时候以及:placeholder伪类没有匹配的时候，将label缩小并移动到上方。添加transitiong过渡就可以了。关键部分，我用红框标出来了。<br><img src="/2019/11/28/《css选择器世界》总结/placeholder-1.png" alt="示例完整代码"></p>
+<h4 id="空值判断"><a href="#空值判断" class="headerlink" title="空值判断"></a>空值判断</h4><p><input class="if-empty" placeholder=" "><small></small></p>
+<style type="text/css">
+.if-empty:placeholder-shown ~ small::before {
+    content: '尚未输入内容';
+    color: red;
+    font-size: 87.5%
+}
+</style>
+
+<p>由于placeholder内容只在空值状态的时候才显示，因此可借助:placeholder-shown伪类来判断一个输入框中是否有值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"if-empty"</span> <span class="attr">placeholder</span>=<span class="string">" "</span> /&gt;</span><span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.if-empty</span><span class="selector-pseudo">:placeholder-shown</span> ~ <span class="selector-tag">small</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="undefined">    content: '尚未输入内容';</span></span><br><span class="line"><span class="undefined">    color: red;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">font-size</span>: 87<span class="selector-class">.5</span>%</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="default的实际应用"><a href="#default的实际应用" class="headerlink" title=":default的实际应用"></a>:default的实际应用</h3><p>:default伪类只能用作用在表单元素上，表示处于默认状态的表单元素。<br>推荐标记 用法</p>
+<p></p><p><input class="default-radio" type="radio" name="pay" id="pay0"><label for="pay0">支付宝</label></p><p><input class="default-radio" type="radio" name="pay" id="pay1" checked><label for="pay1">微信</label></p><p><input class="default-radio" type="radio" name="pay" id="pay2"><label for="pay2">云闪付</label></p><p></p>
+<style type="text/css">
+.default-radio:default + label::after {
+    content: '(推荐)';
+}
+</style>
+
+<p>:default伪类的匹配不受之后checked属性值变化影响，所以增加的<code>（推荐）</code>字符会一直在微信后面。如果以后需求变了，直接更改将checked更改就好。这里的，你可以直接F12之后更改，就可以看到，<code>推荐</code>会跟随变化。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"default-radio"</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"pay"</span> <span class="attr">id</span>=<span class="string">"pay0"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pay0"</span>&gt;</span>支付宝<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"default-radio"</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"pay"</span> <span class="attr">id</span>=<span class="string">"pay1"</span> <span class="attr">checked</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pay1"</span>&gt;</span>微信<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"default-radio"</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"pay"</span> <span class="attr">id</span>=<span class="string">"pay2"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pay2"</span>&gt;</span>云闪付<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.default-radio</span><span class="selector-pseudo">:default</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::after</span> &#123;</span></span><br><span class="line"><span class="undefined">    content: '(推荐)';</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="单复选框元素显隐技术"><a href="#单复选框元素显隐技术" class="headerlink" title="单复选框元素显隐技术"></a>单复选框元素显隐技术</h3><h4 id="自定义单复选框"><a href="#自定义单复选框" class="headerlink" title="自定义单复选框"></a>自定义单复选框</h4><h4 id="开关效果"><a href="#开关效果" class="headerlink" title="开关效果"></a>开关效果</h4><h4 id="标签-列表-素材的选择"><a href="#标签-列表-素材的选择" class="headerlink" title="标签/列表/素材的选择"></a>标签/列表/素材的选择</h4>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/29/节流和防抖/" rel="next" title="节流和防抖">
+                <i class="fa fa-chevron-left"></i> 节流和防抖
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="灰沙">
+            
+              <p class="site-author-name" itemprop="name">灰沙</p>
+              <p class="site-description motion-element" itemprop="description">前端个人博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入框聚焦，文字高亮"><span class="nav-number">1.</span> <span class="nav-text">输入框聚焦，文字高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flex方案-推荐"><span class="nav-number">1.1.</span> <span class="nav-text">flex方案(推荐)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#float浮动实现"><span class="nav-number">1.2.</span> <span class="nav-text">float浮动实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute绝对定位"><span class="nav-number">1.3.</span> <span class="nav-text">absolute绝对定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#direction属性实现"><span class="nav-number">1.4.</span> <span class="nav-text">direction属性实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#focus-within-实现-推荐"><span class="nav-number">1.5.</span> <span class="nav-text">:focus-within 实现(推荐)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css属性选择器搜索过滤"><span class="nav-number">2.</span> <span class="nav-text">css属性选择器搜索过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover显示优化"><span class="nav-number">3.</span> <span class="nav-text">:hover显示优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target交互布局技术"><span class="nav-number">4.</span> <span class="nav-text">:target交互布局技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#展开与收起效果"><span class="nav-number">4.1.</span> <span class="nav-text">展开与收起效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选项卡效果"><span class="nav-number">4.2.</span> <span class="nav-text">选项卡效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#placeholder-show的应用"><span class="nav-number">5.</span> <span class="nav-text">:placeholder-show的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Material-Design-风格占位符交互"><span class="nav-number">5.1.</span> <span class="nav-text">Material Design 风格占位符交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值判断"><span class="nav-number">5.2.</span> <span class="nav-text">空值判断</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default的实际应用"><span class="nav-number">6.</span> <span class="nav-text">:default的实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单复选框元素显隐技术"><span class="nav-number">7.</span> <span class="nav-text">单复选框元素显隐技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义单复选框"><span class="nav-number">7.1.</span> <span class="nav-text">自定义单复选框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开关效果"><span class="nav-number">7.2.</span> <span class="nav-text">开关效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签-列表-素材的选择"><span class="nav-number">7.3.</span> <span class="nav-text">标签/列表/素材的选择</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src="https://open.weixin.qq.com/qr/code?username=FanRenWeb" width="150px" height="150px">
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
