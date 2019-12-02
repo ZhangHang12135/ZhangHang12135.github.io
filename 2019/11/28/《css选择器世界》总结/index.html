@@ -107,7 +107,17 @@
 <meta property="og:image" content="/2019/11/28/《css选择器世界》总结/target-1.png">
 <meta property="og:image" content="/2019/11/28/《css选择器世界》总结/target-panel.gif">
 <meta property="og:image" content="/2019/11/28/《css选择器世界》总结/placeholder-1.png">
-<meta property="og:updated_time" content="2019-11-30T09:35:18.832Z">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/diy-input.png">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/switch.png">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/bg-1.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/bg-2.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/bg-3.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/bg-4.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/bg-5.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/bg-6.jpg">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/img-radio.png">
+<meta property="og:image" content="/2019/11/28/《css选择器世界》总结/required.png">
+<meta property="og:updated_time" content="2019-12-02T07:21:01.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《css选择器世界》总结">
 <meta name="twitter:description" content="《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。">
@@ -391,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-30 17:35:18" itemprop="dateModified" datetime="2019-11-30T17:35:18+08:00">2019-11-30</time>
+                <time title="修改时间：2019-12-02 15:21:01" itemprop="dateModified" datetime="2019-12-02T15:21:01+08:00">2019-12-02</time>
               
             
           </span>
@@ -737,7 +747,300 @@
 </style>
 
 <p>:default伪类的匹配不受之后checked属性值变化影响，所以增加的<code>（推荐）</code>字符会一直在微信后面。如果以后需求变了，直接更改将checked更改就好。这里的，你可以直接F12之后更改，就可以看到，<code>推荐</code>会跟随变化。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"default-radio"</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"pay"</span> <span class="attr">id</span>=<span class="string">"pay0"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pay0"</span>&gt;</span>支付宝<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"default-radio"</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"pay"</span> <span class="attr">id</span>=<span class="string">"pay1"</span> <span class="attr">checked</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pay1"</span>&gt;</span>微信<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"default-radio"</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"pay"</span> <span class="attr">id</span>=<span class="string">"pay2"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pay2"</span>&gt;</span>云闪付<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.default-radio</span><span class="selector-pseudo">:default</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::after</span> &#123;</span></span><br><span class="line"><span class="undefined">    content: '(推荐)';</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="单复选框元素显隐技术"><a href="#单复选框元素显隐技术" class="headerlink" title="单复选框元素显隐技术"></a>单复选框元素显隐技术</h3><h4 id="自定义单复选框"><a href="#自定义单复选框" class="headerlink" title="自定义单复选框"></a>自定义单复选框</h4><h4 id="开关效果"><a href="#开关效果" class="headerlink" title="开关效果"></a>开关效果</h4><h4 id="标签-列表-素材的选择"><a href="#标签-列表-素材的选择" class="headerlink" title="标签/列表/素材的选择"></a>标签/列表/素材的选择</h4>
+<h3 id="单复选框元素显隐技术"><a href="#单复选框元素显隐技术" class="headerlink" title="单复选框元素显隐技术"></a>单复选框元素显隐技术</h3><p>由于单选框和复选框的选中行为是由点击事件触发的，因此配合兄弟选择符，可以选择不适用js实现多种点击交互行为，如展开收起，选项卡切换或者多级下拉列表等。不过呢，这里不是我要讲的重点，详细的可以参照书籍。接下来的，就是可以立足于实际开发的一下技巧。</p>
+<h4 id="自定义单复选框"><a href="#自定义单复选框" class="headerlink" title="自定义单复选框"></a>自定义单复选框</h4><p>浏览器原生的单复选框常常和设计风格不搭，需要自定义,最好的实现方法就是借助原生单复选框再配合其它伪类</p>
+<p><input class="diy-radio" type="radio" id="radio1" name="radio"><label for="radio1" class="cs-radio"></label><label for="radio1">单选框1</label><input class="diy-radio" type="radio" id="radio2" name="radio"><label for="radio2" class="cs-radio"></label><label for="radio2">单选框2</label><input class="diy-radio" type="radio" id="radio3" name="radio" disabled><label for="radio3" class="cs-radio"></label><label for="radio3">单选框3 disabled</label></p>
+<p><input class="diy-checkbox" type="checkbox" id="checkbox1"><label for="checkbox1" class="cs-checkbox"></label><label for="checkbox1">复选框1</label><input class="diy-checkbox" type="checkbox" id="checkbox2" disabled><label for="checkbox2" class="cs-checkbox"></label><label for="checkbox2">复选框2</label><input class="diy-checkbox" type="checkbox" id="checkbox3" disabled checked><label for="checkbox3" class="cs-checkbox"></label><label for="checkbox3">复选框3</label></p>
+<style type="text/css">
+.diy-radio[type="radio"], .diy-checkbox {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    cursor: pointer;
+}
+.cs-radio{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    background-color: #fff;
+    box-sizing: border-box;
+    vertical-align: -.5ex;
+    user-select: none;
+    transition: border-color .2s;
+    overflow: hidden;
+    cursor: pointer;
+}
+.diy-radio:focus + .cs-radio,
+.diy-radio:checked + .cs-radio {
+    border-color: deepskyblue;
+}
+.diy-radio:checked + .cs-radio::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 4px auto 0;
+    border-radius: 50%;
+    background-color: deepskyblue;
+}
+#radio3:disabled + .cs-radio {
+    background-color: #f5f5f5;
+    opacity: .4;
+    border-color: red;
+    cursor: not-allowed;
+}
+.cs-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    color: gray;
+    box-shadow: inset 0 0 0 1px;
+    background-color: #fff;
+    box-sizing: border-box;
+    vertical-align: -.5ex;
+    user-select: none;
+    transition: color .2s;
+    cursor: pointer;
+    overflow: hidden;
+}
+.diy-checkbox:focus + .cs-checkbox,
+.diy-checkbox:checked + .cs-checkbox {
+    color: deepskyblue;
+}
+.diy-checkbox:checked + .cs-checkbox::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 3px;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    margin: 4px auto 0;
+    transform: rotate(-45deg);
+}
+.diy-checkbox:disabled + .cs-checkbox {
+    background-color: #f5f5f5;
+    opacity: .4;
+    cursor: not-allowed;
+}
+</style>
+
+<p><img src="/2019/11/28/《css选择器世界》总结/diy-input.png" alt="自定义单复选框样式"></p>
+<h4 id="开关效果"><a href="#开关效果" class="headerlink" title="开关效果"></a>开关效果</h4><p>常见的开关效果，其本质就是一个复选框，分为<code>打开</code>和<code>关闭</code>两个状态。原理相同，我这里就直接上效果和代码了</p>
+<p><input type="checkbox" class="switch" id="switch1"><label class="cs-switch" for="switch1"></label><input type="checkbox" class="switch" id="switch2" checked><label class="cs-switch" for="switch2"></label><input type="checkbox" class="switch" id="switch3" disabled><label class="cs-switch" for="switch3"></label><input type="checkbox" class="switch" id="switch4" checked disabled><label class="cs-switch" for="switch4"></label></p>
+<style type="text/css">
+.switch{
+    width: 44px;
+    height: 26px;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.cs-switch {
+    display: inline-block;
+    width: 44px;
+    height: 26px;
+    border-radius: 26px;
+    background-color: currentColor;
+    box-sizing: border-box;
+    color: silver;
+    transition: all .2s;
+    cursor: pointer;
+}
+.cs-switch::before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: margin-left .2s;
+}
+:active:not(:disabled) + .cs-switch::before {
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .1);
+}
+:checked + .cs-switch {
+    color: deepskyblue;
+}
+:checked + .cs-switch::before {
+    margin-left: 20px;
+}
+:focus-visible + .cs-switch {
+    outline: 1px dotted Hightlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+:disabled + .cs-switch {
+    opacity: .4;
+    cursor: not-allowed;
+}
+</style>
+
+<p>话不多说，直接上代码。这里的一些间距什么的，可能会有不同的显示。需要您自己再去适配了。嘿嘿o(<em>￣▽￣</em>)ブ<br><img src="/2019/11/28/《css选择器世界》总结/switch.png" alt="开关按钮代码"></p>
+<h4 id="标签-列表-素材的选择"><a href="#标签-列表-素材的选择" class="headerlink" title="标签/列表/素材的选择"></a>标签/列表/素材的选择</h4><p>无论是单选还是多选，选择标签，还是选择图片，都可以借助:checked伪类纯css实现.</p>
+<p><input type="checkbox" class="topic" id="topic1"><label for="topic1" class="cs-topic">科技</label><input type="checkbox" class="topic" id="topic2"><label for="topic2" class="cs-topic">体育</label><input type="checkbox" class="topic" id="topic3"><label for="topic3" class="cs-topic">军事</label><input type="checkbox" class="topic" id="topic4"><label for="topic4" class="cs-topic">娱乐</label><input type="checkbox" class="topic" id="topic5"><label for="topic5" class="cs-topic">动漫</label><input type="checkbox" class="topic" id="topic6"><label for="topic6" class="cs-topic">音乐</label><input type="checkbox" class="topic" id="topic7"><label for="topic7" class="cs-topic">电影</label><input type="checkbox" class="topic" id="topic8"><label for="topic8" class="cs-topic">生活</label></p><p>您已选择<span class="cs-topic-counter"></span>个话题</p><p></p>
+<style type="text/css">
+.topic{
+    position: absolute;
+    clip: rect(0,0,0,0)
+}
+.cs-topic {
+    display: inline-block;
+    width: 64px;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    border: 1px solid silver;
+    text-align: center;
+    cursor: pointer;
+}
+.cs-topic:hover {
+    border-color: gray;
+}
+:checked + .cs-topic {
+    border-color: deepskyblue;
+    background-color: azure;
+}
+/* 选择计数器 */
+body {
+    counter-reset: topicCounter;
+}
+:checked + .cs-topic {
+    counter-increment: topicCounter;
+}
+.cs-topic-counter::before {
+    color: red;
+    margin: 0 2px;
+    content: counter(topicCounter);
+}
+</style>
+配合CSS计数器，可直接显示选中标签元素的个数。
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic1"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic1"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>科技<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic2"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic2"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>体育<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic3"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic3"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>军事<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic4"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic4"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>娱乐<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic5"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic5"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>动漫<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic6"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic6"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic7"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic7"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">class</span>=<span class="string">"topic"</span> <span class="attr">id</span>=<span class="string">"topic8"</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"topic8"</span> <span class="attr">class</span>=<span class="string">"cs-topic"</span>&gt;</span>生活<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>您已选择<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cs-topic-counter"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>个话题<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.topic</span>&#123;</span></span><br><span class="line"><span class="undefined">    position: absolute;</span></span><br><span class="line"><span class="undefined">    clip: rect(0,0,0,0)</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-topic</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: inline-block;</span></span><br><span class="line"><span class="undefined">    width: 64px;</span></span><br><span class="line"><span class="undefined">    margin-top: 5px;</span></span><br><span class="line"><span class="undefined">    margin-right: 5px;</span></span><br><span class="line"><span class="undefined">    padding: 5px;</span></span><br><span class="line"><span class="undefined">    border: 1px solid silver;</span></span><br><span class="line"><span class="undefined">    text-align: center;</span></span><br><span class="line"><span class="undefined">    cursor: pointer;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-topic</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line"><span class="undefined">    border-color: gray;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:checked</span> + <span class="selector-class">.cs-topic</span> &#123;</span></span><br><span class="line"><span class="undefined">    border-color: deepskyblue;</span></span><br><span class="line"><span class="undefined">    background-color: azure;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="comment">/* 选择计数器 */</span></span></span><br><span class="line"><span class="undefined">body &#123;</span></span><br><span class="line"><span class="undefined">    counter-reset: topicCounter;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:checked</span> + <span class="selector-class">.cs-topic</span> &#123;</span></span><br><span class="line"><span class="undefined">    counter-increment: topicCounter;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-topic-counter</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="undefined">    color: red;</span></span><br><span class="line"><span class="undefined">    margin: 0 2px;</span></span><br><span class="line"><span class="undefined">    content: counter(topicCounter);</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<input type="radio" class="img-radio" id="wallpaper1" name="wallpaper" checked><label for="wallpaper1" class="cs-wallpaper"><img src="/2019/11/28/《css选择器世界》总结/bg-1.jpg" class="cs-wapper-img"></label>
+<input type="radio" class="img-radio" id="wallpaper2" name="wallpaper"><label for="wallpaper2" class="cs-wallpaper"><img src="/2019/11/28/《css选择器世界》总结/bg-2.jpg" class="cs-wallpaper-img"></label>
+<input type="radio" class="img-radio" id="wallpaper3" name="wallpaper"><label for="wallpaper3" class="cs-wallpaper"><img src="/2019/11/28/《css选择器世界》总结/bg-3.jpg" class="cs-wallpaper-img"></label>
+<input type="radio" class="img-radio" id="wallpaper4" name="wallpaper"><label for="wallpaper4" class="cs-wallpaper"><img src="/2019/11/28/《css选择器世界》总结/bg-4.jpg" class="cs-wallpaper-img"></label>
+<input type="radio" class="img-radio" id="wallpaper5" name="wallpaper"><label for="wallpaper5" class="cs-wallpaper"><img src="/2019/11/28/《css选择器世界》总结/bg-5.jpg" class="cs-wallpaper-img"></label>
+<input type="radio" class="img-radio" id="wallpaper6" name="wallpaper"><label for="wallpaper6" class="cs-wallpaper"><img src="/2019/11/28/《css选择器世界》总结/bg-6.jpg" class="cs-wallpaper-img"></label>
+<style type="text/css">
+.img-radio {
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
+.cs-wallpaper {
+    display: inline-block;
+    width: 90px;
+    height: 120px;
+    margin-top: 5px;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.cs-wallpaper-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+:checked + .cs-wallpaper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: 2px solid deepskyblue;
+    background: linear-gradient(-135deg, deepskyblue 14px, transparent 15px);
+}
+:checked + .cs-wallpaper::after {
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    width: 8px;
+    height: 3px;
+    color: white;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    transform: rotate(-45deg);
+}
+</style>
+
+<p><img src="/2019/11/28/《css选择器世界》总结/img-radio.png" alt="单选图片"></p>
+<h3 id="输入值验证"><a href="#输入值验证" class="headerlink" title="输入值验证"></a>输入值验证</h3><p>借助h5的required和pattern等验证相关属性，以及有效验证伪类:valid 验证成功和:invalid验证失败。不过呢，这两个伪类是在页面开始加载时就会触发。新出了一个:user-invalid伪类，不过还处于实验阶段，暂时没有浏览器支持。不过我们可以借助js,来达到同样的效果。就是在用户产生提交表单的行为发生后，为元素添加特定的类名，来触发浏览器内置验证开启。</p>
+<form id="csForm" novalidate=""><p>验证码：<input class="cs-input" placeholder=" " required pattern="\w{4,6}"><span class="cs-valid-tips"></span></p><input type="submit" value="提交"></form>
+
+<style type="text/css">
+.valid .cs-input:invalid {
+    border-color: red;
+}
+.valid .cs-input:valid + .cs-valid-tips::before {
+    content: '√';
+    color: green;
+}
+.valid .cs-input:invalid + .cs-valid-tips::before {
+    content: '不符合要求';
+    color: red;
+}
+.valid .cs-input:placeholder-shown + .cs-valid-tips::before {
+    content: '尚未输入值';
+}
+</style>
+
+<script type="text/javascript">
+    document.querySelector('#csForm').addEventListener('submit', function(event){
+        this.classList.add('valid');
+        event.preventDefault();
+    })
+</script>
+
+<p>不要在意这里的那个阴影，那是前面的那个影响的。没什么太大的影响。我就不修改前面的东西了。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"csForm"</span> <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>验证码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"cs-input"</span> <span class="attr">placeholder</span>=<span class="string">" "</span> <span class="attr">required</span> <span class="attr">pattern</span>=<span class="string">"\w&#123;4,6&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cs-valid-tips"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:invalid</span> &#123;</span></span><br><span class="line"><span class="undefined">    border-color: red;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:valid</span> + <span class="selector-class">.cs-valid-tips</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="undefined">    content: '√';</span></span><br><span class="line"><span class="undefined">    color: green;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:invalid</span> + <span class="selector-class">.cs-valid-tips</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="undefined">    content: '不符合要求';</span></span><br><span class="line"><span class="undefined">    color: red;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:placeholder-shown</span> + <span class="selector-class">.cs-valid-tips</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="undefined">    content: '尚未输入值';</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.querySelector(<span class="string">'#csForm'</span>).addEventListener(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.classList.add(<span class="string">'valid'</span>);</span></span><br><span class="line"><span class="undefined">        event.preventDefault();</span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>有几点需要提醒一下：</p>
+<blockquote>
+<p>如果你想知道所有的表单都验证通过，可以使用form表单的原生的checkValidity()方法，返回整个表单是否通过验证的布尔值<br>另外，想要表单验证时及时的，可以监听form的input事件或者focus事件。<br>在IE浏览器中，会出现无法重绘的bug,大致就是输入已经合法了，但是后面的提示内容没有实时的变化。解决办法就是手动触发重绘。改变父元素的样式啊，或者设置无关紧要的类名。下面的是张鑫旭大佬写的一个补丁，放在页面的任意位置即可。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">document</span>.msHidden != <span class="string">'undefined'</span> || !history.pushState) &#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target &amp;&amp; <span class="regexp">/^input|textarea$/i</span>.test(event.target.tagName)) &#123;</span><br><span class="line">            event.target.parentElement.className = event.target.parentElement.className;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="必填，可选"><a href="#必填，可选" class="headerlink" title="必填，可选"></a>必填，可选</h3><p>:required伪类用来匹配设置了required属性的表单元素，表示这个表单元素必填或者必写。:optional伪类可以看成是:required伪类的对立面。只要表单元素没有设置required属性都可以匹配:optional伪类.</p>
+<p><form><fieldset><legend>问卷调查</legend><ol class="cs-ques-ul"><li class="cs-ques-li"><input type="radio" name="ques1" required>1-3年<input type="radio" name="ques1" required>3-5年<input type="radio" name="ques1" required>5年以上<strong class="cs-caption">你从事前端几年了？</strong></li><li class="cs-ques-li"><input type="radio" name="ques2" required>1-3小时<input type="radio" name="ques2">3-5小时<input type="radio" name="ques2">5小时以上<strong class="cs-caption">你每周多少业余时间用来学习前端技术？</strong></li><li class="cs-ques-li"><input type="radio" name="ques3" required>1-3本<input type="radio" name="ques3">3-5本<input type="radio" name="ques3">5本以上<strong class="cs-caption">你每年买多少本前端相关书籍？</strong></li><li class="cs-ques-li"><textarea></textarea><strong class="cs-caption">有什么其它想说的？</strong></li></ol><p><input type="submit" value="提交"></p></fieldset></form></p>
+<style type="text/css">
+    .cs-ques-li {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+    .cs-caption {
+        display: table-caption;
+        caption-side: top;
+    }
+    .cs-ques-ul {
+        counter-reset: quesIndex;
+    }
+    .cs-ques-li::before {
+        counter-increment: quesIndex;
+        content: counter(quesIndex) ".";
+        position: absolute;
+        top: 28px;
+        margin: 0 0 0 -20px;
+    }
+    :optional ~ .cs-caption::after {
+        content: '(可选)';
+        color: gray;
+    }
+    :required ~ .cs-caption::after {
+        content: '(必选)';
+        color: red;
+    }
+</style>
+
+<p>大致说下这里的思路，随后兄弟选择符，后置标题。利用table-caption后置标题视觉上提前显示。然后再利用css计数器去实现编号。可选性自动标记效果，以后想要修改可选性，只需要修改表单元素的<code>required</code>属性即可,文案信息自动同步，维护更简单。这里的，你也可以按F12直接修改，看看效果。<br><img src="/2019/11/28/《css选择器世界》总结/required.png" alt="调查问卷代码"></p>
+<h3 id="花样表格"><a href="#花样表格" class="headerlink" title="花样表格"></a>花样表格</h3><p>这里的话，我就不弄效果了。直接上代码吧，比较简单。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 偶数行 */</span></span><br><span class="line"><span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(even)</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 前三个元素 */</span></span><br><span class="line"><span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(-n</span> + 3) <span class="selector-tag">td</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: bisque;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 第4到10个元素 */</span></span><br><span class="line"><span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(n</span> + 4)<span class="selector-pseudo">:nth-child(-n</span> + 10) <span class="selector-tag">td</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: lightcyan;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实写到这里的时候，突然有种感觉，就是所谓的高级技巧好像也没有那么精致了。不知道是不是我写这个总结写了5天的缘故，😂😂。凑了个十全十美，(￣▽￣)”。</p>
+
       
     </div>
 
@@ -952,7 +1255,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入框聚焦，文字高亮"><span class="nav-number">1.</span> <span class="nav-text">输入框聚焦，文字高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flex方案-推荐"><span class="nav-number">1.1.</span> <span class="nav-text">flex方案(推荐)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#float浮动实现"><span class="nav-number">1.2.</span> <span class="nav-text">float浮动实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute绝对定位"><span class="nav-number">1.3.</span> <span class="nav-text">absolute绝对定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#direction属性实现"><span class="nav-number">1.4.</span> <span class="nav-text">direction属性实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#focus-within-实现-推荐"><span class="nav-number">1.5.</span> <span class="nav-text">:focus-within 实现(推荐)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css属性选择器搜索过滤"><span class="nav-number">2.</span> <span class="nav-text">css属性选择器搜索过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover显示优化"><span class="nav-number">3.</span> <span class="nav-text">:hover显示优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target交互布局技术"><span class="nav-number">4.</span> <span class="nav-text">:target交互布局技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#展开与收起效果"><span class="nav-number">4.1.</span> <span class="nav-text">展开与收起效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选项卡效果"><span class="nav-number">4.2.</span> <span class="nav-text">选项卡效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#placeholder-show的应用"><span class="nav-number">5.</span> <span class="nav-text">:placeholder-show的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Material-Design-风格占位符交互"><span class="nav-number">5.1.</span> <span class="nav-text">Material Design 风格占位符交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值判断"><span class="nav-number">5.2.</span> <span class="nav-text">空值判断</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default的实际应用"><span class="nav-number">6.</span> <span class="nav-text">:default的实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单复选框元素显隐技术"><span class="nav-number">7.</span> <span class="nav-text">单复选框元素显隐技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义单复选框"><span class="nav-number">7.1.</span> <span class="nav-text">自定义单复选框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开关效果"><span class="nav-number">7.2.</span> <span class="nav-text">开关效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签-列表-素材的选择"><span class="nav-number">7.3.</span> <span class="nav-text">标签/列表/素材的选择</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入框聚焦，文字高亮"><span class="nav-number">1.</span> <span class="nav-text">输入框聚焦，文字高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flex方案-推荐"><span class="nav-number">1.1.</span> <span class="nav-text">flex方案(推荐)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#float浮动实现"><span class="nav-number">1.2.</span> <span class="nav-text">float浮动实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute绝对定位"><span class="nav-number">1.3.</span> <span class="nav-text">absolute绝对定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#direction属性实现"><span class="nav-number">1.4.</span> <span class="nav-text">direction属性实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#focus-within-实现-推荐"><span class="nav-number">1.5.</span> <span class="nav-text">:focus-within 实现(推荐)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css属性选择器搜索过滤"><span class="nav-number">2.</span> <span class="nav-text">css属性选择器搜索过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover显示优化"><span class="nav-number">3.</span> <span class="nav-text">:hover显示优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target交互布局技术"><span class="nav-number">4.</span> <span class="nav-text">:target交互布局技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#展开与收起效果"><span class="nav-number">4.1.</span> <span class="nav-text">展开与收起效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选项卡效果"><span class="nav-number">4.2.</span> <span class="nav-text">选项卡效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#placeholder-show的应用"><span class="nav-number">5.</span> <span class="nav-text">:placeholder-show的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Material-Design-风格占位符交互"><span class="nav-number">5.1.</span> <span class="nav-text">Material Design 风格占位符交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值判断"><span class="nav-number">5.2.</span> <span class="nav-text">空值判断</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default的实际应用"><span class="nav-number">6.</span> <span class="nav-text">:default的实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单复选框元素显隐技术"><span class="nav-number">7.</span> <span class="nav-text">单复选框元素显隐技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义单复选框"><span class="nav-number">7.1.</span> <span class="nav-text">自定义单复选框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开关效果"><span class="nav-number">7.2.</span> <span class="nav-text">开关效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签-列表-素材的选择"><span class="nav-number">7.3.</span> <span class="nav-text">标签/列表/素材的选择</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入值验证"><span class="nav-number">8.</span> <span class="nav-text">输入值验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#必填，可选"><span class="nav-number">9.</span> <span class="nav-text">必填，可选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#花样表格"><span class="nav-number">10.</span> <span class="nav-text">花样表格</span></a></li></ol></div>
             
 
           </div>
