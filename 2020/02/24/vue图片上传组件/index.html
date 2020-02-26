@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="之前的一个项目中需要用到图片上传，但是element中的上传组件，需要给一个图片服务器去转存。但是这个项目并没有，所以我就自己写了一个图片上传组件。">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue图片上传组件">
+<meta property="og:url" content="blog.wyw99.cn/2020/02/24/vue图片上传组件/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="之前的一个项目中需要用到图片上传，但是element中的上传组件，需要给一个图片服务器去转存。但是这个项目并没有，所以我就自己写了一个图片上传组件。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/2020/02/24/vue图片上传组件/cover.jpg">
+<meta property="og:image" content="/2020/02/24/vue图片上传组件/label.png">
+<meta property="og:image" content="/2020/02/24/vue图片上传组件/gif.gif">
+<meta property="og:updated_time" content="2020-02-26T06:01:45.804Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue图片上传组件">
+<meta name="twitter:description" content="之前的一个项目中需要用到图片上传，但是element中的上传组件，需要给一个图片服务器去转存。但是这个项目并没有，所以我就自己写了一个图片上传组件。">
+<meta name="twitter:image" content="/2020/02/24/vue图片上传组件/cover.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="blog.wyw99.cn/2020/02/24/vue图片上传组件/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>vue图片上传组件 | H.S.</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.S.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">成功的人抄袭，伟大的人剽窃</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.wyw99.cn/2020/02/24/vue图片上传组件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue图片上传组件
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-24 09:52:17" itemprop="dateCreated datePublished" datetime="2020-02-24T09:52:17+08:00">2020-02-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-26 14:01:45" itemprop="dateModified" datetime="2020-02-26T14:01:45+08:00">2020-02-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div style="width:100%;"><img src="/2020/02/24/vue图片上传组件/cover.jpg"><br>之前的一个项目中需要用到图片上传，但是element中的上传组件，需要给一个图片服务器去转存。但是这个项目并没有，所以我就自己写了一个图片上传组件。<br></div><br><a id="more"></a></p>
+<h3 id="功能性"><a href="#功能性" class="headerlink" title="功能性"></a>功能性</h3><p>首先我们需要一个图片上传的按钮，那就是input file,<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"file"</span> @<span class="attr">change</span>=<span class="string">"handleFileUpload"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其次我们需要一个存放图片的一个列表。这里需要注意的是,i标签是elemnet的图标<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in pics"</span></span></span><br><span class="line"><span class="tag"><span class="attr">:key</span>=<span class="string">"`$&#123;index&#125;`"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"item"</span> <span class="attr">alt</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img-cover"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-delete"</span> @<span class="attr">click</span>=<span class="string">"handleRemove(index)"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>最后我们需要显示图片。这里需要注意的是，input[type=”file”]也只是获取文件索引，只有发送数据的时候才会真正的发送。<br>所以我们需要把图片转化成Base64的格式，就可以回显了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">handleFileUpload (e) &#123;</span><br><span class="line">    <span class="keyword">let</span> imgFile = e.target.files[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">if</span> (imgFile) &#123;</span><br><span class="line">        <span class="keyword">let</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">        reader.onload = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> txt = event.target.result;</span><br><span class="line">            <span class="keyword">this</span>.pics.push(txt);</span><br><span class="line">            <span class="comment">// 触发change事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'change'</span>, <span class="keyword">this</span>.pics);</span><br><span class="line">        &#125;</span><br><span class="line">        reader.readAsDataURL(imgFile);</span><br><span class="line">        <span class="comment">// 每次添加文件索引之后，置空，可以重复上传同一张图片</span></span><br><span class="line">        e.target.value = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="美观性"><a href="#美观性" class="headerlink" title="美观性"></a>美观性</h3><p>原生的按钮是很丑的，我们需要美观下按钮样式。这里的话，我就借鉴《css选择器》中的技术。<br>将原生按钮隐藏，使用label来定制按钮样式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"file"</span> @<span class="attr">change</span>=<span class="string">"handleFileUpload"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"file"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-plus"</span> <span class="attr">:style</span>=<span class="string">"iconClass"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">iconClass() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    fontSize: <span class="built_in">parseInt</span>(<span class="keyword">this</span>.width) * <span class="number">0.6</span> + <span class="string">'px'</span>,</span><br><span class="line">    color: <span class="string">'#aaa'</span>,</span><br><span class="line">    position: <span class="string">'absolute'</span>,</span><br><span class="line">    top: <span class="string">'50%'</span>,</span><br><span class="line">    left: <span class="string">'50%'</span>,</span><br><span class="line">    transform: <span class="string">'translate(-50%, -50%)'</span>,</span><br><span class="line">    cursor: <span class="string">'pointer'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[type='file']</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">visibility</span>:hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下：<br><img src="/2020/02/24/vue图片上传组件/label.png" alt="添加按钮"></p>
+<h3 id="流畅性"><a href="#流畅性" class="headerlink" title="流畅性"></a>流畅性</h3><p>添加渐入渐出的过渡效果，采用vue自带的过渡组件<br>整体代码如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;transition-group name=<span class="string">"fade"</span>&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">for</span>=<span class="string">"(item, index) in pics"</span></span><br><span class="line">    :key=<span class="string">"`$&#123;item.slice(-20)&#125;`"</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-item"</span></span><br><span class="line">    :style=<span class="string">"&#123; width: width, height: height, lineHeight: height &#125;"</span>&gt;</span><br><span class="line">      &lt;img :src=<span class="string">"item"</span> alt=<span class="string">""</span>/&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-cover"</span>&gt;</span><br><span class="line">        &lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-icon-delete"</span> @click=<span class="string">"handleRemove(index)"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/transition-group&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="img-item" :style="&#123; width: width, height: height, cursor: 'pointer' &#125;"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;input type="file" accept="image/</span>*<span class="string">" name="</span>file<span class="string">" id="</span>file<span class="string">" @change="</span>handleFileUpload<span class="string">"/&gt;</span></span><br><span class="line"><span class="string">      &lt;label for="</span>file<span class="string">"&gt;&lt;i class="</span>el-icon-plus<span class="string">" :style="</span>iconClass<span class="string">"&gt;&lt;/i&gt;&lt;/label&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  name: 'ImgUpload',</span></span><br><span class="line"><span class="string">  model: &#123;</span></span><br><span class="line"><span class="string">    prop: 'pics',</span></span><br><span class="line"><span class="string">    event: 'change'</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  props: &#123;</span></span><br><span class="line"><span class="string">    width: &#123;</span></span><br><span class="line"><span class="string">      type: String,</span></span><br><span class="line"><span class="string">      default: '130px'</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    height: &#123;</span></span><br><span class="line"><span class="string">      type: String,</span></span><br><span class="line"><span class="string">      default: '130px'</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    pics: &#123;</span></span><br><span class="line"><span class="string">      type: Array,</span></span><br><span class="line"><span class="string">      default: () =&gt; []</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  data() &#123;</span></span><br><span class="line"><span class="string">    return &#123;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  computed: &#123;</span></span><br><span class="line"><span class="string">    iconClass() &#123;</span></span><br><span class="line"><span class="string">      return &#123;</span></span><br><span class="line"><span class="string">        fontSize: parseInt(this.width) * 0.6 + 'px',</span></span><br><span class="line"><span class="string">        color: '#aaa',</span></span><br><span class="line"><span class="string">        position: 'absolute',</span></span><br><span class="line"><span class="string">        top: '50%',</span></span><br><span class="line"><span class="string">        left: '50%',</span></span><br><span class="line"><span class="string">        transform: 'translate(-50%, -50%)',</span></span><br><span class="line"><span class="string">        cursor: 'pointer'</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  methods: &#123;</span></span><br><span class="line"><span class="string">    /**</span></span><br><span class="line"><span class="string">     * 图片转存base64字符串并回显</span></span><br><span class="line"><span class="string">     */</span></span><br><span class="line"><span class="string">    handleFileUpload (e) &#123;</span></span><br><span class="line"><span class="string">      let imgFile = e.target.files[0];</span></span><br><span class="line"><span class="string">      if(imgFile)&#123;</span></span><br><span class="line"><span class="string">        let reader = new FileReader();</span></span><br><span class="line"><span class="string">        reader.onload = (event) =&gt; &#123;</span></span><br><span class="line"><span class="string">          let txt = event.target.result;</span></span><br><span class="line"><span class="string">          this.pics.push(txt);</span></span><br><span class="line"><span class="string">          this.$emit('change', this.pics);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        reader.readAsDataURL(imgFile);</span></span><br><span class="line"><span class="string">        // 每次添加文件索引之后，置空，可以重复上传同一张图片</span></span><br><span class="line"><span class="string">        e.target.value = null;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    handleRemove (index) &#123;</span></span><br><span class="line"><span class="string">      this.pics.splice(index, 1);</span></span><br><span class="line"><span class="string">      this.$emit('change', this.pics);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;style scoped&gt;</span></span><br><span class="line"><span class="string">.img-item &#123;</span></span><br><span class="line"><span class="string">  display: inline-block;</span></span><br><span class="line"><span class="string">  border: 1px solid #EBEEF5;</span></span><br><span class="line"><span class="string">  border-radius: 5%;</span></span><br><span class="line"><span class="string">  margin-right: 5px;</span></span><br><span class="line"><span class="string">  position: relative;</span></span><br><span class="line"><span class="string">  text-align: center;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.img-item img&#123;</span></span><br><span class="line"><span class="string">  width: 100%;</span></span><br><span class="line"><span class="string">  height: 100%;</span></span><br><span class="line"><span class="string">  object-fit: cover;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.img-item:hover &#123;</span></span><br><span class="line"><span class="string">  box-shadow: 0 1px 6px rgba(0,0,0,.2);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.img-cover &#123;</span></span><br><span class="line"><span class="string">  display: none;</span></span><br><span class="line"><span class="string">  position: absolute;</span></span><br><span class="line"><span class="string">  top: 0;</span></span><br><span class="line"><span class="string">  bottom: 0;</span></span><br><span class="line"><span class="string">  left: 0;</span></span><br><span class="line"><span class="string">  right: 0;</span></span><br><span class="line"><span class="string">  background: rgba(0,0,0,.6);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.img-item:hover .img-cover &#123;</span></span><br><span class="line"><span class="string">  display: block;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.img-cover i &#123;</span></span><br><span class="line"><span class="string">  color: #fff;</span></span><br><span class="line"><span class="string">  font-size: 20px;</span></span><br><span class="line"><span class="string">  cursor: pointer;</span></span><br><span class="line"><span class="string">  margin: 0 2px;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">[type='file'] &#123;</span></span><br><span class="line"><span class="string">  position: absolute;</span></span><br><span class="line"><span class="string">  visibility: hidden;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.fade-enter-active, .fade-leave-active&#123;</span></span><br><span class="line"><span class="string">  transition: all .5s;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.fade-enter &#123;</span></span><br><span class="line"><span class="string">  opacity: 0;</span></span><br><span class="line"><span class="string">  transform: translate3d(0, -30%, 0);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">.fade-leave-to &#123;</span></span><br><span class="line"><span class="string">  opacity: 0;</span></span><br><span class="line"><span class="string">  transform: translate3d(0, 30%, 0);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/style&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/24/vue图片上传组件/gif.gif" alt="示意图"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/28/《css选择器世界》总结/" rel="next" title="《css选择器世界》总结">
+                <i class="fa fa-chevron-left"></i> 《css选择器世界》总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="灰沙">
+            
+              <p class="site-author-name" itemprop="name">灰沙</p>
+              <p class="site-description motion-element" itemprop="description">前端个人博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能性"><span class="nav-number">1.</span> <span class="nav-text">功能性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#美观性"><span class="nav-number">2.</span> <span class="nav-text">美观性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流畅性"><span class="nav-number">3.</span> <span class="nav-text">流畅性</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src="https://open.weixin.qq.com/qr/code?username=FanRenWeb" width="150px" height="150px">
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/01/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>
