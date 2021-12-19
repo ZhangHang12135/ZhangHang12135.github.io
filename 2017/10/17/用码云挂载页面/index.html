@@ -247,20 +247,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>码云pages是2016年出来的。<br>在这里我简单的说一下github的使用</p>
+        <html><head></head><body><p>码云pages是2016年出来的。<br>在这里我简单的说一下github的使用</p>
 <span id="more"></span>
 <p><img src="http://upload-images.jianshu.io/upload_images/5349051-69a844b3bab12f8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>如果你还不会，那你就去百度一下，我相信比我讲的好多了(估计你看了也不会^~~^)<br>今天只讲关于码云pages托管</p>
 <p><strong>首先你得创建个码云的账号，在这里为开源中国打call</strong></p>
 <h2 id="一。创建一个新的项目"><a href="#一。创建一个新的项目" class="headerlink" title="一。创建一个新的项目"></a>一。创建一个新的项目</h2><p>码云不同于github，所以你必须把先他的.git文件clone下来<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019204552.png"><br>直接点创建就好，别忘了你的项目名字！！！(现在就假设你的项目名字是pages)</p>
 <h2 id="二。克隆到你需要上传的文件夹里面"><a href="#二。克隆到你需要上传的文件夹里面" class="headerlink" title="二。克隆到你需要上传的文件夹里面"></a>二。克隆到你需要上传的文件夹里面</h2><p>点击右边的黄色框框克隆！！！！然后如下图：<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019204915.png"><br><strong>别忘了使用git命令</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone URL</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone URL</span><br></pre></td></tr></tbody></table></figure>
 <p>这里的URL就是你所复制的地址</p>
 <p>克隆之后你会发现你的文件夹里多了一个包，那个包名就是你的项目名称,<br>.git文件就在里面<br>你可以里面的文件全部拿到外面这个包里。如下图(因为我拿出来了，剪切就好了，所以是下图的样子)：<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019205145.png"></p>
 <p>接下来你需要上传到项目上去了<br>这三条命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;注释说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m "注释说明"</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></tbody></table></figure>
 <p>在这里我说一下，上面的我是直接推送到master分支上的，但是出于安全的考虑，一般是你需要在另一个分支上创建，然后合并，删除<br><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/">详见廖雪峰的git教程</a><br>上传成功后，刷新你的项目页面。就可以看到上传上去的文件了<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019205846.png"></p>
 <h2 id="三。启动pages服务"><a href="#三。启动pages服务" class="headerlink" title="三。启动pages服务"></a>三。启动pages服务</h2><p><font color="#0099ff" size="7" face="黑体">注意，pages服务只会读取根目录下的index.html</font><br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019210050.png"><br>然后你直接点击启动就可以了，就会出现如下页面：<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019210058.png"><br>上面的连接就是你的index.html的内容了</p>
-
+</body></html>
     </div>
 
     

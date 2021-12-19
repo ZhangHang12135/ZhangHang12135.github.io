@@ -245,7 +245,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="一·介绍"><a href="#一·介绍" class="headerlink" title="一·介绍"></a>一·介绍</h2><p>Jasmine就是一种JavaScript单元测试框架，它不依赖任何其他JS框架，也不需要对DOM操作，具有灵巧而明确的语法可以让你轻松的编写测试代码。它是一套Javascript行为驱动开发框架（BDD），干净简洁，表达力强且易于组织，不依赖于其他任何框架和DOM，可运行于Node.js，浏览器端或移动端。</p>
+        <html><head></head><body><h2 id="一·介绍"><a href="#一·介绍" class="headerlink" title="一·介绍"></a>一·介绍</h2><p>Jasmine就是一种JavaScript单元测试框架，它不依赖任何其他JS框架，也不需要对DOM操作，具有灵巧而明确的语法可以让你轻松的编写测试代码。它是一套Javascript行为驱动开发框架（BDD），干净简洁，表达力强且易于组织，不依赖于其他任何框架和DOM，可运行于Node.js，浏览器端或移动端。</p>
 <span id="more"></span>
 <p><strong>这里有官方的文档，github的源码下载</strong><br>现在是2017-11-21，jasmine是2.8版本;</p>
 <ul>
@@ -253,20 +253,20 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/jasmine/jasmine/releases">github下载源码</a></li>
 </ul>
 <h2 id="二·安装"><a href="#二·安装" class="headerlink" title="二·安装"></a>二·安装</h2><p>在一个文件夹下执行以下的命令。对了，首先你需要有npm这个包管理工具<br>说句题外话，npm是真的牛逼，全世界的可重用代码都在里面，里面就是各式各样的轮子，现在我们只需要会用这些轮子就好了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jasmine </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jasmine </span><br></pre></td></tr></tbody></table></figure>
 <p>执行了上面的命令后，你的文件里会多出node_modules文件夹和package-lock.json文件。如下图<br>这里的话，我后面带了–save,但是我没有全局的package.json所以就会出错，你们可以先执行npm init来先生成package.json.<br><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%871.png" alt="麒麟出品"><br>接下来你需要执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g jasmine</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g jasmine</span><br></pre></td></tr></tbody></table></figure>
 <p>这一步是全局安装，让你的命令行可以理解jasmine命令</p>
 <h2 id="三·初始化"><a href="#三·初始化" class="headerlink" title="三·初始化"></a>三·初始化</h2><p>然后你需要执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jasmine init</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jasmine init</span><br></pre></td></tr></tbody></table></figure>
 <p>这一步会生出spec文件夹，里面有一个support，support里面有一个jasmine.json文件,这个好像可以使你找到测试文件<br>基本上我们会在这个spec里面写测试文件。我也不知道放在外面有什么情况发生。。。估计没什么事<br>如图：<br><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%873.png" alt="麒麟出品"><br>到这里其实你就可以跑测试了，当然你还没写测试文件的话肯定是不行的。<br><strong>还有提醒的一句的是，你的测试文件的命名一定要带有**_spec.js,不然会找不到你的测试文件的,那两个**你随便填，但是后面的spec一定不能掉</strong><br>只需要执行下面的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jasmine</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jasmine</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="四·测试"><a href="#四·测试" class="headerlink" title="四·测试"></a>四·测试</h2><p>看到这里，你是不是会疑惑为什么和你以前测试的命令不一样，不要着急，马上就可以一样了<br>你需要执行下面这条命令，来生成全局的package.json文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
-<p>这里的-y ，会自动生成你需要填写的东西（当然你也可以不加 -y,可以试试是什么结果）<br><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%872.png" alt="麒麟出品"><br>到这里还没完，你需点开package.json文件，把里面的 “scripts”: {  “test”: <code>&quot;jasmine &amp;&amp; exit 1&quot;</code>},替换成灰底的部分<br>如下图：<br><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%95%99%E7%A8%8B4.png" alt="麒麟出品"><br>接下来你就可以愉快的用 npm test 跑测试了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm test</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></tbody></table></figure>
+<p>这里的-y ，会自动生成你需要填写的东西（当然你也可以不加 -y,可以试试是什么结果）<br><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%872.png" alt="麒麟出品"><br>到这里还没完，你需点开package.json文件，把里面的 “scripts”: {  “test”: <code>"jasmine &amp;&amp; exit 1"</code>},替换成灰底的部分<br>如下图：<br><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E6%95%99%E7%A8%8B4.png" alt="麒麟出品"><br>接下来你就可以愉快的用 npm test 跑测试了</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm test</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="http://ow47touqj.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E6%95%99%E7%A8%8B5.png" alt="麒麟出品"></p>
-
+</body></html>
     </div>
 
     

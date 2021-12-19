@@ -26,19 +26,19 @@
 <meta property="og:site_name" content="H.S.">
 <meta property="og:description" content="老生常谈的一个问题，也是面试中的经典问题了。既如此，真人今天就写下一篇通俗易懂的事件循环，让大多数同学，能获此神技。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//cover.jpg">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//stack1.gif">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//eventLoop.svg">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//callstack.png">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//eventModul.jpg">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//queue.png">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//demo.gif">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/stack1.gif">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/eventLoop.svg">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/callstack.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/eventModul.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/queue.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/demo.gif">
 <meta property="article:published_time" content="2019-08-27T08:48:42.000Z">
 <meta property="article:modified_time" content="2021-12-19T05:14:00.089Z">
 <meta property="article:author" content="灰沙">
 <meta property="article:tag" content="ECMAscript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhanghang12135.github.io/.io//cover.jpg">
+<meta name="twitter:image" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg">
 
 
 <link rel="canonical" href="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
@@ -247,14 +247,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <div style="width:100%;"><img src="/.io//cover.jpg">老生常谈的一个问题，也是面试中的经典问题了。既如此，真人今天就写下一篇通俗易懂的事件循环，让大多数同学，能获此神技。</div>
+        <html><head></head><body><div style="width:100%;"><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg">老生常谈的一个问题，也是面试中的经典问题了。既如此，真人今天就写下一篇通俗易懂的事件循环，让大多数同学，能获此神技。</div>
 <span id="more"></span>
 
 <h2 id="筑基（基础）"><a href="#筑基（基础）" class="headerlink" title="筑基（基础）"></a>筑基（基础）</h2><p><strong>建议熟读并背诵</strong></p>
 <h3 id="js是单线程"><a href="#js是单线程" class="headerlink" title="js是单线程"></a>js是单线程</h3><p>如题，js是单线程的，这也就是为啥数据一出错，页面就停止了渲染，测试就把问题抛过来了。此时的我真想掏出我的50m大刀。别问我为啥不做数据容错，任性，就是不干！！！。言归正传，js的单线程是因为js的诞生是为了操作页面的。不可能出现，程序a正在输入这个input,程序b正好把这个input节点个删除了吧。</p>
 <h3 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h3><p>栈，大家应该都明白，先进后出。就如同弹夹一样。js的执行顺序也是这样的，但是呢，我们不能把每一行，每一个语句理解为压入栈中的事件。而应该将<strong>函数当作一个事件</strong>。这样一讲，似乎又要讲到作用域了。我们可以将整个script当作一个函数，就如同c语言里面的main一样。最先进入栈的是main.<br><br>这里参考MDN上的一个例子</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> a + b + <span class="number">11</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">return</span> foo(x * y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bar(<span class="number">7</span>)); <span class="comment">// 返回 42</span></span><br></pre></td></tr></table></figure>
-<p>如下图，可以很清晰的看到整个js的运行顺序，当调用 bar 时，创建了第一个帧 ，帧中包含了 bar 的参数和局部变量。当 bar 调用 foo 时，第二个帧就被创建，并被压到第一个帧之上，帧中包含了 foo 的参数和局部变量。当 foo 返回时，最上层的帧就被弹出栈（剩下 bar 函数的调用帧 ）。如上，bar弹出后，继续执行，如果没有了，就代表整个脚本当前运行完毕了。<br><img src="/.io//stack1.gif" alt="执行栈"></p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">b</span>) </span>{</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> a + b + <span class="number">11</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x</span>) </span>{</span><br><span class="line">  <span class="keyword">var</span> y = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">return</span> foo(x * y);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bar(<span class="number">7</span>)); <span class="comment">// 返回 42</span></span><br></pre></td></tr></tbody></table></figure>
+<p>如下图，可以很清晰的看到整个js的运行顺序，当调用 bar 时，创建了第一个帧 ，帧中包含了 bar 的参数和局部变量。当 bar 调用 foo 时，第二个帧就被创建，并被压到第一个帧之上，帧中包含了 foo 的参数和局部变量。当 foo 返回时，最上层的帧就被弹出栈（剩下 bar 函数的调用帧 ）。如上，bar弹出后，继续执行，如果没有了，就代表整个脚本当前运行完毕了。<br><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/stack1.gif" alt="执行栈"></p>
 <h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>这里我暂时只是介绍下基本概念。队列，先进先出，就跟排队一样。</p>
 <ol>
 <li>宏任务(Macrotask)<blockquote>
@@ -266,21 +266,21 @@
 </blockquote>
 </li>
 </ol>
-<p>大致的一个图形化<br><img src="/.io//eventLoop.svg" alt="event loop 可视化"><br>每一次的用户互动事件，XHR,等等都会加入到任务队列中去<br><img src="/.io//callstack.png" alt="执行栈和任务队列的关系"></p>
+<p>大致的一个图形化<br><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/eventLoop.svg" alt="event loop 可视化"><br>每一次的用户互动事件，XHR,等等都会加入到任务队列中去<br><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/callstack.png" alt="执行栈和任务队列的关系"></p>
 <h2 id="元婴（核心）"><a href="#元婴（核心）" class="headerlink" title="元婴（核心）"></a>元婴（核心）</h2><p>介绍了那么多，该告诉你们真正的技术了。狂风绝息斩！<br>大致就是这么一个过程</p>
 <ol>
 <li>检测宏任务是否为空，不为空就一直执行，直到为空；为空就到2</li>
 <li>检测微任务是否为空，不为空就执行，直到为空；为空就到3</li>
 <li>更新视图，重回1</li>
 </ol>
-<p>可能看完还是不太了解，那么就可以看看看下面的两张图<br><img src="/.io//eventModul.jpg" alt="事件循环"><br>这个可能会让你有一个更加全面的，更加完整的认识。<br><img src="/.io//queue.png" alt="任务队列"></p>
+<p>可能看完还是不太了解，那么就可以看看看下面的两张图<br><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/eventModul.jpg" alt="事件循环"><br>这个可能会让你有一个更加全面的，更加完整的认识。<br><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/queue.png" alt="任务队列"></p>
 <p>可能你看完还会疑惑一点，我怎么知道我的事件什么时候加入到队列去呢？js不是单线程的吗，你还是没有说清楚异步啊，你个垃圾，退钱！！！<br>好吧，其实我也是事后才看到一篇文章，猛然发现，这篇没讲清楚I/O，事件处理，以及ajax的异步。注意！<br><strong>js是单线程的，没错，但是浏览器是多线程的啊。多核的</strong><br><em>当用户触发事件，ajax等异步操作的时候，js会将这些任务交给浏览器的其它模块来处理，处理完成之后，就会添加到任务队列中，等待执行。</em><br>这些异步的操作是由浏览器的内核webcore来执行的</p>
 <blockquote>
 <p>onclick 由浏览器的内核的 DOM Binding 模块来处理，当<b style="color: red">事件触发</b>的时候，回调函数会立即添加到任务队列中<br>setTimeout 会由浏览器内核的 timer 模块来进行延时处理，当<b style="color: red">时间到达</b>的时候，才会将回调函数添加到任务队列中<br>ajax 由浏览器的内核的 network 模块来处理， 在<b style="color: red">网络请求完成返回之后</b>，才将回调添加到任务队列中</p>
 </blockquote>
 <h2 id="分神（实战）"><a href="#分神（实战）" class="headerlink" title="分神（实战）"></a>分神（实战）</h2><p>闭关了那么久，是不是应该找个对手练下熟练度呢？<br>看招，正义降临！</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;start&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;setTimeout&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;promise1&#x27;</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;promise2&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;end&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/.io//demo.gif" alt="demo-anitmation"><br>看到这里，相信，你对Event loop已经有了一个清晰的认识了。那么让我们来打条男爵试试。<br>算了，不打了。再讲的话，就是一些细枝末节的东西，对于学习没有太多的好处，感兴趣的可以观看参考秘籍第三条</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">}, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">}).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/demo.gif" alt="demo-anitmation"><br>看到这里，相信，你对Event loop已经有了一个清晰的认识了。那么让我们来打条男爵试试。<br>算了，不打了。再讲的话，就是一些细枝末节的东西，对于学习没有太多的好处，感兴趣的可以观看参考秘籍第三条</p>
 <h2 id="飞升（小结）"><a href="#飞升（小结）" class="headerlink" title="飞升（小结）"></a>飞升（小结）</h2><p>个人理解：主栈 &gt; 微任务（promise） &gt; 宏任务(setTimeout)<br>把每一个队列的任务当作一个函数，里面的任务是其局部变量，没到它的时候，它就是不存在的。其实，完全可以将主栈也当作一个宏任务，就是一个最大，最基础的宏任务。有的人会说了，怎么你一下说宏任务大于微任务，一下说微任务大于宏任务啊。其实啊，这个就要看你怎么来划分组了。个人建议，这个任务它从哪里诞生的，那么它就属于哪里的下一级。可以参照树形结构来辅助记忆。<br>真人不知所云，如有错误，请及时指正。</p>
 <h2 id="参考秘籍"><a href="#参考秘籍" class="headerlink" title="参考秘籍"></a>参考秘籍</h2><ul>
 <li><a target="_blank" rel="noopener" href="http://lynnelv.github.io/js-event-loop-browser">http://lynnelv.github.io/js-event-loop-browser</a></li>
@@ -288,7 +288,7 @@
 <li><a target="_blank" rel="noopener" href="https://www.cxymsg.com/guide/eventLoop.html#%E5%86%8D%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90">https://www.cxymsg.com/guide/eventLoop.html#%E5%86%8D%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90</a></li>
 <li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">事件循环-MDN</a></li>
 </ul>
-
+</body></html>
     </div>
 
     

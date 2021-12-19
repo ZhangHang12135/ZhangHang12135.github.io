@@ -26,15 +26,15 @@
 <meta property="og:site_name" content="H.S.">
 <meta property="og:description" content="原本只是想上传本地图片，结果url一直不对，不过好在还是解决了。一张本地图片引发的血案！！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//hexoPath.png">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//newPublic.png">
-<meta property="og:image" content="https://zhanghang12135.github.io/.io//changeindex.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/hexoPath.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/newPublic.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/changeindex.png">
 <meta property="article:published_time" content="2019-02-26T13:27:13.000Z">
 <meta property="article:modified_time" content="2021-12-19T05:14:00.087Z">
 <meta property="article:author" content="灰沙">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhanghang12135.github.io/.io//hexoPath.png">
+<meta name="twitter:image" content="https://zhanghang12135.github.io/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/hexoPath.png">
 
 
 <link rel="canonical" href="https://zhanghang12135.github.io/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/">
@@ -243,12 +243,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>原本只是想上传本地图片，结果url一直不对，不过好在还是解决了。一张本地图片引发的血案！！</p>
+        <html><head></head><body><p>原本只是想上传本地图片，结果url一直不对，不过好在还是解决了。一张本地图片引发的血案！！</p>
 <span id="more"></span>
 <h3 id="一·-错误"><a href="#一·-错误" class="headerlink" title="一· 错误###"></a>一· 错误###</h3><p>最开始，很多人说，直接在_posts中创建images文件夹，把图片放到里面，然后直接引用就好了。<br><strong>但是根本不行</strong><br>我认为原因应该是hexo部署到服务器上时，并没有上传这个文件夹。<br><strong>个人认为应该是hexo的版本问题，3.X版本这个方法是行不通的</strong><br>没办法，只能继续想办法了</p>
 <h3 id="二·-正确"><a href="#二·-正确" class="headerlink" title="二· 正确###"></a>二· 正确###</h3><ol>
 <li><p>插件下载<br>首先我们需要hexo的一个插件<strong>hexo-asset-image</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image</span><br></pre></td></tr></tbody></table></figure>
 <p>当然这之间也会出现一下其他插件丢失的情况，照着报错修改就好了</p>
 </li>
 <li><p>修改主题配置文件_config_yml</p>
@@ -256,25 +256,25 @@
 <p>post_asset_folder 选项设为 true 来打开。</p>
 </blockquote>
 </li>
-<li><p>这个时候，你再执行hexo new [title]时,会生成一个和md文件名相同的文件夹，如图：<br><img src="/.io//hexoPath.png" alt="新的_posts目录"></p>
+<li><p>这个时候，你再执行hexo new [title]时,会生成一个和md文件名相同的文件夹，如图：<br><img src="/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/hexoPath.png" alt="新的_posts目录"></p>
 </li>
 <li><p>将你所需要的图片放到这个同名的文件夹里,然后你再使用md语法的图片插入<br>例如这里的文件夹名为test,图片名为test.png</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](test.png)</span><br></pre></td></tr></table></figure></li>
-<li><p>部署到本地服务器<br>你会发现图片还是没有。但是你会发现，图片再服务器里面是有的<br><img src="/.io//newPublic.png" alt="新的public"><br>那么问题应该还是路径问题了,你会发现，路径是这样的</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> = <span class="string">&quot;26/CSS的媒体查询/mediaType.png&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](test.png)</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>部署到本地服务器<br>你会发现图片还是没有。但是你会发现，图片再服务器里面是有的<br><img src="/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/newPublic.png" alt="新的public"><br>那么问题应该还是路径问题了,你会发现，路径是这样的</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> = <span class="string">"26/CSS的媒体查询/mediaType.png"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <p>但是实际上的路径却是</p>
 <blockquote>
 <p>2019/02/26/CSS的媒体查询/mediaType.png</p>
 </blockquote>
 </li>
 </ol>
-<p>查看官方文档，所给出的解决办法是使用新的图片引入方式，不过我试了的，依旧不行。<br>仔细想想，应该是插件的js处理，对于路径出了偏差<br>6. <strong>重点解决办法</strong><br>修改hexo-asset-image插件中的index.js<br>如下：<br><img src="/.io//changeindex.png" alt="原index.js"><br><strong>将其中红框中的代码修改为如下</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> beginPos = getPosition(link, <span class="string">&#x27;/&#x27;</span>, <span class="number">1</span>) + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>查看官方文档，所给出的解决办法是使用新的图片引入方式，不过我试了的，依旧不行。<br>仔细想想，应该是插件的js处理，对于路径出了偏差<br>6. <strong>重点解决办法</strong><br>修改hexo-asset-image插件中的index.js<br>如下：<br><img src="/2019/02/26/hexo%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/changeindex.png" alt="原index.js"><br><strong>将其中红框中的代码修改为如下</strong></p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> beginPos = getPosition(link, <span class="string">'/'</span>, <span class="number">1</span>) + <span class="number">1</span>;</span><br></pre></td></tr></tbody></table></figure>
 <ol start="6">
-<li>最后，代码三连<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<li>最后，代码三连<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></tbody></table></figure>
 就发现问题已经解决了！</li>
 </ol>
-
+</body></html>
     </div>
 
     
