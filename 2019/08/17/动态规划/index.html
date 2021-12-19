@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhanghang12135.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="https://zhanghang12135.github.io/2019/08/17/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//getClimbing_digui.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//Tree.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//beiwanglu.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//MinCoins.png">
+<meta property="article:published_time" content="2019-08-17T01:40:23.000Z">
+<meta property="article:modified_time" content="2021-12-19T05:14:00.126Z">
+<meta property="article:author" content="灰沙">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhanghang12135.github.io/.io//getClimbing_digui.png">
+
+
+<link rel="canonical" href="https://zhanghang12135.github.io/2019/08/17/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhanghang12135.github.io/2019/08/17/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/","path":"2019/08/17/动态规划/","title":"动态规划"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>动态规划 | H.S.</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">H.S.</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">成功的人抄袭，伟大的人剽窃</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E4%B8%BA%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">何为动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%AC%E6%A5%BC%E6%A2%AF%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">爬楼梯问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="nav-number">2.1.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">问题求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%91%E7%A1%AC%E5%B8%81%E6%89%BE%E9%9B%B6%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">最少硬币找零问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">5.</span> <span class="nav-text">最长公共子序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="灰沙"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">灰沙</p>
+  <div class="site-description" itemprop="description">前端个人博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src='https://open.weixin.qq.com/qr/code?username=FanRenWeb' width="150px" height="150px"/>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhanghang12135.github.io/2019/08/17/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          动态规划
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-17 09:40:23" itemprop="dateCreated datePublished" datetime="2019-08-17T09:40:23+08:00">2019-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-19 13:14:00" itemprop="dateModified" datetime="2021-12-19T13:14:00+08:00">2021-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>算法里面常见的问题，也是面试里面会出现。要是当初好好听讲，也不可能沦落至此了。前端对于算法的要求也越来越高了啊</p>
+<span id="more"></span>
+<h3 id="何为动态规划"><a href="#何为动态规划" class="headerlink" title="何为动态规划"></a>何为动态规划</h3><p>&emsp;&emsp;将一个复杂的问题简单化，是不是和分治法很像。其实不然，动态规划的子问题，是相互依赖的，一步一步来的，缺一不可。<br>这里的话，我会用几个经典问题来解释动态规划</p>
+<blockquote>
+<p>动态规划分为三个步骤</p>
+<ul>
+<li>定义子问题(最优子结构)</li>
+<li>实现要反复执行来解决子问题的部分（状态转移方程）</li>
+<li>识别并求解边界条件（边界）</li>
+</ul>
+</blockquote>
+<h3 id="爬楼梯问题"><a href="#爬楼梯问题" class="headerlink" title="爬楼梯问题"></a>爬楼梯问题</h3><p>&emsp;&emsp;有一个10级的楼梯，你现在再最下面，你一次可以走1阶，或者2阶。那么，你走到第10阶有多少种方案。例子：2，2，2，2，2是一种方案；1，1，1，1，1，1，1，1，1，1也是一种</p>
+<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>&emsp;&emsp;如果我们用穷举法来想的话，是否可行呢？好吧，我想不出来。既然从0到1无法求解，那我们为何不从1到0呢</p>
+<ol>
+<li>将设现在只需要走一步就可以到顶了，那么问题是不是就变成了从第9阶到第10阶，或者第8阶到第10阶</li>
+<li>假设到第10阶的问题为F(10),第9阶的问题为F(9),依次类推</li>
+<li>那么F(10)的方案数就是F(9)走1步，或者F(8)走2步</li>
+<li>那么F(10) = F(9) + F(8)，依此可以推出<blockquote>
+<ul>
+<li>F(9) = F(8) + F(7);</li>
+<li>F(8) = F(7) + F(6) </li>
+<li>…</li>
+<li>F(3) = F(2) + F(1)</li>
+<li>F(2) = 2</li>
+<li>F(1) = 1</li>
+</ul>
+</blockquote>
+</li>
+<li>状态转移方程 F(n) = F(n-1) + F(n-2) (n &gt;= 3)</li>
+<li>F(2)和F(1)就是问题的边界</li>
+<li>F(9)和F(8)就相当于是F(10)的最优子结构<h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4></li>
+<li><strong>递归求解</strong><br>看到上面的状态转移方程，是不是很像斐波那契数列，想到这里，递归就呼之欲出了<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClimbingWays</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> getClimbingWays(n-<span class="number">2</span>) + getClimbingWays(n-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/.io//getClimbing_digui.png" alt="递归式"><br>当台阶数达到40以上的时候，就运行的很慢了。我们可以分析一下时间复杂度。发现，每一个步都有两种方案。或者可以将其，画在一个二叉树上。那么时间复杂度就是整个树的节点树O(2^n).指数形式的;<br><img src="/.io//Tree.png" alt="二叉树"><br>细心的你肯定会发现，左右子树之间有重复的子树，那么我们是不是可以将已经计算过的之，存到一个哈希表中呢?一种优化的方案诞生了，备忘录算法</li>
+<li><strong>备忘录算法</strong><br>如先前所说的一样，将已经计算的值存入哈希表中<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClimbingWays</span>(<span class="params">n,map</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!map[n])&#123;</span><br><span class="line">        map[n] = getClimbingWays(n-<span class="number">2</span>,map) + getClimbingWays(n-<span class="number">1</span>,map);</span><br><span class="line">        <span class="keyword">return</span> map[n];</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> map[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/.io//beiwanglu.png" alt="备忘录算法"><br>可以很明显的发现，算法得到了很大的提升。其时间复杂度只有O(n);但是其空间复杂度也是O(n);那么我们能不能在空间上优化呢？</li>
+<li><strong>动态规划算法</strong><br>想想想！你可能会发现，每一次的状态只依赖于他的前两个状态，那么我们就可以只存储前两个的状态<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClimbingWays</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">        b = <span class="number">2</span>,</span><br><span class="line">        temp = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++)&#123;</span><br><span class="line">       temp = a + b;</span><br><span class="line">       a = b;</span><br><span class="line">       b = temp;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+前面两个方案都是自顶向下，而动态规划是自底向上的。一步一步计算出来的,空间复杂度只有O(1),时间复杂度还是O(n);</li>
+</ol>
+<h3 id="最少硬币找零问题"><a href="#最少硬币找零问题" class="headerlink" title="最少硬币找零问题"></a>最少硬币找零问题</h3><p>&emsp;&emsp;有如下几种硬币，d1 = 1元，d2 = 5元，d3 = 10元，d4 = 25元<br>现在我们需要找零36元，可用25+10+1;<br>书中的代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// coins = [1,5,10,25]</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MinCoinChange</span>(<span class="params">coins</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> cache = &#123;&#125;; <span class="comment">// 缓存对象</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.makeChange = <span class="function"><span class="keyword">function</span>(<span class="params">amount</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> me = <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">if</span>(!amount)&#123;</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cache[amount])&#123;</span><br><span class="line">            <span class="keyword">return</span> cache[amount];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> min = [], newMin, newAmount;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coins.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> coin = coins[i];</span><br><span class="line">            newAmount = amount - coin;</span><br><span class="line">            <span class="keyword">if</span>(newAmount &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                newMin = me.makeChange(newAmount);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(newAmount &gt;= <span class="number">0</span> &amp;&amp; </span><br><span class="line">            (newMin.length &lt; min.length-<span class="number">1</span> || !min.length) &amp;&amp;</span><br><span class="line">            (newMin.length || !newAmount))&#123;</span><br><span class="line">                min = [coin].concat(newMin);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;new Min &#x27;</span>+ min + <span class="string">&#x27; for &#x27;</span> + amount);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (cache[amount] = min)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> m1 = <span class="keyword">new</span> MinCoinChange([<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">25</span>]);</span><br><span class="line">m1.makeChange(<span class="number">36</span>);</span><br></pre></td></tr></table></figure>
+<p>这里的代码是第二版的，可能会有部分问题，最新的代码可以<mark><a target="_blank" rel="noopener" href="https://github.com/loiane/javascript-datastructures-algorithms/blob/master/src/js/algorithms/dynamic-programing/min-coin-change.js">参考这里</a></mark><br>输出如下：<br><img src="/.io//MinCoins.png" alt="36的最小硬币找零"><br>这里的输出很明显的，解释了动态规划的过程。这里的话，我们需要转变一个思维过程，就是不能从大问题到小问题，而应该是小问题组成大问题。并且还需要做有效的缓存，不能全部缓存（全部缓存就是备忘录算法了）。一定要记住是自底向上。最终求解；<br>顺便提一下，找零问题也可以用贪心算法来做，但是结果不一定准确。就是用最大零钱去找，不够就用第二大的，依次类推；<br>这里是<mark><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/coin-change/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-wei-lai-bu-ke/">leetcode上的题解</a></mark>,别看官方题解（有问题）</p>
+<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><p>&emsp;&emsp;给定一个固定大小，能够携重W的背包，以及一组有价值和重量的物体，找出一个最佳解决方案，使得装入背包的物品总重量不超过W,且总价值最大。<br>物品|重量|价值<br>:-:|:-:|:-:<br>1|2kg|3<br>2|3kg|4<br>3|4kg|5<br>假设背包只能装10kg的物品,求最大价值怎么装？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">knapSack</span>(<span class="params">capacity, weights, values, n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i, w, a, b, ks = [];</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= n; i++)&#123; <span class="comment">//1 初始化寻找解决方案的矩阵ks[n+1][capacity+1]</span></span><br><span class="line">        ks[i] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(w = <span class="number">0</span>; w &lt;= capacity; w++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span> || w == <span class="number">0</span>)&#123; <span class="comment">//2 忽略索引为0 的</span></span><br><span class="line">                ks[i][w] = <span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (weights[i-<span class="number">1</span>] &lt;= w)&#123; <span class="comment">// 物品i的重量要小于约束才有可能成为解决方案的一部分</span></span><br><span class="line">                a = values[i-<span class="number">1</span>] + ks[i-<span class="number">1</span>][w-weights[i-<span class="number">1</span>]];</span><br><span class="line">                b = ks[i-<span class="number">1</span>][w];</span><br><span class="line">                ks[i][w] = (a &gt; b) ? a : b; <span class="comment">//4 当找到可以构成解决方案的物品，选择价值最大的那个</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ks[i][w] = ks[i-<span class="number">1</span>][w] <span class="comment">// 5 若超出用之前的值就可以了</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    findValue(n, capacity, ks,weights,values);</span><br><span class="line">    <span class="keyword">return</span> ks[n][capacity];<span class="comment">//6 问题的解决方案就在右下角最后一个格子里</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findValue</span>(<span class="params">n, capacity, ks, weights, values</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = n, k = capacity;</span><br><span class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span> &amp;&amp; k &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ks[i][k] !== ks[i-<span class="number">1</span>][k])&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;物品&#x27;</span>+i+<span class="string">&#x27;,重量: &#x27;</span>+ weights[i-<span class="number">1</span>] +<span class="string">&#x27;, 价值：&#x27;</span>+values[i-<span class="number">1</span>]);</span><br><span class="line">            i--;</span><br><span class="line">            k = k - weights[i-<span class="number">1</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h3><p>找出两个字符串中最长的公共子序列</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li>[学习javascript数据结构与算法（第2版）]</li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5a29d52cf265da43333e4da7">掘金-漫画：什么是动态规划</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/17/%E6%89%8B%E6%92%B8bind-call-apply/" rel="prev" title="手撸bind,call,apply">
+                  <i class="fa fa-chevron-left"></i> 手撸bind,call,apply
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" rel="next" title="js事件循环">
+                  js事件循环 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhanghang12135.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="老生常谈的一个问题，也是面试中的经典问题了。既如此，真人今天就写下一篇通俗易懂的事件循环，让大多数同学，能获此神技。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js事件循环">
+<meta property="og:url" content="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="老生常谈的一个问题，也是面试中的经典问题了。既如此，真人今天就写下一篇通俗易懂的事件循环，让大多数同学，能获此神技。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//cover.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//stack1.gif">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//eventLoop.svg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//callstack.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//eventModul.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//queue.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//demo.gif">
+<meta property="article:published_time" content="2019-08-27T08:48:42.000Z">
+<meta property="article:modified_time" content="2021-12-19T05:14:00.089Z">
+<meta property="article:author" content="灰沙">
+<meta property="article:tag" content="ECMAscript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhanghang12135.github.io/.io//cover.jpg">
+
+
+<link rel="canonical" href="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/","path":"2019/08/27/js事件循环/","title":"js事件循环"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>js事件循环 | H.S.</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">H.S.</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">成功的人抄袭，伟大的人剽窃</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%91%E5%9F%BA%EF%BC%88%E5%9F%BA%E7%A1%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">筑基（基础）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">js是单线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%A0%88"><span class="nav-number">1.2.</span> <span class="nav-text">执行栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97"><span class="nav-number">1.3.</span> <span class="nav-text">任务队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E5%A9%B4%EF%BC%88%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">元婴（核心）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%A5%9E%EF%BC%88%E5%AE%9E%E6%88%98%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">分神（实战）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A3%9E%E5%8D%87%EF%BC%88%E5%B0%8F%E7%BB%93%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">飞升（小结）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E7%A7%98%E7%B1%8D"><span class="nav-number">5.</span> <span class="nav-text">参考秘籍</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="灰沙"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">灰沙</p>
+  <div class="site-description" itemprop="description">前端个人博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src='https://open.weixin.qq.com/qr/code?username=FanRenWeb' width="150px" height="150px"/>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhanghang12135.github.io/2019/08/27/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js事件循环
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-27 16:48:42" itemprop="dateCreated datePublished" datetime="2019-08-27T16:48:42+08:00">2019-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-19 13:14:00" itemprop="dateModified" datetime="2021-12-19T13:14:00+08:00">2021-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ECMAscript/" itemprop="url" rel="index"><span itemprop="name">ECMAscript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div style="width:100%;"><img src="/.io//cover.jpg">老生常谈的一个问题，也是面试中的经典问题了。既如此，真人今天就写下一篇通俗易懂的事件循环，让大多数同学，能获此神技。</div>
+<span id="more"></span>
+
+<h2 id="筑基（基础）"><a href="#筑基（基础）" class="headerlink" title="筑基（基础）"></a>筑基（基础）</h2><p><strong>建议熟读并背诵</strong></p>
+<h3 id="js是单线程"><a href="#js是单线程" class="headerlink" title="js是单线程"></a>js是单线程</h3><p>如题，js是单线程的，这也就是为啥数据一出错，页面就停止了渲染，测试就把问题抛过来了。此时的我真想掏出我的50m大刀。别问我为啥不做数据容错，任性，就是不干！！！。言归正传，js的单线程是因为js的诞生是为了操作页面的。不可能出现，程序a正在输入这个input,程序b正好把这个input节点个删除了吧。</p>
+<h3 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h3><p>栈，大家应该都明白，先进后出。就如同弹夹一样。js的执行顺序也是这样的，但是呢，我们不能把每一行，每一个语句理解为压入栈中的事件。而应该将<strong>函数当作一个事件</strong>。这样一讲，似乎又要讲到作用域了。我们可以将整个script当作一个函数，就如同c语言里面的main一样。最先进入栈的是main.<br><br>这里参考MDN上的一个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> a + b + <span class="number">11</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">return</span> foo(x * y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bar(<span class="number">7</span>)); <span class="comment">// 返回 42</span></span><br></pre></td></tr></table></figure>
+<p>如下图，可以很清晰的看到整个js的运行顺序，当调用 bar 时，创建了第一个帧 ，帧中包含了 bar 的参数和局部变量。当 bar 调用 foo 时，第二个帧就被创建，并被压到第一个帧之上，帧中包含了 foo 的参数和局部变量。当 foo 返回时，最上层的帧就被弹出栈（剩下 bar 函数的调用帧 ）。如上，bar弹出后，继续执行，如果没有了，就代表整个脚本当前运行完毕了。<br><img src="/.io//stack1.gif" alt="执行栈"></p>
+<h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>这里我暂时只是介绍下基本概念。队列，先进先出，就跟排队一样。</p>
+<ol>
+<li>宏任务(Macrotask)<blockquote>
+<p>script全部代码、<strong>setTimeout</strong>、setInterval、setImmediate（浏览器暂时不支持,<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setImmediate">具体可见MDN</a>）、I/O、UI Rendering。<br><code>这里其实你可以只记住setTimeout,毕竟真人在这里谈论的只限于浏览器环境</code></p>
+</blockquote>
+</li>
+<li>微任务(Microtask)<blockquote>
+<p>Process.nextTick（Node独有）、<strong>Promise</strong>、Object.observe(废弃)、MutationObserver<br><code>记住Promise</code></p>
+</blockquote>
+</li>
+</ol>
+<p>大致的一个图形化<br><img src="/.io//eventLoop.svg" alt="event loop 可视化"><br>每一次的用户互动事件，XHR,等等都会加入到任务队列中去<br><img src="/.io//callstack.png" alt="执行栈和任务队列的关系"></p>
+<h2 id="元婴（核心）"><a href="#元婴（核心）" class="headerlink" title="元婴（核心）"></a>元婴（核心）</h2><p>介绍了那么多，该告诉你们真正的技术了。狂风绝息斩！<br>大致就是这么一个过程</p>
+<ol>
+<li>检测宏任务是否为空，不为空就一直执行，直到为空；为空就到2</li>
+<li>检测微任务是否为空，不为空就执行，直到为空；为空就到3</li>
+<li>更新视图，重回1</li>
+</ol>
+<p>可能看完还是不太了解，那么就可以看看看下面的两张图<br><img src="/.io//eventModul.jpg" alt="事件循环"><br>这个可能会让你有一个更加全面的，更加完整的认识。<br><img src="/.io//queue.png" alt="任务队列"></p>
+<p>可能你看完还会疑惑一点，我怎么知道我的事件什么时候加入到队列去呢？js不是单线程的吗，你还是没有说清楚异步啊，你个垃圾，退钱！！！<br>好吧，其实我也是事后才看到一篇文章，猛然发现，这篇没讲清楚I/O，事件处理，以及ajax的异步。注意！<br><strong>js是单线程的，没错，但是浏览器是多线程的啊。多核的</strong><br><em>当用户触发事件，ajax等异步操作的时候，js会将这些任务交给浏览器的其它模块来处理，处理完成之后，就会添加到任务队列中，等待执行。</em><br>这些异步的操作是由浏览器的内核webcore来执行的</p>
+<blockquote>
+<p>onclick 由浏览器的内核的 DOM Binding 模块来处理，当<b style="color: red">事件触发</b>的时候，回调函数会立即添加到任务队列中<br>setTimeout 会由浏览器内核的 timer 模块来进行延时处理，当<b style="color: red">时间到达</b>的时候，才会将回调函数添加到任务队列中<br>ajax 由浏览器的内核的 network 模块来处理， 在<b style="color: red">网络请求完成返回之后</b>，才将回调添加到任务队列中</p>
+</blockquote>
+<h2 id="分神（实战）"><a href="#分神（实战）" class="headerlink" title="分神（实战）"></a>分神（实战）</h2><p>闭关了那么久，是不是应该找个对手练下熟练度呢？<br>看招，正义降临！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;start&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;setTimeout&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;promise1&#x27;</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;promise2&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;end&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//demo.gif" alt="demo-anitmation"><br>看到这里，相信，你对Event loop已经有了一个清晰的认识了。那么让我们来打条男爵试试。<br>算了，不打了。再讲的话，就是一些细枝末节的东西，对于学习没有太多的好处，感兴趣的可以观看参考秘籍第三条</p>
+<h2 id="飞升（小结）"><a href="#飞升（小结）" class="headerlink" title="飞升（小结）"></a>飞升（小结）</h2><p>个人理解：主栈 &gt; 微任务（promise） &gt; 宏任务(setTimeout)<br>把每一个队列的任务当作一个函数，里面的任务是其局部变量，没到它的时候，它就是不存在的。其实，完全可以将主栈也当作一个宏任务，就是一个最大，最基础的宏任务。有的人会说了，怎么你一下说宏任务大于微任务，一下说微任务大于宏任务啊。其实啊，这个就要看你怎么来划分组了。个人建议，这个任务它从哪里诞生的，那么它就属于哪里的下一级。可以参照树形结构来辅助记忆。<br>真人不知所云，如有错误，请及时指正。</p>
+<h2 id="参考秘籍"><a href="#参考秘籍" class="headerlink" title="参考秘籍"></a>参考秘籍</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://lynnelv.github.io/js-event-loop-browser">http://lynnelv.github.io/js-event-loop-browser</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5b24b116e51d4558a65fdb70#heading-1">https://juejin.im/post/5b24b116e51d4558a65fdb70#heading-1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cxymsg.com/guide/eventLoop.html#%E5%86%8D%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90">https://www.cxymsg.com/guide/eventLoop.html#%E5%86%8D%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">事件循环-MDN</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ECMAscript/" rel="tag"># ECMAscript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/17/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="prev" title="动态规划">
+                  <i class="fa fa-chevron-left"></i> 动态规划
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/29/%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96/" rel="next" title="节流和防抖">
+                  节流和防抖 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>

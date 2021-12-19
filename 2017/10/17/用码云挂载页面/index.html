@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhanghang12135.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="码云pages是2016年出来的。在这里我简单的说一下github的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用码云挂载页面">
+<meta property="og:url" content="https://zhanghang12135.github.io/2017/10/17/%E7%94%A8%E7%A0%81%E4%BA%91%E6%8C%82%E8%BD%BD%E9%A1%B5%E9%9D%A2/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="码云pages是2016年出来的。在这里我简单的说一下github的使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5349051-69a844b3bab12f8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019204552.png">
+<meta property="og:image" content="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019204915.png">
+<meta property="og:image" content="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019205145.png">
+<meta property="og:image" content="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019205846.png">
+<meta property="og:image" content="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019210050.png">
+<meta property="og:image" content="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019210058.png">
+<meta property="article:published_time" content="2017-10-17T01:40:23.000Z">
+<meta property="article:modified_time" content="2021-12-19T05:14:00.134Z">
+<meta property="article:author" content="灰沙">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5349051-69a844b3bab12f8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+<link rel="canonical" href="https://zhanghang12135.github.io/2017/10/17/%E7%94%A8%E7%A0%81%E4%BA%91%E6%8C%82%E8%BD%BD%E9%A1%B5%E9%9D%A2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhanghang12135.github.io/2017/10/17/%E7%94%A8%E7%A0%81%E4%BA%91%E6%8C%82%E8%BD%BD%E9%A1%B5%E9%9D%A2/","path":"2017/10/17/用码云挂载页面/","title":"用码云挂载页面"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>用码云挂载页面 | H.S.</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">H.S.</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">成功的人抄袭，伟大的人剽窃</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%82%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">一。创建一个新的项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%82%E5%85%8B%E9%9A%86%E5%88%B0%E4%BD%A0%E9%9C%80%E8%A6%81%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E9%87%8C%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">二。克隆到你需要上传的文件夹里面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%82%E5%90%AF%E5%8A%A8pages%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">三。启动pages服务</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="灰沙"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">灰沙</p>
+  <div class="site-description" itemprop="description">前端个人博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src='https://open.weixin.qq.com/qr/code?username=FanRenWeb' width="150px" height="150px"/>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhanghang12135.github.io/2017/10/17/%E7%94%A8%E7%A0%81%E4%BA%91%E6%8C%82%E8%BD%BD%E9%A1%B5%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用码云挂载页面
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-17 09:40:23" itemprop="dateCreated datePublished" datetime="2017-10-17T09:40:23+08:00">2017-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-19 13:14:00" itemprop="dateModified" datetime="2021-12-19T13:14:00+08:00">2021-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>码云pages是2016年出来的。<br>在这里我简单的说一下github的使用</p>
+<span id="more"></span>
+<p><img src="http://upload-images.jianshu.io/upload_images/5349051-69a844b3bab12f8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>如果你还不会，那你就去百度一下，我相信比我讲的好多了(估计你看了也不会^~~^)<br>今天只讲关于码云pages托管</p>
+<p><strong>首先你得创建个码云的账号，在这里为开源中国打call</strong></p>
+<h2 id="一。创建一个新的项目"><a href="#一。创建一个新的项目" class="headerlink" title="一。创建一个新的项目"></a>一。创建一个新的项目</h2><p>码云不同于github，所以你必须把先他的.git文件clone下来<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019204552.png"><br>直接点创建就好，别忘了你的项目名字！！！(现在就假设你的项目名字是pages)</p>
+<h2 id="二。克隆到你需要上传的文件夹里面"><a href="#二。克隆到你需要上传的文件夹里面" class="headerlink" title="二。克隆到你需要上传的文件夹里面"></a>二。克隆到你需要上传的文件夹里面</h2><p>点击右边的黄色框框克隆！！！！然后如下图：<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019204915.png"><br><strong>别忘了使用git命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone URL</span><br></pre></td></tr></table></figure>
+<p>这里的URL就是你所复制的地址</p>
+<p>克隆之后你会发现你的文件夹里多了一个包，那个包名就是你的项目名称,<br>.git文件就在里面<br>你可以里面的文件全部拿到外面这个包里。如下图(因为我拿出来了，剪切就好了，所以是下图的样子)：<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019205145.png"></p>
+<p>接下来你需要上传到项目上去了<br>这三条命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;注释说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>在这里我说一下，上面的我是直接推送到master分支上的，但是出于安全的考虑，一般是你需要在另一个分支上创建，然后合并，删除<br><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/">详见廖雪峰的git教程</a><br>上传成功后，刷新你的项目页面。就可以看到上传上去的文件了<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019205846.png"></p>
+<h2 id="三。启动pages服务"><a href="#三。启动pages服务" class="headerlink" title="三。启动pages服务"></a>三。启动pages服务</h2><p><font color="#0099ff" size="7" face="黑体">注意，pages服务只会读取根目录下的index.html</font><br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019210050.png"><br>然后你直接点击启动就可以了，就会出现如下页面：<br><img src="http://ow47touqj.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171019210058.png"><br>上面的连接就是你的index.html的内容了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/09/20/jasmine%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="jasmine测试框架的使用">
+                  <i class="fa fa-chevron-left"></i> jasmine测试框架的使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/02/26/CSS%E7%9A%84%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" rel="next" title="CSS的媒体查询">
+                  CSS的媒体查询 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>

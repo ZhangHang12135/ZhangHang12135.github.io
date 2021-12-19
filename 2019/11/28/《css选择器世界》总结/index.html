@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhanghang12135.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《css选择器世界》总结">
+<meta property="og:url" content="https://zhanghang12135.github.io/2019/11/28/%E3%80%8Acss%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%96%E7%95%8C%E3%80%8B%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//cover.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//hover-del.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//target-1.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//target-panel.gif">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//placeholder-1.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//diy-input.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//switch.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//bg-1.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//bg-2.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//bg-3.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//bg-4.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//bg-5.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//bg-6.jpg">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//img-radio.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/.io//required.png">
+<meta property="article:published_time" content="2019-11-28T02:23:40.000Z">
+<meta property="article:modified_time" content="2021-12-19T05:14:00.101Z">
+<meta property="article:author" content="灰沙">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="读书笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhanghang12135.github.io/.io//cover.jpg">
+
+
+<link rel="canonical" href="https://zhanghang12135.github.io/2019/11/28/%E3%80%8Acss%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%96%E7%95%8C%E3%80%8B%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhanghang12135.github.io/2019/11/28/%E3%80%8Acss%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%96%E7%95%8C%E3%80%8B%E6%80%BB%E7%BB%93/","path":"2019/11/28/《css选择器世界》总结/","title":"《css选择器世界》总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《css选择器世界》总结 | H.S.</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">H.S.</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">成功的人抄袭，伟大的人剽窃</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A1%86%E8%81%9A%E7%84%A6%EF%BC%8C%E6%96%87%E5%AD%97%E9%AB%98%E4%BA%AE"><span class="nav-number">1.</span> <span class="nav-text">输入框聚焦，文字高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flex%E6%96%B9%E6%A1%88-%E6%8E%A8%E8%8D%90"><span class="nav-number">1.1.</span> <span class="nav-text">flex方案(推荐)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#float%E6%B5%AE%E5%8A%A8%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">float浮动实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.3.</span> <span class="nav-text">absolute绝对定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#direction%E5%B1%9E%E6%80%A7%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.</span> <span class="nav-text">direction属性实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#focus-within-%E5%AE%9E%E7%8E%B0-%E6%8E%A8%E8%8D%90"><span class="nav-number">1.5.</span> <span class="nav-text">:focus-within 实现(推荐)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%E6%90%9C%E7%B4%A2%E8%BF%87%E6%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">css属性选择器搜索过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover%E6%98%BE%E7%A4%BA%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">:hover显示优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target%E4%BA%A4%E4%BA%92%E5%B8%83%E5%B1%80%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text">:target交互布局技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%95%E5%BC%80%E4%B8%8E%E6%94%B6%E8%B5%B7%E6%95%88%E6%9E%9C"><span class="nav-number">4.1.</span> <span class="nav-text">展开与收起效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E9%A1%B9%E5%8D%A1%E6%95%88%E6%9E%9C"><span class="nav-number">4.2.</span> <span class="nav-text">选项卡效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#placeholder-show%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">:placeholder-show的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Material-Design-%E9%A3%8E%E6%A0%BC%E5%8D%A0%E4%BD%8D%E7%AC%A6%E4%BA%A4%E4%BA%92"><span class="nav-number">5.1.</span> <span class="nav-text">Material Design 风格占位符交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD"><span class="nav-number">5.2.</span> <span class="nav-text">空值判断</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">:default的实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%A4%8D%E9%80%89%E6%A1%86%E5%85%83%E7%B4%A0%E6%98%BE%E9%9A%90%E6%8A%80%E6%9C%AF"><span class="nav-number">7.</span> <span class="nav-text">单复选框元素显隐技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%95%E5%A4%8D%E9%80%89%E6%A1%86"><span class="nav-number">7.1.</span> <span class="nav-text">自定义单复选框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%85%B3%E6%95%88%E6%9E%9C"><span class="nav-number">7.2.</span> <span class="nav-text">开关效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE-%E5%88%97%E8%A1%A8-%E7%B4%A0%E6%9D%90%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">7.3.</span> <span class="nav-text">标签&#x2F;列表&#x2F;素材的选择</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%80%BC%E9%AA%8C%E8%AF%81"><span class="nav-number">8.</span> <span class="nav-text">输入值验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E5%A1%AB%EF%BC%8C%E5%8F%AF%E9%80%89"><span class="nav-number">9.</span> <span class="nav-text">必填，可选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%B1%E6%A0%B7%E8%A1%A8%E6%A0%BC"><span class="nav-number">10.</span> <span class="nav-text">花样表格</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="灰沙"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">灰沙</p>
+  <div class="site-description" itemprop="description">前端个人博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src='https://open.weixin.qq.com/qr/code?username=FanRenWeb' width="150px" height="150px"/>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhanghang12135.github.io/2019/11/28/%E3%80%8Acss%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%96%E7%95%8C%E3%80%8B%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《css选择器世界》总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-28 10:23:40" itemprop="dateCreated datePublished" datetime="2019-11-28T10:23:40+08:00">2019-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-19 13:14:00" itemprop="dateModified" datetime="2021-12-19T13:14:00+08:00">2021-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div style="width:100%;"><img src="/.io//cover.jpg">
+《css选择器世界》是张鑫旭大佬今年10月出的书，本来打算慢慢看的，然后这几个星期一直没有事，就在这几天集中看完了。老实说，我被惊艳到了。一种css居然还能这么用的感觉。他就像个艺术大师！遂将书中的一些css技巧做下总结，以便以后参考学习。
+</div>
+<span id="more"></span>
+
+<h3 id="输入框聚焦，文字高亮"><a href="#输入框聚焦，文字高亮" class="headerlink" title="输入框聚焦，文字高亮"></a>输入框聚焦，文字高亮</h3><h4 id="flex方案-推荐"><a href="#flex方案-推荐" class="headerlink" title="flex方案(推荐)"></a>flex方案(推荐)</h4><div class="cs-flex">
+    <input class="cs-input"><label class="cs-label">用户：</label>
+</div>
+<style type="text/css">
+.cs-flex {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+.cs-input {
+    width: 200px;
+}
+.cs-label {
+    width: 64px;
+}
+:focus ~ .cs-label {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>这一方法主要是通过flex-direction:row-reverse调换元素的水平呈现顺序来实现DOM位置和视觉位置不一样。书上说，这个方法的唯一问题是兼容性了，用户群是外部用户的桌面慎用，移动端无碍。不是很懂前面那句话的意思，真人实测，chrome,firefox,opera,IE11,Edge都可以使用。毕竟都9021年了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-flex&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;cs-input&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;cs-label&quot;</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-flex</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-flex;</span></span><br><span class="line"><span class="css">    <span class="attribute">flex-direction</span>: row-reverse;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-input</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">64px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: darkblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="float浮动实现"><a href="#float浮动实现" class="headerlink" title="float浮动实现"></a>float浮动实现</h4><div class="cs-float"><input class="cs-input"><label class="cs-label">用户：</label></div>
+<style type="text/css">
+.cs-float {
+    width: 268px;
+}
+.cs-float .cs-input {
+    float: right;
+    width: 200px;
+}
+.cs-float .cs-label {
+    display: block;
+    overflow: hidden;
+    line-height: normal;
+}
+:focus ~ .cs-label,
+:focus ~ span {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>这个方案主要就是把输入框浮动到右侧了，兼容性极佳。不兼容IE8的话，可以使用calc来计算输入框的宽度。书中说这个不能实现多个元素的前面选择符效果。也对，每多一个，你就要重新计算宽度。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-float&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;cs-input&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;cs-label&quot;</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-float</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">268px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-float</span> <span class="selector-class">.cs-input</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">float</span>: right;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-float</span> <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="css">    <span class="attribute">line-height</span>: normal;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: darkblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="absolute绝对定位"><a href="#absolute绝对定位" class="headerlink" title="absolute绝对定位"></a>absolute绝对定位</h4><div class="cs-absolute"><input class="cs-input"><label class="cs-label">用户：</label></div>
+<style type="text/css">
+.cs-absolute {
+    width: 268px;
+    position: relative;
+}
+.cs-absolute .cs-input {
+    width: 200px;
+    margin-left: 64px;
+}
+.cs-absolute .cs-label {
+    position: absolute;
+    left: 0;
+}
+.cs-absolute:focus ~ .cs-label {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>这个方案兼容性不错，但是你会发现一个问题，对DOM结构要求比较高，页面元素一多起来，这个的控制成本就比较高了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-absolute&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;cs-input&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;cs-label&quot;</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">268px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span> <span class="selector-class">.cs-input</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-left</span>: <span class="number">64px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span> <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">    <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-absolute</span><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: darkblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="direction属性实现"><a href="#direction属性实现" class="headerlink" title="direction属性实现"></a>direction属性实现</h4><div class="cs-direction"><input class="cs-input"><label class="cs-label">用户：</label></div>
+<style type="text/css">
+.cs-direction {
+    direction: rtl;
+    display: inline-block;
+}
+.cs-direction .cs-input,
+.cs-direction .cs-label {
+    direction: ltr;
+}
+.cs-direction .cs-label{
+    display: inline-block;
+}
+.cs-direction:focus ~ .cs-label {
+    color: darkblue;
+    text-shadow: 0 0 10px;
+}
+</style>
+
+<p>借助direction属性改变文档流的顺序可以轻松实现DOM位置和视觉位置的调换。唯一不足的就是它必须针对内联元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-direction&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;cs-input&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;cs-label&quot;</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">direction</span>: rtl;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> <span class="selector-class">.cs-input</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">direction</span>: ltr;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span> <span class="selector-class">.cs-label</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-direction</span><span class="selector-pseudo">:focus</span> ~ <span class="selector-class">.cs-label</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: darkblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="focus-within-实现-推荐"><a href="#focus-within-实现-推荐" class="headerlink" title=":focus-within 实现(推荐)"></a>:focus-within 实现(推荐)</h4><div class="cs-normal"><label class="cs-label">用户：</label><input class="cs-input"></div>
+<style type="text/css">
+.cs-normal:focus-within .cs-label{
+    color: darkblue;
+    text-shadow: 0 0 1px;
+}
+</style>
+
+<p>:focus-within整体焦点伪类。只要不兼容IE就行.它是正常的DOM流，简直不能太完美</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-normal&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;cs-label&quot;</span>&gt;</span>用户：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;cs-input&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-normal</span><span class="selector-pseudo">:focus</span>-within <span class="selector-class">.cs-label</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: darkblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="css属性选择器搜索过滤"><a href="#css属性选择器搜索过滤" class="headerlink" title="css属性选择器搜索过滤"></a>css属性选择器搜索过滤</h3><p>借助属性选择器来辅助我们实现搜索过滤效果，如通讯录、城市列表，这样做性能高，代码少<br><input id="css-search" type="search" placeholder="输入城市名称或拼音"></p>
+<ul class="filter"><li data-search="重庆市chongqing">重庆市</li><li data-search="哈尔滨市haerbing">哈尔滨市</li><li data-search="长春市changchun">长春市</li><li data-search="兰州市lanzhou">兰州市</li><li data-search="北京市beijing">北京市</li><li data-search="杭州市hangzhou">杭州市</li><li data-search="长沙市changsha">长沙市</li><li data-search="沈阳市shenyang">沈阳市</li><li data-search="成都市chengdu">成都市</li><li data-search="合肥市hefei">合肥市</li><li data-search="天津市tianjin">天津市</li><li data-search="西安市xian">西安市</li><li data-search="武汉市wuhan">武汉市</li><li data-search="济南市jinan">济南市</li><li data-search="广州市guangzhou">广州市</li><li data-search="南京市nanjing">南京市</li><li data-search="上海市shanghai">上海市</li><li data-search="昆明市kunming">昆明市</li><li data-search="郑州市zhangzhou">郑州市</li><li data-search="贵阳市guiyang">贵阳市</li><li data-search="西宁市xining">西宁市</li><li data-search="海口市haikou">海口市</li><li data-search="南昌市nanchang">南昌市</li><li data-search="香港 特区xianggang">香港 特区</li><li data-search="澳门 特区aomen">澳门 特区</li></ul>
+
+<style type="text/css">
+.filter{
+    width: 200px;
+}
+[data-search] {
+    border: 1px solid #ddd;
+    padding: 1px 10px;
+    font-size: 9px;
+}
+</style>
+
+<script type="text/javascript">
+    let eleStyle = document.createElement('style');
+    document.head.appendChild(eleStyle);
+    // 文本框输入
+    let input = document.querySelector('#css-search');
+    input.addEventListener('input', function(){
+        let value = this.value.trim();
+        eleStyle.innerHTML = value ? '[data-search]:not([data-search*="'+ value + '"]){ display: none;}' : '';
+    });
+</script>
+
+<p>这里只有最简单的功能展示，没有其它的过渡啊，动画啊之类的，所以用户体验不会很好。这一点，肯定就需要各位自己去写啦。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;css-search&quot;</span> <span class="attr">type</span>=<span class="string">&quot;search&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;输入城市名称或拼音&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;filter&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;重庆市chongqing&quot;</span>&gt;</span>重庆市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;哈尔滨市haerbing&quot;</span>&gt;</span>哈尔滨市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;长春市changchun&quot;</span>&gt;</span>长春市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;兰州市lanzhou&quot;</span>&gt;</span>兰州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;北京市beijing&quot;</span>&gt;</span>北京市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;杭州市hangzhou&quot;</span>&gt;</span>杭州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;长沙市changsha&quot;</span>&gt;</span>长沙市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;沈阳市shenyang&quot;</span>&gt;</span>沈阳市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;成都市chengdu&quot;</span>&gt;</span>成都市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;合肥市hefei&quot;</span>&gt;</span>合肥市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;天津市tianjin&quot;</span>&gt;</span>天津市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;西安市xian&quot;</span>&gt;</span>西安市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;武汉市wuhan&quot;</span>&gt;</span>武汉市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;济南市jinan&quot;</span>&gt;</span>济南市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;广州市guangzhou&quot;</span>&gt;</span>广州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;南京市nanjing&quot;</span>&gt;</span>南京市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;上海市shanghai&quot;</span>&gt;</span>上海市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;昆明市kunming&quot;</span>&gt;</span>昆明市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;郑州市zhangzhou&quot;</span>&gt;</span>郑州市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;贵阳市guiyang&quot;</span>&gt;</span>贵阳市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;西宁市xining&quot;</span>&gt;</span>西宁市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;海口市haikou&quot;</span>&gt;</span>海口市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;南昌市nanchang&quot;</span>&gt;</span>南昌市<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;香港 特区xianggang&quot;</span>&gt;</span>香港 特区<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-search</span>=<span class="string">&quot;澳门 特区aomen&quot;</span>&gt;</span>澳门 特区<span class="tag">&lt;/<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> eleStyle = <span class="built_in">document</span>.createElement(<span class="string">&#x27;style&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.head.appendChild(eleStyle);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 文本框输入</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> input = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#css-search&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    input.addEventListener(<span class="string">&#x27;input&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> value = <span class="built_in">this</span>.value.trim();</span></span><br><span class="line"><span class="javascript">        eleStyle.innerHTML = value ? <span class="string">&#x27;[data-search]:not([data-search*=&quot;&#x27;</span>+ value + <span class="string">&#x27;&quot;])&#123; display: none;&#125;&#x27;</span> : <span class="string">&#x27;&#x27;</span>;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="hover显示优化"><a href="#hover显示优化" class="headerlink" title=":hover显示优化"></a>:hover显示优化</h3><p>通过增加延时来优化体验。这里模拟一个tooltip提示。</p>
+<div style="position: relative"><button class="hover-del">删除</button></div>
+<style type="text/css">
+.hover-del {
+    background-color: skyblue;
+    border-radius: 5%;
+    border: 1px solid lightskyblue;
+}
+.hover-del::before {
+    content: 'delete';
+    position: absolute;
+    top: -41.5px;
+    left: 0px;
+    color: #fff;
+    border-radius: 5%;
+    background-color: rgba(0,0,0,.6);
+}
+.hover-del::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    border-top: 10px solid rgba(0,0,0,.6);
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.hover-del::before, .hover-del::after {
+    transition: visibility 0s .2s;
+    visibility: hidden;
+}
+.hover-del:hover::before, .hover-del:hover::after {
+    visibility: visible;
+}
+</style>
+
+<p>完整代码如下，可以看看那个画三角形的。嘿嘿嘿！<br><img src="/.io//hover-del.png" alt="hover优化代码"><br>当然这里，还可以添加:focus来优化体验，这里我就不写了。将最后的:hover换成:focus即可</p>
+<h3 id="target交互布局技术"><a href="#target交互布局技术" class="headerlink" title=":target交互布局技术"></a>:target交互布局技术</h3><p>:target是IE9及以上版本的浏览器都支持的一个伪类，与URL地址中的锚点定位强关联的伪类。<br>事先申明这种技术的应用于，js被禁用或者页面还没加载完全的清空下使用，这种方案就是一种兜底的方案。</p>
+<h4 id="展开与收起效果"><a href="#展开与收起效果" class="headerlink" title="展开与收起效果"></a>展开与收起效果</h4><p><strong>性感真人，在线忧伤</strong></p>
+<p>无论我们最后生疏到什么样子，曾经对你的好都是真的。希望你不后悔认识我，也是真的快乐过。就算终有一散，但别辜负相遇。如果能回到从前，我会选择不认识你。不是我后悔，是我不能面对现在的结局。</p><div id="articleMore" hidden></div><a href="#articleMore" class="cs-button" data-open="true">阅读更多</a><p class="cs-more-p"> 茶凉了，就别再续了，再续也不是原来的味道了。人走了，就别再留了，在留下也不是原来的感觉了。情没了，就别回味了，再回味也不是原来的心情了。慢慢的都会远，渐渐的都会淡。拥有时好好珍惜，离开了默默祝福。人生的旅途，没有人是应该要陪你走到最后的。</p><a href="#123" class="cs-button" data-open="false">收起</a>
+
+<style type="text/css">
+.cs-button{
+    display: block;
+    text-align: center;
+    background-color: deepskyblue;
+    color: #fff;
+    padding: 5px;
+    margin-top: 1em;
+    cursor: pointer;
+}
+.cs-more-p, [data-open='false'] {
+    display: none;
+}
+:target ~ [data-open='true'] {
+    display: none;
+}
+:target ~ .cs-more-p,
+:target ~ [data-open='false'] {
+    display: block;
+}
+</style>
+
+<p>上述css的实现原理是把锚链元素放在最前面，然后通过兄弟选择符<code>~</code>来控制对应元素的显影变化<br><img src="/.io//target-1.png" alt=":target实现收缩展开"></p>
+<h4 id="选项卡效果"><a href="#选项卡效果" class="headerlink" title="选项卡效果"></a>选项卡效果</h4><p>这里的hexo框架不知道做了什么，我直接写html会和预期的不一样,我就直接放张鑫旭大佬的demo效果图了<br><img src="/.io//target-panel.gif" alt="选项卡效果"><br>利用display:none元素作为锚链元素，利用兄弟选择器控制状态变化,就没有页面跳动的糟糕体验了。不过呢，这种技术肯定不是最完美的。没有任何事物是十全十美的。所以啊，推荐再此方案上在加上js的控制。这样就完美的多了.<br>推荐思路：</p>
+<blockquote>
+<ol>
+<li>默认按照：target伪类交互技术实现，与一个类名标志量关联。</li>
+<li>js也正常实现交互。js加载完成之后移除类名标志量，交互交给js.</li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab-x&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">id</span>=<span class="string">&quot;tabPanel2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab-anchor-2&quot;</span> <span class="attr">hidden</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">id</span>=<span class="string">&quot;tabPanel3&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab-anchor-3&quot;</span> <span class="attr">hidden</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#tabPanel1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab-li&quot;</span>&gt;</span>选项卡1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#tabPanel2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab-li&quot;</span>&gt;</span>选项卡2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#tabPanel3&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-tab-li&quot;</span>&gt;</span>选项卡3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-panel&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-panel-li&quot;</span>&gt;</span>面板内容1<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-panel-li&quot;</span>&gt;</span>面板内容2<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cs-panel-li&quot;</span>&gt;</span>面板内容3<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-x</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: auto;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-align</span>: left;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-li</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: <span class="number">#f0f0f0</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: <span class="number">#333</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:not</span>(<span class="selector-pseudo">:target</span>) + <span class="selector-pseudo">:not</span>(<span class="selector-pseudo">:target</span>) ~ <span class="selector-class">.cs-tab</span> <span class="selector-class">.cs-tab-li</span><span class="selector-pseudo">:first</span>-child,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-tab</span> <span class="selector-class">.cs-tab-li</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>),</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-3</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-tab</span> <span class="selector-class">.cs-tab-li</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: deepskyblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-panel-li</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:not</span>(<span class="selector-pseudo">:target</span>) + <span class="selector-pseudo">:not</span>(<span class="selector-pseudo">:target</span>) ~ <span class="selector-class">.cs-panel</span> <span class="selector-class">.cs-panel-li</span><span class="selector-pseudo">:first</span>-child,</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-2</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-panel</span> <span class="selector-class">.cs-panel-li</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>),</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-tab-anchor-3</span><span class="selector-pseudo">:target</span> ~ <span class="selector-class">.cs-panel</span> <span class="selector-class">.cs-panel-li</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="placeholder-show的应用"><a href="#placeholder-show的应用" class="headerlink" title=":placeholder-show的应用"></a>:placeholder-show的应用</h3><h4 id="Material-Design-风格占位符交互"><a href="#Material-Design-风格占位符交互" class="headerlink" title="Material Design 风格占位符交互"></a>Material Design 风格占位符交互</h4><p>利用:placeholder-shown伪类匹配输入框中没有输入的时候，来实现。老实说，我真的被这种思路惊艳到了。</p>
+<div class="input-fill-x"><input class="input-control input-fill" placeholder="邮箱"> <label class="input-label">邮箱</label></div><div class="input-outline-x"><input class="input-control input-outline" placeholder="用户名"> <label class="input-label">用户名</label></div><div class="textarea-outline-x"><textarea class="input-control textarea-outline" cols="25" rows="3" placeholder="评论"></textarea><label class="input-label">评论</label></div>
+<style type="text/css">
+.input-fill-x, .input-outline-x, .textarea-outline-x {
+    width: webkit-fit-content;
+    width: moz-fit-content;
+    width: fit-content;
+    display: inline-block;
+    position: relative;
+    margin-right: 20px;
+}
+.input-fill-x {
+    border-bottom: 1px solid #d0d0d5;
+}
+/* 底部边框动画 */
+.input-fill-x::after {
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #2486ff;
+    left: 0; 
+    right: 0; 
+    bottom: -1px;
+    transform: scaleX(0);
+    transition: transform .25s;
+}
+.input-fill-x:focus-within::after {
+  transform: scaleX(1);
+}
+.input-fill {
+    padding: 20px 16px 6px;
+    border: 1px solid transparent;
+    background: #f5f5f5;
+}
+.input-outline,
+.textarea-outline {
+  padding: 13px 16px 13px;
+  border: 1px solid #d0d0d5;
+  border-radius: 4px;
+  transition: border-color .25s;
+}
+.input-outline:focus,
+.textarea-outline:focus {
+  border-color: #2486ff;
+}
+/* 默认placeholder颜色透明不可见 */
+.input-control:placeholder-shown::placeholder {
+    color: transparent;
+}
+.input-control:not(:placeholder-shown) ~ .input-label,
+.input-control:focus ~ .input-label {
+    color: #2486ff;
+    transform: scale(0.75) translate(0px, -32px);
+}
+/* 填充样式下label定位 */
+.input-fill:not(:placeholder-shown) ~ .input-label,
+.input-fill:focus ~ .input-label {
+  transform: scale(0.75) translateY(-14px);
+}
+/* 线框交互下有个白色背景 */
+.input-outline ~ .input-label,
+.textarea-outline ~ .input-label {
+  background-color: #fff;
+}
+.input-control {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    outline: none;
+}
+.input-label {
+    position: absolute;
+    font-size: 16px;
+    line-height: 1.5;
+    left: 16px; top: 14px;
+    color: #a2a9b6; 
+    padding: 0 2px;
+    transform-origin: 0 0;
+    pointer-events: none;
+    transition: all.25s;
+}
+</style>
+
+<p>这里的思路是这样的，首先让placeholder透明，然后让兄弟元素label采用绝对定位去占那个位置，然后输入框或得焦点的时候以及:placeholder伪类没有匹配的时候，将label缩小并移动到上方。添加transitiong过渡就可以了。关键部分，我用红框标出来了。<br><img src="/.io//placeholder-1.png" alt="示例完整代码"></p>
+<h4 id="空值判断"><a href="#空值判断" class="headerlink" title="空值判断"></a>空值判断</h4><p><input class="if-empty" placeholder=" "><small></small></p>
+<style type="text/css">
+.if-empty:placeholder-shown ~ small::before {
+    content: '尚未输入内容';
+    color: red;
+    font-size: 87.5%
+}
+</style>
+
+<p>由于placeholder内容只在空值状态的时候才显示，因此可借助:placeholder-shown伪类来判断一个输入框中是否有值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;if-empty&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot; &quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.if-empty</span><span class="selector-pseudo">:placeholder-shown</span> ~ small<span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&#x27;尚未输入内容&#x27;</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="css">    <span class="attribute">font-size</span>: <span class="number">87.5%</span></span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="default的实际应用"><a href="#default的实际应用" class="headerlink" title=":default的实际应用"></a>:default的实际应用</h3><p>:default伪类只能用作用在表单元素上，表示处于默认状态的表单元素。<br>推荐标记 用法</p>
+<p><input class="default-radio" type="radio" name="pay" id="pay0"><label for="pay0">支付宝</label></p><p><input class="default-radio" type="radio" name="pay" id="pay1" checked><label for="pay1">微信</label></p><p><input class="default-radio" type="radio" name="pay" id="pay2"><label for="pay2">云闪付</label></p>
+<style type="text/css">
+.default-radio:default + label::after {
+    content: '(推荐)';
+}
+</style>
+
+<p>:default伪类的匹配不受之后checked属性值变化影响，所以增加的<code>（推荐）</code>字符会一直在微信后面。如果以后需求变了，直接更改将checked更改就好。这里的，你可以直接F12之后更改，就可以看到，<code>推荐</code>会跟随变化。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;default-radio&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;pay&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pay0&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;pay0&quot;</span>&gt;</span>支付宝<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;default-radio&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;pay&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pay1&quot;</span> <span class="attr">checked</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;pay1&quot;</span>&gt;</span>微信<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;default-radio&quot;</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;pay&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pay2&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;pay2&quot;</span>&gt;</span>云闪付<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.default-radio</span><span class="selector-pseudo">:default</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::after</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&#x27;(推荐)&#x27;</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="单复选框元素显隐技术"><a href="#单复选框元素显隐技术" class="headerlink" title="单复选框元素显隐技术"></a>单复选框元素显隐技术</h3><p>由于单选框和复选框的选中行为是由点击事件触发的，因此配合兄弟选择符，可以选择不适用js实现多种点击交互行为，如展开收起，选项卡切换或者多级下拉列表等。不过呢，这里不是我要讲的重点，详细的可以参照书籍。接下来的，就是可以立足于实际开发的一下技巧。</p>
+<h4 id="自定义单复选框"><a href="#自定义单复选框" class="headerlink" title="自定义单复选框"></a>自定义单复选框</h4><p>浏览器原生的单复选框常常和设计风格不搭，需要自定义,最好的实现方法就是借助原生单复选框再配合其它伪类<br><input class="diy-radio" type="radio" id="radio1" name="radio"><label for="radio1" class="cs-radio"></label><label for="radio1">单选框1</label><input class="diy-radio" type="radio" id="radio2" name="radio"><label for="radio2" class="cs-radio"></label><label for="radio2">单选框2</label><input class="diy-radio" type="radio" id="radio3" name="radio" disabled><label for="radio3" class="cs-radio"></label><label for="radio3">单选框3 disabled</label><br><input class="diy-checkbox" type="checkbox" id="checkbox1"><label for="checkbox1" class="cs-checkbox"></label><label for="checkbox1">复选框1</label><input class="diy-checkbox" type="checkbox" id="checkbox2" disabled><label for="checkbox2" class="cs-checkbox"></label><label for="checkbox2">复选框2</label><input class="diy-checkbox" type="checkbox" id="checkbox3" disabled checked><label for="checkbox3" class="cs-checkbox"></label><label for="checkbox3">复选框3</label></p>
+<style type="text/css">
+.diy-radio[type="radio"], .diy-checkbox {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    cursor: pointer;
+}
+.cs-radio{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    background-color: #fff;
+    box-sizing: border-box;
+    vertical-align: -.5ex;
+    user-select: none;
+    transition: border-color .2s;
+    overflow: hidden;
+    cursor: pointer;
+}
+.diy-radio:focus + .cs-radio,
+.diy-radio:checked + .cs-radio {
+    border-color: deepskyblue;
+}
+.diy-radio:checked + .cs-radio::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 4px auto 0;
+    border-radius: 50%;
+    background-color: deepskyblue;
+}
+#radio3:disabled + .cs-radio {
+    background-color: #f5f5f5;
+    opacity: .4;
+    border-color: red;
+    cursor: not-allowed;
+}
+.cs-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    color: gray;
+    box-shadow: inset 0 0 0 1px;
+    background-color: #fff;
+    box-sizing: border-box;
+    vertical-align: -.5ex;
+    user-select: none;
+    transition: color .2s;
+    cursor: pointer;
+    overflow: hidden;
+}
+.diy-checkbox:focus + .cs-checkbox,
+.diy-checkbox:checked + .cs-checkbox {
+    color: deepskyblue;
+}
+.diy-checkbox:checked + .cs-checkbox::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 3px;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    margin: 4px auto 0;
+    transform: rotate(-45deg);
+}
+.diy-checkbox:disabled + .cs-checkbox {
+    background-color: #f5f5f5;
+    opacity: .4;
+    cursor: not-allowed;
+}
+</style>
+
+<p><img src="/.io//diy-input.png" alt="自定义单复选框样式"></p>
+<h4 id="开关效果"><a href="#开关效果" class="headerlink" title="开关效果"></a>开关效果</h4><p>常见的开关效果，其本质就是一个复选框，分为<code>打开</code>和<code>关闭</code>两个状态。原理相同，我这里就直接上效果和代码了<br><input type="checkbox" class="switch" id="switch1"><label class="cs-switch" for="switch1"></label><input type="checkbox" class="switch" id="switch2" checked><label class="cs-switch" for="switch2"></label><input type="checkbox" class="switch" id="switch3" disabled><label class="cs-switch" for="switch3"></label><input type="checkbox" class="switch" id="switch4" checked disabled><label class="cs-switch" for="switch4"></label></p>
+<style type="text/css">
+.switch{
+    width: 44px;
+    height: 26px;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.cs-switch {
+    display: inline-block;
+    width: 44px;
+    height: 26px;
+    border-radius: 26px;
+    background-color: currentColor;
+    box-sizing: border-box;
+    color: silver;
+    transition: all .2s;
+    cursor: pointer;
+}
+.cs-switch::before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: margin-left .2s;
+}
+:active:not(:disabled) + .cs-switch::before {
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .1);
+}
+:checked + .cs-switch {
+    color: deepskyblue;
+}
+:checked + .cs-switch::before {
+    margin-left: 20px;
+}
+:focus-visible + .cs-switch {
+    outline: 1px dotted Hightlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+:disabled + .cs-switch {
+    opacity: .4;
+    cursor: not-allowed;
+}
+</style>
+
+<p>话不多说，直接上代码。这里的一些间距什么的，可能会有不同的显示。需要您自己再去适配了。嘿嘿o(<em>￣▽￣</em>)ブ<br><img src="/.io//switch.png" alt="开关按钮代码"></p>
+<h4 id="标签-列表-素材的选择"><a href="#标签-列表-素材的选择" class="headerlink" title="标签/列表/素材的选择"></a>标签/列表/素材的选择</h4><p>无论是单选还是多选，选择标签，还是选择图片，都可以借助:checked伪类纯css实现.</p>
+<p><input type="checkbox" class="topic" id="topic1"><label for="topic1" class="cs-topic">科技</label><input type="checkbox" class="topic" id="topic2"><label for="topic2" class="cs-topic">体育</label><input type="checkbox" class="topic" id="topic3"><label for="topic3" class="cs-topic">军事</label><input type="checkbox" class="topic" id="topic4"><label for="topic4" class="cs-topic">娱乐</label><input type="checkbox" class="topic" id="topic5"><label for="topic5" class="cs-topic">动漫</label><input type="checkbox" class="topic" id="topic6"><label for="topic6" class="cs-topic">音乐</label><input type="checkbox" class="topic" id="topic7"><label for="topic7" class="cs-topic">电影</label><input type="checkbox" class="topic" id="topic8"><label for="topic8" class="cs-topic">生活</label></p><p>您已选择<span class="cs-topic-counter"></span>个话题</p><p></p>
+<style type="text/css">
+.topic{
+    position: absolute;
+    clip: rect(0,0,0,0)
+}
+.cs-topic {
+    display: inline-block;
+    width: 64px;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    border: 1px solid silver;
+    text-align: center;
+    cursor: pointer;
+}
+.cs-topic:hover {
+    border-color: gray;
+}
+:checked + .cs-topic {
+    border-color: deepskyblue;
+    background-color: azure;
+}
+/* 选择计数器 */
+body {
+    counter-reset: topicCounter;
+}
+:checked + .cs-topic {
+    counter-increment: topicCounter;
+}
+.cs-topic-counter::before {
+    color: red;
+    margin: 0 2px;
+    content: counter(topicCounter);
+}
+</style>
+<p>配合CSS计数器，可直接显示选中标签元素的个数。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic1&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>科技<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic2&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>体育<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic3&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic3&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>军事<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic4&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic4&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>娱乐<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic5&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic5&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>动漫<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic6&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic6&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic7&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic7&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">class</span>=<span class="string">&quot;topic&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topic8&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;topic8&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic&quot;</span>&gt;</span>生活<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>您已选择<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;cs-topic-counter&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>个话题<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.topic</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">    <span class="attribute">clip</span>: <span class="built_in">rect</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-topic</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">64px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-top</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-right</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">border</span>: <span class="number">1px</span> solid silver;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">    <span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-topic</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">border-color</span>: gray;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:checked</span> + <span class="selector-class">.cs-topic</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">border-color</span>: deepskyblue;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: azure;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="comment">/* 选择计数器 */</span></span></span><br><span class="line"><span class="css"><span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">counter-reset</span>: topicCounter;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:checked</span> + <span class="selector-class">.cs-topic</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">counter-increment</span>: topicCounter;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.cs-topic-counter</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">2px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="built_in">counter</span>(topicCounter);</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><input type="radio" class="img-radio" id="wallpaper1" name="wallpaper" checked><label for="wallpaper1" class="cs-wallpaper"><img src="/.io//bg-1.jpg" class="cs-wapper-img"></label><br><input type="radio" class="img-radio" id="wallpaper2" name="wallpaper"><label for="wallpaper2" class="cs-wallpaper"><img src="/.io//bg-2.jpg" class="cs-wallpaper-img"></label><br><input type="radio" class="img-radio" id="wallpaper3" name="wallpaper"><label for="wallpaper3" class="cs-wallpaper"><img src="/.io//bg-3.jpg" class="cs-wallpaper-img"></label><br><input type="radio" class="img-radio" id="wallpaper4" name="wallpaper"><label for="wallpaper4" class="cs-wallpaper"><img src="/.io//bg-4.jpg" class="cs-wallpaper-img"></label><br><input type="radio" class="img-radio" id="wallpaper5" name="wallpaper"><label for="wallpaper5" class="cs-wallpaper"><img src="/.io//bg-5.jpg" class="cs-wallpaper-img"></label><br><input type="radio" class="img-radio" id="wallpaper6" name="wallpaper"><label for="wallpaper6" class="cs-wallpaper"><img src="/.io//bg-6.jpg" class="cs-wallpaper-img"></label></p>
+<style type="text/css">
+.img-radio {
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
+.cs-wallpaper {
+    display: inline-block;
+    width: 90px;
+    height: 120px;
+    margin-top: 5px;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.cs-wallpaper-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+:checked + .cs-wallpaper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: 2px solid deepskyblue;
+    background: linear-gradient(-135deg, deepskyblue 14px, transparent 15px);
+}
+:checked + .cs-wallpaper::after {
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    width: 8px;
+    height: 3px;
+    color: white;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    transform: rotate(-45deg);
+}
+</style>
+
+<p><img src="/.io//img-radio.png" alt="单选图片"></p>
+<h3 id="输入值验证"><a href="#输入值验证" class="headerlink" title="输入值验证"></a>输入值验证</h3><p>借助h5的required和pattern等验证相关属性，以及有效验证伪类:valid 验证成功和:invalid验证失败。不过呢，这两个伪类是在页面开始加载时就会触发。新出了一个:user-invalid伪类，不过还处于实验阶段，暂时没有浏览器支持。不过我们可以借助js,来达到同样的效果。就是在用户产生提交表单的行为发生后，为元素添加特定的类名，来触发浏览器内置验证开启。</p>
+<form id="csForm" novalidate=""><p>验证码：<input class="cs-input" placeholder=" " required pattern="\w{4,6}"><span class="cs-valid-tips"></span></p><input type="submit" value="提交"></form>
+
+<style type="text/css">
+.valid .cs-input:invalid {
+    border-color: red;
+}
+.valid .cs-input:valid + .cs-valid-tips::before {
+    content: '√';
+    color: green;
+}
+.valid .cs-input:invalid + .cs-valid-tips::before {
+    content: '不符合要求';
+    color: red;
+}
+.valid .cs-input:placeholder-shown + .cs-valid-tips::before {
+    content: '尚未输入值';
+}
+</style>
+
+<script type="text/javascript">
+    document.querySelector('#csForm').addEventListener('submit', function(event){
+        this.classList.add('valid');
+        event.preventDefault();
+    })
+</script>
+
+<p>不要在意这里的那个阴影，那是前面的那个影响的。没什么太大的影响。我就不修改前面的东西了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;csForm&quot;</span> <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>验证码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;cs-input&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot; &quot;</span> <span class="attr">required</span> <span class="attr">pattern</span>=<span class="string">&quot;\w&#123;4,6&#125;&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;cs-valid-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:invalid</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">border-color</span>: red;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:valid</span> + <span class="selector-class">.cs-valid-tips</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&#x27;√&#x27;</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: green;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:invalid</span> + <span class="selector-class">.cs-valid-tips</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&#x27;不符合要求&#x27;</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.valid</span> <span class="selector-class">.cs-input</span><span class="selector-pseudo">:placeholder-shown</span> + <span class="selector-class">.cs-valid-tips</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&#x27;尚未输入值&#x27;</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#csForm&#x27;</span>).addEventListener(<span class="string">&#x27;submit&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">this</span>.classList.add(<span class="string">&#x27;valid&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        event.preventDefault();</span></span><br><span class="line"><span class="javascript">    &#125;)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>有几点需要提醒一下：</p>
+<blockquote>
+<p>如果你想知道所有的表单都验证通过，可以使用form表单的原生的checkValidity()方法，返回整个表单是否通过验证的布尔值<br>另外，想要表单验证时及时的，可以监听form的input事件或者focus事件。<br>在IE浏览器中，会出现无法重绘的bug,大致就是输入已经合法了，但是后面的提示内容没有实时的变化。解决办法就是手动触发重绘。改变父元素的样式啊，或者设置无关紧要的类名。下面的是张鑫旭大佬写的一个补丁，放在页面的任意位置即可。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">document</span>.msHidden != <span class="string">&#x27;undefined&#x27;</span> || !history.pushState) &#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">&#x27;input&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target &amp;&amp; <span class="regexp">/^input|textarea$/i</span>.test(event.target.tagName)) &#123;</span><br><span class="line">            event.target.parentElement.className = event.target.parentElement.className;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="必填，可选"><a href="#必填，可选" class="headerlink" title="必填，可选"></a>必填，可选</h3><p>:required伪类用来匹配设置了required属性的表单元素，表示这个表单元素必填或者必写。:optional伪类可以看成是:required伪类的对立面。只要表单元素没有设置required属性都可以匹配:optional伪类.</p>
+<form><fieldset><legend>问卷调查</legend><ol class="cs-ques-ul"><li class="cs-ques-li"><input type="radio" name="ques1" required>1-3年<input type="radio" name="ques1" required>3-5年<input type="radio" name="ques1" required>5年以上<strong class="cs-caption">你从事前端几年了？</strong></li><li class="cs-ques-li"><input type="radio" name="ques2" required>1-3小时<input type="radio" name="ques2">3-5小时<input type="radio" name="ques2">5小时以上<strong class="cs-caption">你每周多少业余时间用来学习前端技术？</strong></li><li class="cs-ques-li"><input type="radio" name="ques3" required>1-3本<input type="radio" name="ques3">3-5本<input type="radio" name="ques3">5本以上<strong class="cs-caption">你每年买多少本前端相关书籍？</strong></li><li class="cs-ques-li"><textarea></textarea><strong class="cs-caption">有什么其它想说的？</strong></li></ol><p><input type="submit" value="提交"></p></fieldset></form>
+<style type="text/css">
+    .cs-ques-li {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+    .cs-caption {
+        display: table-caption;
+        caption-side: top;
+    }
+    .cs-ques-ul {
+        counter-reset: quesIndex;
+    }
+    .cs-ques-li::before {
+        counter-increment: quesIndex;
+        content: counter(quesIndex) ".";
+        position: absolute;
+        top: 28px;
+        margin: 0 0 0 -20px;
+    }
+    :optional ~ .cs-caption::after {
+        content: '(可选)';
+        color: gray;
+    }
+    :required ~ .cs-caption::after {
+        content: '(必选)';
+        color: red;
+    }
+</style>
+
+<p>大致说下这里的思路，随后兄弟选择符，后置标题。利用table-caption后置标题视觉上提前显示。然后再利用css计数器去实现编号。可选性自动标记效果，以后想要修改可选性，只需要修改表单元素的<code>required</code>属性即可,文案信息自动同步，维护更简单。这里的，你也可以按F12直接修改，看看效果。<br><img src="/.io//required.png" alt="调查问卷代码"></p>
+<h3 id="花样表格"><a href="#花样表格" class="headerlink" title="花样表格"></a>花样表格</h3><p>这里的话，我就不弄效果了。直接上代码吧，比较简单。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 偶数行 */</span></span><br><span class="line"><span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child</span>(even)&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 前三个元素 */</span></span><br><span class="line"><span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child</span>(-n + <span class="number">3</span>) <span class="selector-tag">td</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: bisque;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 第4到10个元素 */</span></span><br><span class="line"><span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child</span>(n + <span class="number">4</span>)<span class="selector-pseudo">:nth-child</span>(-n + <span class="number">10</span>) <span class="selector-tag">td</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: lightcyan;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实写到这里的时候，突然有种感觉，就是所谓的高级技巧好像也没有那么精致了。不知道是不是我写这个总结写了5天的缘故，😂😂。凑了个十全十美，(￣▽￣)”。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/css/" rel="tag"># css</a>
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/29/%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96/" rel="prev" title="节流和防抖">
+                  <i class="fa fa-chevron-left"></i> 节流和防抖
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/24/vue%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%BB%84%E4%BB%B6/" rel="next" title="vue图片上传组件">
+                  vue图片上传组件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>
