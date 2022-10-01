@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhanghang12135.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="多角度对比npm, yarn, pnpm。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm,yarn,pnpm的区别">
+<meta property="og:url" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="H.S.">
+<meta property="og:description" content="多角度对比npm, yarn, pnpm。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/image.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/pnpm.png">
+<meta property="og:image" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/performance.png">
+<meta property="article:published_time" content="2022-05-02T13:59:00.000Z">
+<meta property="article:modified_time" content="2022-10-01T06:09:19.279Z">
+<meta property="article:author" content="灰沙">
+<meta property="article:tag" content="前端工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/image.png">
+
+
+<link rel="canonical" href="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/","path":"2022/05/02/npm-yarn-pnpm的区别/","title":"npm,yarn,pnpm的区别"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>npm,yarn,pnpm的区别 | H.S.</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">H.S.</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">成功的人抄袭，伟大的人剽窃</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E9%85%8D%E5%A5%97%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">如何使用配套项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84%E5%8E%86%E5%8F%B2%E7%AE%80%E8%A6%81"><span class="nav-number">2.</span> <span class="nav-text">包管理器的历史简要</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-%E5%85%88%E9%A9%B1%E8%80%85"><span class="nav-number">2.1.</span> <span class="nav-text">npm 先驱者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-v1-Classic-%E8%B4%9F%E8%B4%A3%E5%A4%A7%E9%87%8F%E5%88%9B%E6%96%B0"><span class="nav-number">2.2.</span> <span class="nav-text">Yarn(v1 &#x2F; Classic) 负责大量创新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pnpm-%E9%AB%98%E9%80%9F%E9%AB%98%E6%95%88%E7%9A%84%E7%A3%81%E7%9B%98"><span class="nav-number">2.3.</span> <span class="nav-text">pnpm 高速高效的磁盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-v2-Berry-%E5%86%8D%E5%88%9B%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E7%9A%84%E8%BD%AE%E5%AD%90%EF%BC%88Plug%E2%80%99n%E2%80%99Play%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">Yarn(v2, Berry), 再创即插即用的轮子（Plug’n’Play）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">安装流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npm"><span class="nav-number">3.1.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Classic-%E5%92%8C-Yarn-Berry"><span class="nav-number">3.2.</span> <span class="nav-text">Yarn Classic 和 Yarn Berry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pnpm"><span class="nav-number">3.3.</span> <span class="nav-text">pnpm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-1"><span class="nav-number">4.1.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Classic"><span class="nav-number">4.2.</span> <span class="nav-text">Yarn Classic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Berry-node-modules-%E7%89%88"><span class="nav-number">4.3.</span> <span class="nav-text">Yarn Berry node_modules 版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Berry-PnP-%E7%89%88"><span class="nav-number">4.4.</span> <span class="nav-text">Yarn Berry PnP 版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pnpm-1"><span class="nav-number">4.5.</span> <span class="nav-text">pnpm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E6%96%87%E4%BB%B6%E5%92%8C%E4%BE%9D%E8%B5%96%E5%AD%98%E5%82%A8"><span class="nav-number">5.</span> <span class="nav-text">锁文件和依赖存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLI-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">6.</span> <span class="nav-text">CLI 命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86"><span class="nav-number">6.1.</span> <span class="nav-text">依赖管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="nav-number">6.2.</span> <span class="nav-text">包的执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">6.3.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-2"><span class="nav-number">7.1.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Classic-1"><span class="nav-number">7.2.</span> <span class="nav-text">Yarn Classic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Berry"><span class="nav-number">7.3.</span> <span class="nav-text">Yarn Berry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pnpm-2"><span class="nav-number">7.4.</span> <span class="nav-text">pnpm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monorepo%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">8.</span> <span class="nav-text">Monorepo的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-monorepo"><span class="nav-number">8.1.</span> <span class="nav-text">什么是 monorepo?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-3"><span class="nav-number">8.2.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Classic-2"><span class="nav-number">8.3.</span> <span class="nav-text">Yarn Classic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn-Berry-1"><span class="nav-number">8.4.</span> <span class="nav-text">Yarn Berry</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%92%8C%E7%A3%81%E7%9B%98%E5%88%A9%E7%94%A8"><span class="nav-number">9.</span> <span class="nav-text">性能和磁盘利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">10.</span> <span class="nav-text">安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-4"><span class="nav-number">10.1.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Yarn"><span class="nav-number">10.2.</span> <span class="nav-text">Yarn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pnpm-3"><span class="nav-number">10.3.</span> <span class="nav-text">pnpm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="nav-number">11.</span> <span class="nav-text">流行项目的使用情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">12.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="灰沙"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">灰沙</p>
+  <div class="site-description" itemprop="description">前端个人博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+      <span style="margin: 10px 0; font-size:14px">更多文章，微信扫描二维码</span>
+      <img src='https://open.weixin.qq.com/qr/code?username=FanRenWeb' width="150px" height="150px"/>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="灰沙">
+      <meta itemprop="description" content="前端个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.S.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          npm,yarn,pnpm的区别
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-02 21:59:00" itemprop="dateCreated datePublished" datetime="2022-05-02T21:59:00+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-10-01 14:09:19" itemprop="dateModified" datetime="2022-10-01T14:09:19+08:00">2022-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">前端工程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <html><head></head><body><div style="width:100%;"><img src="/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/image.png">多角度对比npm, yarn, pnpm。</div>
+<span id="more"></span>
+
+<p>注：本篇为译文，原文地址<a target="_blank" rel="noopener" href="https://blog.logrocket.com/javascript-package-managers-compared/">https://blog.logrocket.com/javascript-package-managers-compared/</a></p>
+<p>编者注：本篇文章被完成重写于2022年2月16日，用以重新评估包管理器的前景，参考对比新工具和工作空间，讨论Corepack（译者注：这是node.js一个包管理器的管理器，<a target="_blank" rel="noopener" href="http://nodejs.cn/api/corepack.html">更多参考</a>）的功能和性能影响，提供一个全局视角展示包管理器在流行库和开源项目中的使用， 并更加彻底的解释自2010之后的包管理器的演变，</p>
+<p>三个主要的包管理器：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.npmjs.com/">npm</a></li>
+<li><a target="_blank" rel="noopener" href="https://yarnpkg.com/">Yarn</a> - 我们将很快看到Yarn,可以引用<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/lang/en/">Yarn Classic</a>(&lt; 2) 或者最近的版本 <a target="_blank" rel="noopener" href="https://yarnpkg.com/">Yarn Berry</a>(&gt;= 2)</li>
+<li><a target="_blank" rel="noopener" href="https://pnpm.io/">Performant npm (pnpm)</a></li>
+</ol>
+<p>事实上，所有的包管理器都满足我们的功能需求，因此决定你使用哪种包管理器的会是一些非功能需求， 比如下载速度，存储消耗，以及工作流程的匹配度</p>
+<p>当然，你所选择的每一种包管理器的使用方式都是不同的，但是他们都有同一套核心概念。你可以用包管理器做以下这些事：</p>
+<ul>
+<li>处理和写入元数据</li>
+<li>批量安装或更新所有依赖</li>
+<li>添加，更新，移除依赖</li>
+<li>运行脚本</li>
+<li>发布包</li>
+<li>执行安全验证</li>
+</ul>
+<p>尽管有这些相同点，但是他们在本质上还是有区别的。传统上, npm 和 Yarn 都是将依扁平安装在node_modules。但是这个依赖策略方案保守诟病。</p>
+<p>在本文中，我们将讨论以下几项，来比较适用的执行方案：</p>
+<ul>
+<li>[包管理器的历史简要]#包管理器的历史简要)</li>
+<li><a href="#%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B">安装工作流</a></li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">项目架构</a></li>
+<li><a href="#%E9%94%81%E6%96%87%E4%BB%B6%E5%92%8C%E4%BE%9D%E8%B5%96%E5%AD%98%E5%82%A8">锁文件和依赖存储</a></li>
+<li><a href="#CLI-%E5%91%BD%E4%BB%A4%E8%A1%8C">CLI 命令</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a></li>
+<li><a href="#Monorepo%E7%9A%84%E6%94%AF%E6%8C%81">单代码库的支持</a></li>
+<li><a href="#%E6%80%A7%E8%83%BD%E5%92%8C%E7%A3%81%E7%9B%98%E5%88%A9%E7%94%A8">性能和磁盘利用</a></li>
+<li><a href="#%E5%AE%89%E5%85%A8%E6%80%A7">安全功能</a></li>
+<li><a href="#%E6%B5%81%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5">流行项目的使用情况</a></li>
+</ul>
+<p>请阅读与你最相关的内容。</p>
+<h3 id="如何使用配套项目"><a href="#如何使用配套项目" class="headerlink" title="如何使用配套项目"></a>如何使用配套项目</h3><p>我还创建了一个<a target="_blank" rel="noopener" href="https://github.com/doppelmutzi/companion-project-package-managers-2022">配套的react 应用</a>来演示不同的包管理器的独特特性。每一个包管理器都对应一个git 分支。这也是我在下文中创建高性能表格的代码库。</p>
+<p>虽然应用的类型对于这篇文章的主旨并不重要，但是我仍然创建了一个中等规模的实际项目去阐述不同的方面。作为最近的一个例子，Yarn Berry的PnP机制引起了一些关于兼容性问题的热烈讨论，这个项目适合帮助检查这些问题。</p>
+<h3 id="包管理器的历史简要"><a href="#包管理器的历史简要" class="headerlink" title="包管理器的历史简要"></a>包管理器的历史简要</h3><p>早在2010年1月，发布的第一个包管理器就是npm。它确立了现在包管理器的核心工作原理。</p>
+<p>npm 已经存在超过10年，但如今为什么还有这么多的其它选择？以下是出现这些的关键原因：</p>
+<ul>
+<li>不同的node_modules 文件结构采用不同的依赖解析算法（nested vs. flat, node_modules vs. PnP mode）</li>
+<li>不同的依赖提升（<a target="_blank" rel="noopener" href="https://yarnpkg.com/advanced/lexicon#hoisting">hoisting</a>），存在安全隐患</li>
+<li>不同的lock 文件格式，每一种都存在性能影响</li>
+<li>不同的包存储方式，存在磁盘空间效率影响</li>
+<li>不同的多项目（工作空间）支持，对大型单代码库monorepos的可维护性和速度存在影响</li>
+<li>不同的新工具和命令的需求，每一个都有DX（Devloper Experience开发者体验） 影响<ul>
+<li>与此相关的是，通过插件和社区工具对可扩展性的不同需求</li>
+</ul>
+</li>
+<li>不同程度的可配置性和灵活性</li>
+</ul>
+<p>让我们深入了解一下npm兴起后，这些需求是如何被确定的，Yarn Classic是如何解决其中一些问题的，pnpm是如何扩展这些概念的，以及Yarn Berry作为Yarn Classic的继承者，是如何试图打破这些传统概念和流程所设定的模式。</p>
+<h4 id="npm-先驱者"><a href="#npm-先驱者" class="headerlink" title="npm 先驱者"></a>npm 先驱者</h4><p>npm是包管理器的鼻祖。许多人错误地认为npm是”Node package manager” 的缩写，但<a target="_blank" rel="noopener" href="https://github.com/npm/cli#is-npm-an-acronym-for-node-package-manager">事实并非如此</a>。尽管如此。它还是和node.js的运行时绑定在一起。</p>
+<p>在2020年，GitHub收购了npm，所以原则上，npm现在是在微软的管理之下。在撰写本文时，最新的主要版本是v8，于2021年10月发布。</p>
+<h4 id="Yarn-v1-Classic-负责大量创新"><a href="#Yarn-v1-Classic-负责大量创新" class="headerlink" title="Yarn(v1 / Classic) 负责大量创新"></a>Yarn(v1 / Classic) 负责大量创新</h4><p>在2016年10月的一篇<a target="_blank" rel="noopener" href="https://engineering.fb.com/2016/10/11/web/yarn-a-new-package-manager-for-javascript/">博客文章</a>中，Facebook 宣布将与Google以及一些公司合作开发一个新的包管理器，该包管理器将解决npm当时存在的一致性、安全性和性能问题。他们将替代方案命名为Yarn, 即 Yet Another Resource Negotiator的意思。</p>
+<p>虽然Yarn的架构设计基于npm的许多概念和程序， 但在最初的版本中，Yarn对包管理器的格局产生了重大影响。与npm比较，Yarn的并行操作是为了加快安装过程，这也是npm早期版本的痛点。</p>
+<p>Yarn 为DX, 安全性和性能设置了更高的门槛， 也引入了大量新的概念，包括：</p>
+<ul>
+<li>本地monorepo 支持（Native monorepo support）</li>
+<li>高速缓存识别的安装 （Cache-aware installs）</li>
+<li>离线缓存 （Offline caching）</li>
+<li>锁文件 （Lock files）</li>
+</ul>
+<p>Yarn v1 在2020年进入维护模式。从那以后，v1.x的版本被认为是遗留的，并重新命名为Yarn Classic。它的继承者Yarn v2 或者称为Yarn Berry, 是现在活跃的开发分支。</p>
+<h4 id="pnpm-高速高效的磁盘"><a href="#pnpm-高速高效的磁盘" class="headerlink" title="pnpm 高速高效的磁盘"></a>pnpm 高速高效的磁盘</h4><p>pnpm的1.0版本在2017年被Zoltan Kochan 发布。它是npm的直接替代品，如果你的项目是npm，那么你可以立马使用pnpm。</p>
+<p>在使用npm和Yarn时，pnpm的创建者<a target="_blank" rel="noopener" href="https://medium.com/pnpm/why-should-we-use-pnpm-75ca4bfe7d93">遇到的主要问题</a>是跨项目中的冗余依赖。尽管Yarn Classic 在速度上超出了npm, 但它依然使用同样的依赖解决方案，这是pnpm的作者所不喜欢的：npm 和 Yarn 使用依赖提升（hoisting）去扁平化nodes_modules。</p>
+<p>与依赖提升相反，pnpm 引入了一种新的依赖解决方案：内容寻址存储（<a target="_blank" rel="noopener" href="https://pnpm.io/zh/next/symlinked-node-modules-structure">content-addressable storage</a>）。这个方法生成一个嵌套的node_modules文件夹，将包存储在主(home)文件夹（~/.pnpm-store）的全局存储。每一个依赖版本只会在该文件夹物理存储一次，构造唯一真实来源并且节省大量磁盘空间。</p>
+<p>使用符号链接（symlinks）去创造一个嵌套的依赖结构，其中每一个依赖的每一个文件都是一个在全局存储（store）里面的硬链接（<a target="_blank" rel="noopener" href="https://pnpm.io/zh/faq">hard link</a>）。下面这个来自官方的图可以说明这个。</p>
+<p><img src="/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/pnpm.png"></p>
+<p>在<a target="_blank" rel="noopener" href="https://pnpm.io/zh/blog/2021/12/29/yearly-update">2021年的报告</a>中可以看到pnpm的影响：竞争者们也希望使用pnpm的安装依赖的方案，像<a target="_blank" rel="noopener" href="https://pnpm.io/zh/blog/2021/12/29/yearly-update">符号链接 node_modules </a>结构和内容寻址存储所带来的磁盘的高效管理创新方案。</p>
+<h4 id="Yarn-v2-Berry-再创即插即用的轮子（Plug’n’Play）"><a href="#Yarn-v2-Berry-再创即插即用的轮子（Plug’n’Play）" class="headerlink" title="Yarn(v2, Berry), 再创即插即用的轮子（Plug’n’Play）"></a>Yarn(v2, Berry), 再创即插即用的轮子（Plug’n’Play）</h4><p>Yarn 2 在2020年1月发布，称其为原始Yarn的重大升级版本。Yarn团队开始称其为Yarn Berry, 以更明显的表明它是一个具有新代码基础和新原则的新包管理器。</p>
+<p>Yarn Berry最重要的创新就是它的<a target="_blank" rel="noopener" href="https://yarnpkg.com/features/pnp/">Plug’n’Play(PnP)</a> 策略，这是一种<a target="_blank" rel="noopener" href="https://yarnpkg.com/features/pnp#fixing-node_modules">修复node_modules</a>的方法。不生成node_modules, 而是生成一个作为依赖查找表的.pnp.cjs文件, 它能更有效的被处理，因为它是一个单文件而不是嵌套的文件夹结构。另外每一个包都被存储为.yarn/cache/文件夹下的<a target="_blank" rel="noopener" href="https://yarnpkg.com/features/pnp#packages-are-stored-inside-zip-archives-how-can-i-access-their-files">zip文件</a>，相较于node_modules能节省更多的磁盘空间。</p>
+<p>这些改变在发布后迅速引起了大量的讨论。PnP的破坏性更新<a target="_blank" rel="noopener" href="https://blog.hao.dev/state-of-yarn-2-berry-in-2021">要求维护人员更新他们现有的包</a>，目的为了兼容它。全新的PnP策略是默认使用的，而且恢复到node_modules并不是很简单，这也导致了许多著名开发人员<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=bPae4Z8BFt8">公开批评Yarn 2</a>没有让它成为配置项。</p>
+<p>Yarn Berry 团队在随后的版本中<a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/issues/766#issuecomment-580658470">解决了大量问题</a>。为了解决PnP的不兼容性问题，团队提供了一些容易更改默认操作模式的方法。借助<a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/tree/master/packages/plugin-nm">node_modules plugins</a>，仅仅需要一行配置就可以使用传统的node_modules 策略。</p>
+<p>另外，随着时间的推移js生态对于PnP提供越来越多的支持，正如你在这个<a target="_blank" rel="noopener" href="https://yarnpkg.com/features/pnp/#compatibility-table">兼容性表格</a>中看到的，一些大型项目（Babel, jest）也开始采纳 Yarn Berry。在我的<a target="_blank" rel="noopener" href="https://github.com/doppelmutzi/companion-project-package-managers-2022">这个项目</a>中，我也能正确的使用PnP在我的React demo项目中。</p>
+<p>尽管 Yarn Berry 还很年轻，但它也已经对包管理器领域产生了影响 – pnpm 在2020年底采用了<a target="_blank" rel="noopener" href="https://pnpm.io/blog/2020/10/17/node-modules-configuration-options-with-pnpm#plugnplay-the-strictest-configuration">PnP方法</a>。</p>
+<h3 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h3><p>首先，包管理器必须被安装在每一个开发者的本地和CI/CD系统中。</p>
+<h4 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h4><p>npm随着node.js一起发布，所以不需要额外的步骤。除了为你的系统下载 <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">node.js安装程序</a>，使用 CLI 工具管理软件版本已经成为一种常见的方法。在 node 的环境中， <a target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm">Node Version Manager (nvm)</a> 或者 <a target="_blank" rel="noopener" href="https://volta.sh/">Volta</a> 已经成为非常方便的工具了。</p>
+<h4 id="Yarn-Classic-和-Yarn-Berry"><a href="#Yarn-Classic-和-Yarn-Berry" class="headerlink" title="Yarn Classic 和 Yarn Berry"></a>Yarn Classic 和 Yarn Berry</h4><p>您能用不同的方式<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/install#mac-stable">安装 Yarn 1</a>, 例如，当作一个npm包 <font color="red">$ npm i -g yarn</font></p>
+<p>从 <a target="_blank" rel="noopener" href="https://yarnpkg.com/getting-started/migration/">Yarn Classic 迁移 Yarn Berry</a>, 推荐的方式是：</p>
+<ul>
+<li>安装或者更新 Yarn Classic 到最新的1.x 版本</li>
+<li>使用 <font color="red">yarn set version</font> 命令升级到最新的版本： <font color="red"> $ yarn set version berry</font> 或者 <font color="red">$ yarn set version stable </font><br>然而，<a target="_blank" rel="noopener" href="https://yarnpkg.com/getting-started/install#install-corepack">最推荐的安装 Yarn Berry 的方式</a>是通过 Corepack</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/api/corepack.html">Corepack</a> 是被 Yarn Berry 的开发者开发的。它最初的名字叫 <a target="_blank" rel="noopener" href="https://github.com/nodejs/TSC/issues/904">包管理器的管理器（pmm)</a> 并且 和 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/pull/35398">node v16 绑定在一块</a>。</p>
+<p>在 Corepack 的帮助下，你不必单独安装npm的替代包管理器，因为 Node 包括了 Yarn Classic, Yarn Berry 和 pnpm 的二进制文件作为垫片。这些垫片允许用户在没有安装他们的情况下使用 Yarn  和 pnpm 的命令，并且不会影响node的发布。</p>
+<p>Corepack 需要预先安装 Node.js ≥ v16.9.0。当然，你也可以在老版本 Node 中手动安装它 <font color="red">$ npm install -g corepack</font> 。</p>
+<p>使用它之前，你首先需要开启 Corepack。这个例子显示怎样激活 Yarn Berry v3.1.1。</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 首先你需要开启它</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> corepack <span class="built_in">enable</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 垫片（二进制文件）虽然被安装但是具体的版本需要激活</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> corepack prepare yarn@3.1.1 --active</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h4><p>能把 pnpm 当作一个 npm 包安装<font color="red"> $ npm i -g pnpm </font>。你也能用 Corepack 安装： <font color="red">$ core prepare pnpm@ 7.3 –activite</font></p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>在本节中，你将一眼看到不同的包管理器的主要特征。你可以很容易到发现哪些文件在配置特定的包管理器时被涉及，以及哪些文件会在安装步骤被生成。</p>
+<p>所有的包管理器都将重要的元信息存储在项目清单文件，<a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json">package.json</a>。此外，根级别的配置文件可用于设置私有注册中心或依赖项解析方法。</p>
+<p>在安装步骤中，依赖被安装在一个文件结构中（例如 node_modules）同时一个锁文件被生成。本节没有考虑多<a target="_blank" rel="noopener" href="https://doppelmutzi.github.io/monorepo-lerna-yarn-workspaces/">工作区的设置</a>，所有的例子都只显示依赖存储的单个位置（译者注：一个代码库一个应用）。</p>
+<h4 id="npm-1"><a href="#npm-1" class="headerlink" title="npm"></a>npm</h4><p>用<font color="red"> $ npm install </font>或者更短的 <font color="red">$ npm i </font>, 一个 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v7/configuring-npm/package-lock-json">package-lock.json</a> 文件 和 一个 <font color="red">node_modules</font> 文件夹将被生成。一个可选的 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/configuring-npm/npmrc">.npmrc</a> 配置文件 能被放在根目录下。更多关于锁文件的信息在下一节中介绍。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── node_modules/</span><br><span class="line">├── .npmrc</span><br><span class="line">├── package-lock.json</span><br><span class="line">└── package.json</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="Yarn-Classic"><a href="#Yarn-Classic" class="headerlink" title="Yarn Classic"></a>Yarn Classic</h4><p>运行<font color="red"> $ yarn </font>创建一个 <font color="red">yarn.lock </font>文件 和一个 <font color="red">node_modules </font>文件夹。<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/yarnrc">.yarnrc</a>文件 也是一个配置可选的文件；Yarn Classic 也同样支持 <font color="red">.npmrc</font> 文件。另外，一个缓存文件（<font color="red">.yarn/cache/</font>） 和一个存储当前 Yarn Classic 版本的本地文件（<font color="red">.yarn/releases/</font>） 也能被使用。在对比配置的那一节中能看到不同的配置方法。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── .yarn/</span><br><span class="line">│   ├── cache/</span><br><span class="line">│   └── releases/</span><br><span class="line">│       └── yarn-1.22.17.cjs</span><br><span class="line">├── node_modules/</span><br><span class="line">├── .yarnrc</span><br><span class="line">├── package.json</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="Yarn-Berry-node-modules-版"><a href="#Yarn-Berry-node-modules-版" class="headerlink" title="Yarn Berry node_modules 版"></a>Yarn Berry node_modules 版</h4><p>Yarn Berry 项目的这种独立安装模式，相较于其它包管理器，你将不得不处理更多的文件和文件夹。一些是可选的一些是必需的。<br>Yarn Berry 不在支持 <font color="red">.npmrc</font> 或者 <font color="red">.yarnrc</font> 文件；相反，<a target="_blank" rel="noopener" href="https://yarnpkg.com/configuration/yarnrc">.yarnrc.yml 配置文件</a>是必需的。</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .yarnrc.yml</span></span><br><span class="line"><span class="attr">nodeLinker:</span> <span class="string">node-modules</span> <span class="comment"># or pnpm</span></span><br></pre></td></tr></tbody></table></figure>
+<p>运行 <font color="red">$ yarn </font>在 <font color="red">node_modules</font> 文件夹中安装所有依赖。生成一个 <font color="red">yarn.lock</font>文件，它是较新的并且和 <font color="red">Yarn Classic</font> 不兼容。另外，为了离线安装生成了 <font color="red">.yarn/cache/</font> 文件夹。<font color="red">releases </font>文件夹是可选的, 用来在项目中存储 Yarn Berry  版本的，我们会在 配置比较 那一节中看到。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── .yarn/</span><br><span class="line">│   ├── cache/</span><br><span class="line">│   └── releases/</span><br><span class="line">│       └── yarn-3.1.1.cjs</span><br><span class="line">├── node_modules/</span><br><span class="line">├── .yarnrc.yml</span><br><span class="line">├── package.json</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="Yarn-Berry-PnP-版"><a href="#Yarn-Berry-PnP-版" class="headerlink" title="Yarn Berry PnP 版"></a>Yarn Berry PnP 版</h4><p>对于存在 <a target="_blank" rel="noopener" href="https://yarnpkg.com/features/pnp">strict</a> 和 <a target="_blank" rel="noopener" href="https://yarnpkg.com/features/pnp#pnp-loose-mode">loose</a> 模式的 PnP, 执行 <font color="red">$ yarn </font>生成 <font color="red">.yarn/cache/</font> 和 <font color="red">.yarn/unplugged/</font>, 以及 <font color="red">.pnp.cjs</font> 和 <font color="red">yarn.lock </font>文件。PnP 默认是 strict 模式， loose 模式需要配置。</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .yarnrc.yml</span></span><br><span class="line"><span class="attr">nodeLinker:</span> <span class="string">pnp</span></span><br><span class="line"><span class="attr">pnpMode:</span> <span class="string">loose</span></span><br></pre></td></tr></tbody></table></figure>
+<p>在 PnP 项目中， <font color="red">.yarn/ </font>文件夹很可能除了 <font color="red">releases/</font> 文件夹外，还包含一个用来提供 <a target="_blank" rel="noopener" href="https://yarnpkg.com/getting-started/editor-sdks">IDE 支持</a>的 sdk/ 文件夹。甚至还会有<a target="_blank" rel="noopener" href="https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored">更多的文件</a>在 .yarn/ 里面，当然这取决你于你的用法。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── .yarn/</span><br><span class="line">│   ├── cache/</span><br><span class="line">│   ├── releases/</span><br><span class="line">│   │   └── yarn-3.1.1.cjs</span><br><span class="line">│   ├── sdk/</span><br><span class="line">│   └── unplugged/</span><br><span class="line">├── .pnp.cjs</span><br><span class="line">├── .pnp.loader.mjs</span><br><span class="line">├── .yarnrc.yml</span><br><span class="line">├── package.json</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="pnpm-1"><a href="#pnpm-1" class="headerlink" title="pnpm"></a>pnpm</h4><p>一个 pnpm 项目的初始状态 看起来就和 npm 或 Yarn Classic 项目一样 – 你都需要一个  <font color="red">package.json </font>文件。 <font color="red">$ pnpm i </font>安装依赖之后， 会生成一个 <font color="red"> node_modules</font> 文件夹，但是它的结构完全不一样，因为它采用了内容寻址方法。</p>
+<p>pnpm 也生成 它自己的锁文件  <font color="red">pnpm-lock.yml</font>。你也能用可选的  <font color="red">.npmrc </font>文件来添加额外的配置项。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── node_modules/</span><br><span class="line">│   └── .pnpm/</span><br><span class="line">├── .npmrc</span><br><span class="line">├── package.json</span><br><span class="line">└── pnpm-lock.yml</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="锁文件和依赖存储"><a href="#锁文件和依赖存储" class="headerlink" title="锁文件和依赖存储"></a>锁文件和依赖存储</h3><p>在上一章节描述中，我们知道每一个包管理器都会创建一个 <a target="_blank" rel="noopener" href="https://snyk.io/blog/what-is-package-lock-json/">锁文件</a>。</p>
+<p>锁文件准确储存你项目中的每一个依赖安装包版本，从而实现更准确和可预测的安装。它是必须的，因为依赖本部很可能是用 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/about-semantic-versioning">版本范围</a> 声明的 （e.g. ≥ v1.2.5），因此，如果你不锁定版本，实际安装的就很可能有出入。</p>
+<p>锁文件有时也存储校验和, 我们将在后面的安全的章节深入的探讨它。</p>
+<p>在 npm v5 版本之后 锁文件（<a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/configuring-npm/package-lock-json">package-lock.json</a>）就被支持, 在pnpm 的第一天它(<a target="_blank" rel="noopener" href="https://pnpm.io/git#lockfiles">pnpm-lock.yaml</a>)就有， 在 Yarn Berry 中以全新的 YAML 格式（<a target="_blank" rel="noopener" href="https://dev.to/arcanis/introducing-yarn-2-4eh1#new-lockfile-format">yarn.lock</a>）。</p>
+<p>在上一节中，我们看到了传统的方法 – 依赖都被安装在 <font color="red">node_modules </font>文件夹结构中。这是npm , Yarn Classic 和 pnpm 都在使用的方案，其中pnpm 却比其它的效率更高。</p>
+<p>Yarn Berry 在 PnP 模式是不一样的。和 <font color="red">node_modules</font> 文件夹不同，依赖被存在 <font color="red">.yarn/cache</font>和<font color="red"> .pnp.cjs </font>文件中。</p>
+<p>最好将<a target="_blank" rel="noopener" href="https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored">锁文件放在版本控制</a>（译者注：就是上传到远程仓库）下，因为它可以解决 “只能工作在我的机器上” 这个问题 – 每一个项目成员都有同样的版本。</p>
+<h3 id="CLI-命令行"><a href="#CLI-命令行" class="headerlink" title="CLI 命令行"></a>CLI 命令行</h3><p>下面的表格对比了npm, Yarn Classic , Yarn Berry 和 pnpm 提供的一系列不同的 CLI 命令。这绝不是一个完整的列表，而是一个简单的片段。这一节不涉及工作空间相关的命令。</p>
+<p>npm 和 pnpm 特别突出了许多命令和选项别名，这意味着一个命令能有不同的名字，例如 <font color="red">$ npm install </font>和 <font color="red"> $ npm add</font> 是一样的另外，许多命令都有简写， 例如 <font color="red">-D </font>代替 <font color="red">–save-dev </font>。</p>
+<p>在所有的表格中，我将所有的简写称为别名。对于所有的包管理器，你都可以用用空格区分多依赖来进行 添加， 更新，删除（例如：<font color="red">npm update react reac-dom </font>）。为了显而易见，所有的命令示例都使用单一依赖。</p>
+<h4 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h4><p>这个表涵盖了所有的用于安装或更新 package.json 中依赖的管理命令，或者在命令中指定多个依赖项。<br>|Action|npm|Yarn Classic|Yarn Berry|pnpm<br>|—|—|—|—|—|<br>|安装所有依赖在  package.json | npm install 别名：i, add|yarn install or yarn|yarn install or yarn |pnpm install alias: i |<br>|更新所有依赖 package.json|npm update alias: up, upgrade |yarn upgrade|yarn semver up (需使用 <a target="_blank" rel="noopener" href="https://github.com/tophat/yarn-plugin-semver-up">plugin</a>)|pnpm update alias: up<br>|更新最新版的所有依赖|N/A|yarn upgrade –latest|yarn up|pnpm update –latest alias: -L|<br>|更新单一依赖|npm update react|yarn upgrade react|yarn semver up react|pnpm up react|<br>|交互选择更新依赖|N/A|yarn upgrade-interactive|yarn upgrade-interactive(需使用 <a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/blob/HEAD/packages/plugin-interactive-tools/README.md">plugin</a>)|pnpm up –interactive alias: -ii|<br>|添加运行依赖|npm i react|yarn add react|yarn add react|pnpm add react<br>|添加开发依赖|npm i -D babel alias: –save-dev|yarn add -D babel alias:  –dev|yarn add -D babel alias:  –dev|pnpm add -D babel alias: –save-dev<br>|添加固定版本依赖到 package.json|npm i -E react alias: –save-exact|yarn add -E react alias: –exact|yarn add -E react alias: –exact|pnpm add -E react alias: –save-exact<br>|卸载依赖并且移出package.json|npm uninstall react alias: remove, rm, r, un, unlink|yarn remove react|yarn remove react|pnpm remove react alias: rm, un, uninstall<br>|卸载依赖但不移出package.json（node_modules 中存在一级目录，但是没有任何文件）|npm uninstall –no-save|N/A|N/A|N/A</p>
+<h4 id="包的执行"><a href="#包的执行" class="headerlink" title="包的执行"></a>包的执行</h4><p>下面的例子展示了如何在开发期间管理构成实用工具的包， 也就是二进制文件，例如 <a target="_blank" rel="noopener" href="https://github.com/ruyadorno/ntl">ntl</a>  , 交互执行脚本。表中的术语：</p>
+<ul>
+<li>包： 依赖或者二进制文件</li>
+<li>二进制文件：在 <font color="red">node_modules/.bin/</font> 或者 <font color="red">.yarn/cache (PnP)</font>的可执行文件<br>重要的是要理解 Yarn Berry 为什么只允许我们执行在 我们的 package.json 文件中指定的二进制文件，或者 在 <a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/issues/2784">bin 字段</a>中指定的。pnpm 具有<a target="_blank" rel="noopener" href="https://github.com/pnpm/pnpm/issues/899#issuecomment-334548475">相同的安全行为</a>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>npm</th>
+<th>Yarn Classic</th>
+<th>Yarn Berry</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局安装包</td>
+<td>npm i -g ntl 别名：–global</td>
+<td>yarn global add ntl</td>
+<td>N/A ( <a target="_blank" rel="noopener" href="https://yarnpkg.com/getting-started/migration#use-yarn-dlx-instead-of-yarn-global">全局命令移除</a>)</td>
+<td>pnpm add –global ntl</td>
+</tr>
+<tr>
+<td>更新全局包</td>
+<td>npm update -g ntl</td>
+<td>yarn global upgrade ntl</td>
+<td>N/A</td>
+<td>pnpm update –global ntl</td>
+</tr>
+<tr>
+<td>移除全局包</td>
+<td>npm uninstall -g ntl</td>
+<td>yarn global remove ntl</td>
+<td>N/A</td>
+<td>pnpm remove –global ntl</td>
+</tr>
+<tr>
+<td>在终端中运行二进制文件</td>
+<td>npm exec ntl</td>
+<td>yarn ntl</td>
+<td>yarn ntl</td>
+<td>pnpm ntl</td>
+</tr>
+<tr>
+<td>在脚本中运行二进制文件</td>
+<td>ntl</td>
+<td>ntl</td>
+<td>ntl</td>
+<td>ntl</td>
+</tr>
+<tr>
+<td>动态包执行</td>
+<td>npx ntl</td>
+<td>N/A</td>
+<td>yarn dlx ntl</td>
+<td>pnpm dlx ntl</td>
+</tr>
+</tbody></table>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>这个表覆盖了可用的内置命令。如果没有官方命令，也会有第三方的命令可用，通过 npm 包 或者 Yarn Berry 的插件。<br>|Action|npm|Yarn Classic|Yarn Berry|pnpm<br>|—|—|—|—|—|<br>发布包|npm publish|yarn publish|yarn npm publish|pnpm publish<br>展示 已安装的依赖|npm ls 别名：list , la , ll|yarn list|N/A|pnpm list 别名：ls|<br>展示 过时的依赖|npm outdated|yarn outdated|yarn upgrade-interactive|pnpm outdated<br>打印依赖信息|npm explain ntl 别名：why|yarn why ntl|yarn why ntl|pnpm why ntl<br>初始化项目|npm init -y npm init|yarn init -y yarn init|yarn init|pnpm init -y pnpm init<br>更新包管理器版本|N/A (通过 nvm 控制)|用 npm: yarn policies set-version 1.13.0|用 Corepack: yarn set version 3.1.1|N/A(用npm 或者 Corepack)<br>安全检查|npm audit|yarn audit|yarn npm audit|pnpm audit</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>配置包管理可以在两个地方 <font color="red">package.json</font> 和 专门的配置文件。配置项的示例如下：</p>
+<ul>
+<li>定义使用的确切版本</li>
+<li>使用特定的依赖解析策略</li>
+<li>配置私有域的使用</li>
+<li>告诉包管理在 单代码库如何查找工作区</li>
+</ul>
+<h4 id="npm-2"><a href="#npm-2" class="headerlink" title="npm"></a>npm</h4><p>大多的配置是放在专门的配置文件 – <font color="red">.npmrc</font><br>如果你想使用 npm 的工作区功能，你应该添加配置到 <font color="red">package.json </font>中，使用 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/using-npm/config#workspaces">workspaces</a> 字段 告诉npm 在哪里分别找到 子项目或者工作区的文件夹。</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">"workspaces"</span>: [</span><br><span class="line">    <span class="string">"hooks"</span>,</span><br><span class="line">    <span class="string">"utils"</span></span><br><span class="line">  ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>每个包管理器都可以使用公共的npm库。在一家有共享库的公司中，你很可能想重复使用你的工具库，但是不发布到公共库上。那么你能在 .npmrc 文件上配置一个私有库地址。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># .npmrc</span><br><span class="line">@doppelmutzi:registry=https://gitlab.doppelmutzi.com/api/v4/projects/41/packages/npm/</span><br></pre></td></tr></tbody></table></figure>
+<p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/using-npm/config">npm 有更多更好的配置。</a></p>
+<h4 id="Yarn-Classic-1"><a href="#Yarn-Classic-1" class="headerlink" title="Yarn Classic"></a>Yarn Classic</h4><p>你能设置 <a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/workspaces">Yarn</a> 工作区 在你的 <font color="red">package.json</font>中。它和 npm 相似，但是工作区必须是一个私有包。</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"workspaces"</span>: [<span class="string">"workspace-a"</span>, <span class="string">"workspace-b"</span>]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>任何可选配置项都可以放入 <a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/yarnrc">.yarnrc</a> 文件。一个常用的配置是设置 <a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/yarnrc#toc-yarn-path">yarn-path</a>, 强制让每一个团队成员都使用同一个版本。这个 yarn-path 将指向一个包含特定 Yarn 版本的文件夹（例如：.yarn/releases/xxx）。使用 <a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/cli/policies">yarn policies</a> 命令 可以安装 Yarn Classic 的版本。</p>
+<h4 id="Yarn-Berry"><a href="#Yarn-Berry" class="headerlink" title="Yarn Berry"></a>Yarn Berry</h4><p>Yarn Berry 中 <a target="_blank" rel="noopener" href="https://yarnpkg.com/configuration/manifest/#workspaces">配置工作区</a> 和 Yarn Classic配置差不多，都是在<a target="_blank" rel="noopener" href="https://yarnpkg.com/configuration/manifest">package.json</a>中。大多数 Yarn Berry 配置项可以放在 .yarnrc.yml 文件中。上面 Yarn Classic的示例也可以用，但是你需要改下字段名 <a target="_blank" rel="noopener" href="https://yarnpkg.com/configuration/yarnrc#yarnPath">yarnPath</a>.</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .yarnrc.yml</span></span><br><span class="line"><span class="attr">yarnPath:</span> <span class="string">.yarn/releases/yarn-3.1.1.cjs</span></span><br></pre></td></tr></tbody></table></figure>
+<p>Yarn Berry 能使用 <a target="_blank" rel="noopener" href="https://yarnpkg.com/cli/plugin/import">yarn plugin import</a> 命令 来添加插件。 这个命令更新在 <font color="red">.yarnyc.yml</font> 中。</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .yarnrc.yml</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">.yarn/plugins/@yarnpkg/plugin-semver-up.cjs</span></span><br><span class="line">    <span class="attr">spec:</span> <span class="string">"https://raw.githubusercontent.com/tophat/yarn-plugin-semver-up/master/bundles/%40yarnpkg/plugin-semver-up.js"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>在之前的章节描述中，在 PnP 的严格模式下，依赖可能会出现不兼容的问题。关于 PnP的问题，有一个经典解决方案：<a target="_blank" rel="noopener" href="https://yarnpkg.com/configuration/yarnrc#packageExtensions">packageExtensions</a> 配置属性。你也能参照下面的示例，<a target="_blank" rel="noopener" href="https://github.com/doppelmutzi/companion-project-package-managers-2022/blob/yarn-berry-pnp-strict/.yarnrc.yml">这个项目</a>：</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .yarnrc.yml</span></span><br><span class="line"><span class="attr">packageExtensions:</span></span><br><span class="line">  <span class="string">"styled-components@*"</span><span class="string">:</span></span><br><span class="line">    <span class="attr">dependencies:</span></span><br><span class="line">      <span class="attr">react-is:</span> <span class="string">"*"</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="pnpm-2"><a href="#pnpm-2" class="headerlink" title="pnpm"></a>pnpm</h4><p>pnpm 使用 <a target="_blank" rel="noopener" href="https://pnpm.io/configuring">同样的配置项和 npm</a>, 所以你也能使用 .npmrc 文件。配置私有域也是和npm 一样。<br>pnpm 的 <a target="_blank" rel="noopener" href="https://pnpm.io/workspaces">工作区功能</a>，也是支持多包项目的。要初始化一个多包代码库，你必须 指定包的位置在 <a target="_blank" rel="noopener" href="https://pnpm.io/pnpm-workspace_yaml">pnpm-workspace.yaml</a> 文件中</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pnpm-workspace.yaml</span></span><br><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">'packages/**'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Monorepo的支持"><a href="#Monorepo的支持" class="headerlink" title="Monorepo的支持"></a>Monorepo的支持</h3><h4 id="什么是-monorepo"><a href="#什么是-monorepo" class="headerlink" title="什么是 monorepo?"></a>什么是 monorepo?</h4><p>monorepo(单存储库) 是包含多个项目的存储库，这些项目被称为工作区或者包。项目架构策略是将每一个包放在一个库里面，而不是多个库。<br>当然，这也增加了复杂性。Yarn Classic 是第一个吃螃蟹的人，不过现在大多数包管理器都吃上了。这一节会告诉你怎么配置工作区对于不同的包管理器。</p>
+<h4 id="npm-3"><a href="#npm-3" class="headerlink" title="npm"></a>npm</h4><p>npm 团队在 v7中 发布了期待已久的 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/using-npm/workspaces/">工作区功能</a>。它包含了一系列 CLI 命令帮助在根项目中管理多包项目。大多数命令可以与工作空间相关的选项一起使用，来告诉npm它应该在一个特定的、多个或所有工作空间上运行。</p>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Installing all dependencies for all workspaces</span></span><br><span class="line">$ npm i --workspaces.</span><br><span class="line"><span class="comment"># run against one package</span></span><br><span class="line">$ npm run <span class="built_in">test</span> --workspace=hooks</span><br><span class="line"><span class="comment"># run against multiple packages</span></span><br><span class="line">$ npm run <span class="built_in">test</span> --workspace=hooks --workspace=utils</span><br><span class="line"><span class="comment"># run against all</span></span><br><span class="line">$ npm run <span class="built_in">test</span> --workspaces</span><br><span class="line"><span class="comment"># ignore all packages missing test</span></span><br><span class="line">$ npm run <span class="built_in">test</span> --workspaces --if-present</span><br></pre></td></tr></tbody></table></figure>
+<p>与其他包管理器相比，npm v8目前不支持高级过滤，也不支持并行执行多个与工作空间相关的命令。</p>
+<h4 id="Yarn-Classic-2"><a href="#Yarn-Classic-2" class="headerlink" title="Yarn Classic"></a>Yarn Classic</h4><p>2017年8月, Yarn 团队<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/">宣布</a>了第一个在<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/en/docs/workspaces">工作区功能</a>的monorepo 支持。在此之前，只能在多包项目中使用包管理器和第三方软件 <a target="_blank" rel="noopener" href="https://lerna.js.org/">Lerna</a> 。Yarn 添加这样的功能也为其它的包管理器铺平了道路。<br>我先前也写过一篇关于 <a target="_blank" rel="noopener" href="https://doppelmutzi.github.io/monorepo-lerna-yarn-workspaces/">如何使用Yarn Classic 的工作空间</a> 用 Lerna 或者不用，如果你感兴趣的话。但是这篇文章只会介绍一些必要的命令来帮助你在Yarn Classic工作空间中管理依赖关系。</p>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Installing all dependencies for all workspaces</span></span><br><span class="line">$ yarn</span><br><span class="line"><span class="comment"># display dependency tree</span></span><br><span class="line">$ yarn workspaces info</span><br><span class="line"><span class="comment"># run start command only for one package</span></span><br><span class="line">$ yarn workspace awesome-package start</span><br><span class="line"><span class="comment"># add Webpack to package</span></span><br><span class="line">$ yarn workspace awesome-package add -D webpack</span><br><span class="line"><span class="comment"># add React to all packages</span></span><br><span class="line">$ yarn add react -W</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="Yarn-Berry-1"><a href="#Yarn-Berry-1" class="headerlink" title="Yarn Berry"></a>Yarn Berry</h4><p>Yarn Berry 从一开始就有<a target="_blank" rel="noopener" href="https://yarnpkg.com/features/workspaces">工作空间</a>，因为它是建立在 Yarn Classic 的概念之上的。在Reddit 的<a target="_blank" rel="noopener" href="https://www.reddit.com/r/node/comments/omxnnq/workspaces_2021_yarn_v1_vs_yarn_v2_vs_npm/">一条评论</a>中，Yarn Berry 的主要开发者简要的概述了面向工作空间功能，包括：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://yarnpkg.com/cli/add#options-i%2C-interactive">$ yarn add –interactive</a>: 安装一个包时从其它的工作空间中复用版本成为了可能。</li>
+<li><a target="_blank" rel="noopener" href="https://yarnpkg.com/cli/up">$ yarn up</a>: 更新所有工作空间的包</li>
+<li><a target="_blank" rel="noopener" href="https://yarnpkg.com/cli/workspaces/focus">$ yarn workspaces focus</a>: 仅为单个工作空间安装依赖</li>
+<li><a target="_blank" rel="noopener" href="https://yarnpkg.com/cli/workspaces/foreach">$ yarn workspaces foreach</a>: 所有的工作空间运行一个命令<br>Yarn Berry 有着大量的协议字段， 每一个都能在 <font color="red">package.json</font> 的 <font color="red">dependencies </font>或 <font color="red">devDependencies</font> 字段中。其中一个就是 <a target="_blank" rel="noopener" href="https://yarnpkg.com/features/workspaces#workspace-ranges-workspace">workspace</a> 协议。<br>与 Yarn Classic的工作空间对比，Yarn Berry 明确定义了依赖必须是在 monorepo的一个包中。要不然，Yarn Berry 会尝试从远程库拉版本，如果版本不匹配的情况下。<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">"dependencies"</span>: {</span><br><span class="line">    <span class="attr">"@doppelmutzi/hooks"</span>: <span class="string">"workspace:*"</span>,</span><br><span class="line">    <span class="attr">"http-server"</span>: <span class="string">"14.0.0"</span>,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+pnpm<br>通过 <font color="red">workspace: </font>协议， pnpm 使得像 Yarn Berry 这样的 monorepo 项目更容易。许多 <font color="red">pnpm </font>命令都接受一些选项 像 <font color="red">–recursive (-r)</font> 或者 <a target="_blank" rel="noopener" href="https://pnpm.io/filtering">– filter</a> 这些在monorepo 中尤其有用的。它的<a target="_blank" rel="noopener" href="https://medium.com/pnpm/pnpm-vs-lerna-filtering-in-a-multi-package-repository-1f68bc644d6a">原生过滤指令</a>也是 Lerna 的 一个很好的替代。<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># prune all workspaces</span></span><br><span class="line">pnpm -r <span class="built_in">exec</span> -- rm -rf node_modules &amp;&amp; rm pnpm-lock.yaml</span><br><span class="line"><span class="comment"># run all tests for all workspaces with scope @doppelmutzi</span></span><br><span class="line">pnpm recursive run <span class="built_in">test</span> --filter @doppelmutzi/</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="性能和磁盘利用"><a href="#性能和磁盘利用" class="headerlink" title="性能和磁盘利用"></a>性能和磁盘利用</h3>性能是选择很重要的一部分。本节显示了我在一些小型或中型项目上的基准。下面是关于示例项目的一些注意事项：</li>
+<li>这两个都没有使用工作空间功能</li>
+<li>小项目指定了33个依赖</li>
+<li>中项目指定了44个依赖</li>
+</ul>
+<p>我对三个用例（UC: use case）进行了测试，每个包管理的变体一次。要了解详细的评估和解释，请查看 <a target="_blank" rel="noopener" href="https://github.com/doppelmutzi/companion-project-package-managers-2022/blob/yarn-berry-pnp-strict/benchmarks-project1.md">项目1</a> 和<a target="_blank" rel="noopener" href="https://github.com/doppelmutzi/companion-project-package-managers-2022/blob/yarn-berry-pnp-strict/benchmarks-project2.md">项目2</a> 的结果。</p>
+<ul>
+<li>UC1: 没有cache / store, 没有 lock files, 没有 node_modules 或 .pnp.cjs</li>
+<li>UC2：cache / store, 没有 lock files , 没有 node_modules 或 .pnp.cjs</li>
+<li>UC3：cache / store,  lock files , 没有 node_modules 或 .pnp.cjs</li>
+</ul>
+<p>我使用工具<a target="_blank" rel="noopener" href="https://github.com/paypal/gnomon">gnomon</a> 来测量安装所消耗的时间（例如：<font color="red">$ yarn | gnomon </font>）。另外，我测量了生成的文件大小（<font color="red">$ du -sh node_modules</font>）。<br>在我的项目和测量中，Yarn berry PnP 严格模式都是赢家，在我的所有项目和用例里的安装速度方面。<br><img src="/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/performance.png"><br>这是<a target="_blank" rel="noopener" href="https://p.datadoghq.eu/sb/d2wdprp9uki7gfks-c562c42f4dfd0ade4885690fa719c818?tpl_var_npm=*&amp;tpl_var_pnpm=*&amp;tpl_var_yarn-classic=*&amp;tpl_var_yarn-modern=*&amp;tpl_var_yarn-nm=*&amp;tpl_var_yarn-pnpm=no&amp;from_ts=1660894337331&amp;to_ts=1661499137331&amp;live=true">Yarn Berry 团队</a>和<a target="_blank" rel="noopener" href="https://pnpm.io/benchmarks">pnpm</a>的官方基准。</p>
+<h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><h4 id="npm-4"><a href="#npm-4" class="headerlink" title="npm"></a>npm</h4><p>当使用错误的包时，NPM有点太宽容了，并且经历了一些直接影响许多项目的安全漏洞。举个例子，在npm 5.7.0 的版本时，当你执行 sudo npm 命令在 Linux 系统中，它会<a target="_blank" rel="noopener" href="https://github.com/npm/npm/issues/19883">改变系统文件的权限</a> 导致系统不可用。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident.html">另一个事故</a>发生在2018年，是关于盗窃比特币的。实际就是，流行的node 包 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/event-stream">EventStream</a> 添加了一个恶意依赖在它的3.3.6版本中。这个恶意包包含了一个加密的代码尝试偷取开发人员机器上的比特币。</p>
+<p>为了解决这些问题，最近的npm版本在 package-lock.json 中使用了 <a target="_blank" rel="noopener" href="https://medium.com/@zaid960928/cryptography-explaining-sha-512-ad896365a0c1">SHA-512</a> 加密算法，去检查你的安装包的完整性。</p>
+<p>总的来说，npm在弥补安全漏洞方面做得越来越多，尤其是那些与Yarn相比更加明显的漏洞。</p>
+<h4 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h4><p>Yarn Classic 和 Yarn Berry 从一开始就用存储在 <font color="red">yanr.lock</font> 中的 <a target="_blank" rel="noopener" href="https://yarnpkg.com/features/offline-cache#cache-integrity">校验和</a> 验证了每一个包的完整性。Yarn 还试图阻止你在安装期间检索 <font color="red">package.json</font> 中没有声明的恶意包：如果发现不匹配，安装就会被终止。</p>
+<p>PnP 模式的 Yarn Berry 不存在 传统的<font color="red">node_modules</font> 方法的安全问题。与 Yarn Classic 相比，Yarn Berry 提高了命令执行的安全性。你只能执行依赖中的二进制文件，并且是你已经在你的package.json中<a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/issues/2784#issuecomment-831825366">显示声明</a>了的。这个安全功能和pnpm 相似，我们将在下一节学到。</p>
+<h4 id="pnpm-3"><a href="#pnpm-3" class="headerlink" title="pnpm"></a>pnpm</h4><p>pnpm 也使用 <a target="_blank" rel="noopener" href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">校验和</a> 验证每一个安装包的代码被执行之前的完整性。<br>正如上面所说，npm 和 Yarn Classic 都因为 <a target="_blank" rel="noopener" href="https://www.mo4tech.com/deep-thoughts-on-modern-package-managers-why-do-i-now-recommend-pnpm-over-npm-yarn-2.html">依赖提升有安全问题</a>。pnpm 避免了这些问题，是因为它没有依赖提升(hoisting)。相反，它生成嵌套的 node_modules文件来消除不合法的依赖引用。这意味着，你只能访问 在 package.json 中显示声明的依赖。<br>正如我们讨论的，这在monorepo的设置中尤为重要，因为依赖提升算法有时候会导致<a target="_blank" rel="noopener" href="https://www.jonathancreamer.com/inside-the-pain-of-monorepos-and-hoisting/">幻影依赖和二重身</a>。</p>
+<h3 id="流行项目的使用情况"><a href="#流行项目的使用情况" class="headerlink" title="流行项目的使用情况"></a>流行项目的使用情况</h3><p>我分析了很多流行的开源项目来知道现在”开发精英们”用哪些包管理器。对我来讲，这些项目的积极维护和最近的更新都是重要的。这也是你选择包管理器的另一个重要视角。<br>| npm | Yarn Classic | Yarn Berry | pnpm<br>| — | — | — |—<br>|<a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">Svelte</a>|<a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a>|<a target="_blank" rel="noopener" href="https://github.com/facebook/jest">Jest</a>(with node_modules) | <a target="_blank" rel="noopener" href="https://github.com/vuejs/core">Vue 3</a><br>|<a target="_blank" rel="noopener" href="https://github.com/preactjs/preact">Preact</a>|<a target="_blank" rel="noopener" href="https://github.com/angular/angular">Angular</a>|<a target="_blank" rel="noopener" href="https://github.com/storybookjs/storybook">Storybook</a> (with node_modules)|<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">Browserlist</a><br>|<a target="_blank" rel="noopener" href="https://github.com/expressjs/express">Express.js</a>|<a target="_blank" rel="noopener" href="https://github.com/emberjs/ember.js">Ember</a>|<a target="_blank" rel="noopener" href="https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/2dyQs7tost/fQ4fEnYEt7K1Pl">Babel</a> (with node_modules)|<a target="_blank" rel="noopener" href="https://github.com/prisma/prisma">Prisma</a><br>|<a target="_blank" rel="noopener" href="https://github.com/meteor/meteor">Meteor</a>|<a target="_blank" rel="noopener" href="https://github.com/vercel/next.js">Next.js</a>|<a target="_blank" rel="noopener" href="https://github.com/reduxjs/redux-toolkit">Redux Toolkit</a> (with node_modules)|<a target="_blank" rel="noopener" href="https://github.com/sveltejs/kit">SvelteKit</a><br>|<a target="_blank" rel="noopener" href="https://github.com/apollographql/apollo-server">Apollo Server</a>|<a target="_blank" rel="noopener" href="https://github.com/gatsbyjs/gatsby">Gatsby</a>||<br>||<a target="_blank" rel="noopener" href="https://github.com/nuxt/nuxt.js">Nuxt</a><br>||<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">Create React App</a><br>||<a target="_blank" rel="noopener" href="https://github.com/webpack/webpack-cli">webpack-cli</a><br>||<a target="_blank" rel="noopener" href="https://github.com/emotion-js/emotion">Emotion</a><br>有趣的是，在写这篇文章的时候（2022年2月16日），都没有一个开源的项目使用 PnP 方式。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当前的包管理器状态特别好。在主流的包管理器中，功能上几乎已经达到了均等。但是他们在本质上仍然有很大的区别。</p>
+<p>pnpm 一开始看起来和 npm 相似，到那时他们管理依赖的方式是完全不同的；pnpm 的方式有着更好的性能和最佳的磁盘利用率。Yarn Classic 仍然是流行的，但它被认为是遗留软件，在不久的将来可能不再支持。Yarn Berry PnP 是这个领域的新成员，但是还没有实现他改变包管理器生态的潜力。</p>
+<p>多年来，许多用户都在问 谁在使用哪些包管理器，总的来说，大家似乎对于 Yarn Berry PnP 的成熟和采纳更感兴趣。</p>
+<p>这篇文章的目标是提供多种视角，帮助你决定选择哪一个包管理器在你自己的项目中。我想指出的是，我不推荐某个特定的包管理器。这取决于你如何权衡不同的要求 – 所以你依然可以选择你喜欢的！</p>
+</body></html>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B/" rel="tag"># 前端工程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/10/husky-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" rel="prev" title="husky 从入门到放弃">
+                  <i class="fa fa-chevron-left"></i> husky 从入门到放弃
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">灰沙</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>
