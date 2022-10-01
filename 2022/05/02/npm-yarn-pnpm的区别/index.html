@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/pnpm.png">
 <meta property="og:image" content="https://zhanghang12135.github.io/2022/05/02/npm-yarn-pnpm%E7%9A%84%E5%8C%BA%E5%88%AB/performance.png">
 <meta property="article:published_time" content="2022-05-02T13:59:00.000Z">
-<meta property="article:modified_time" content="2022-10-01T06:44:04.213Z">
+<meta property="article:modified_time" content="2022-10-01T06:44:53.461Z">
 <meta property="article:author" content="灰沙">
 <meta property="article:tag" content="前端工程">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-01 14:44:04" itemprop="dateModified" datetime="2022-10-01T14:44:04+08:00">2022-10-01</time>
+      <time title="修改时间：2022-10-01 14:44:53" itemprop="dateModified" datetime="2022-10-01T14:44:53+08:00">2022-10-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -362,7 +362,88 @@
 <h3 id="CLI-命令行"><a href="#CLI-命令行" class="headerlink" title="CLI 命令行"></a>CLI 命令行</h3><p>下面的表格对比了npm, Yarn Classic , Yarn Berry 和 pnpm 提供的一系列不同的 CLI 命令。这绝不是一个完整的列表，而是一个简单的片段。这一节不涉及工作空间相关的命令。</p>
 <p>npm 和 pnpm 特别突出了许多命令和选项别名，这意味着一个命令能有不同的名字，例如 <font color="red">$ npm install </font>和 <font color="red"> $ npm add</font> 是一样的另外，许多命令都有简写， 例如 <font color="red">-D </font>代替 <font color="red">–save-dev </font>。</p>
 <p>在所有的表格中，我将所有的简写称为别名。对于所有的包管理器，你都可以用用空格区分多依赖来进行 添加， 更新，删除（例如：<font color="red">npm update react reac-dom </font>）。为了显而易见，所有的命令示例都使用单一依赖。</p>
-<h4 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h4><p>这个表涵盖了所有的用于安装或更新 package.json 中依赖的管理命令，或者在命令中指定多个依赖项。<br>hahha<br>|Action|npm|Yarn Classic|Yarn Berry|pnpm|<br>|—|—|—|—|—|<br>|安装所有依赖在  package.json | npm install 别名：i, add|yarn install or yarn|yarn install or yarn |pnpm install alias: i |<br>|更新所有依赖 package.json|npm update alias: up, upgrade |yarn upgrade|yarn semver up (需使用 <a target="_blank" rel="noopener" href="https://github.com/tophat/yarn-plugin-semver-up">plugin</a>)|pnpm update alias: up<br>|更新最新版的所有依赖|N/A|yarn upgrade –latest|yarn up|pnpm update –latest alias: -L|<br>|更新单一依赖|npm update react|yarn upgrade react|yarn semver up react|pnpm up react|<br>|交互选择更新依赖|N/A|yarn upgrade-interactive|yarn upgrade-interactive(需使用 <a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/blob/HEAD/packages/plugin-interactive-tools/README.md">plugin</a>)|pnpm up –interactive alias: -ii|<br>|添加运行依赖|npm i react|yarn add react|yarn add react|pnpm add react<br>|添加开发依赖|npm i -D babel alias: –save-dev|yarn add -D babel alias:  –dev|yarn add -D babel alias:  –dev|pnpm add -D babel alias: –save-dev<br>|添加固定版本依赖到 package.json|npm i -E react alias: –save-exact|yarn add -E react alias: –exact|yarn add -E react alias: –exact|pnpm add -E react alias: –save-exact<br>|卸载依赖并且移出package.json|npm uninstall react alias: remove, rm, r, un, unlink|yarn remove react|yarn remove react|pnpm remove react alias: rm, un, uninstall<br>|卸载依赖但不移出package.json（node_modules 中存在一级目录，但是没有任何文件）|npm uninstall –no-save|N/A|N/A|N/A</p>
+<h4 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h4><p>这个表涵盖了所有的用于安装或更新 package.json 中依赖的管理命令，或者在命令中指定多个依赖项。</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>npm</th>
+<th>Yarn Classic</th>
+<th>Yarn Berry</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安装所有依赖在  package.json</td>
+<td>npm install 别名：i, add</td>
+<td>yarn install or yarn</td>
+<td>yarn install or yarn</td>
+<td>pnpm install alias: i</td>
+</tr>
+<tr>
+<td>更新所有依赖 package.json</td>
+<td>npm update alias: up, upgrade</td>
+<td>yarn upgrade</td>
+<td>yarn semver up (需使用 <a target="_blank" rel="noopener" href="https://github.com/tophat/yarn-plugin-semver-up">plugin</a>)</td>
+<td>pnpm update alias: up</td>
+</tr>
+<tr>
+<td>更新最新版的所有依赖</td>
+<td>N/A</td>
+<td>yarn upgrade –latest</td>
+<td>yarn up</td>
+<td>pnpm update –latest alias: -L</td>
+</tr>
+<tr>
+<td>更新单一依赖</td>
+<td>npm update react</td>
+<td>yarn upgrade react</td>
+<td>yarn semver up react</td>
+<td>pnpm up react</td>
+</tr>
+<tr>
+<td>交互选择更新依赖</td>
+<td>N/A</td>
+<td>yarn upgrade-interactive</td>
+<td>yarn upgrade-interactive(需使用 <a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/blob/HEAD/packages/plugin-interactive-tools/README.md">plugin</a>)</td>
+<td>pnpm up –interactive alias: -ii</td>
+</tr>
+<tr>
+<td>添加运行依赖</td>
+<td>npm i react</td>
+<td>yarn add react</td>
+<td>yarn add react</td>
+<td>pnpm add react</td>
+</tr>
+<tr>
+<td>添加开发依赖</td>
+<td>npm i -D babel alias: –save-dev</td>
+<td>yarn add -D babel alias:  –dev</td>
+<td>yarn add -D babel alias:  –dev</td>
+<td>pnpm add -D babel alias: –save-dev</td>
+</tr>
+<tr>
+<td>添加固定版本依赖到 package.json</td>
+<td>npm i -E react alias: –save-exact</td>
+<td>yarn add -E react alias: –exact</td>
+<td>yarn add -E react alias: –exact</td>
+<td>pnpm add -E react alias: –save-exact</td>
+</tr>
+<tr>
+<td>卸载依赖并且移出package.json</td>
+<td>npm uninstall react alias: remove, rm, r, un, unlink</td>
+<td>yarn remove react</td>
+<td>yarn remove react</td>
+<td>pnpm remove react alias: rm, un, uninstall</td>
+</tr>
+<tr>
+<td>卸载依赖但不移出package.json（node_modules 中存在一级目录，但是没有任何文件）</td>
+<td>npm uninstall –no-save</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
 <h4 id="包的执行"><a href="#包的执行" class="headerlink" title="包的执行"></a>包的执行</h4><p>下面的例子展示了如何在开发期间管理构成实用工具的包， 也就是二进制文件，例如 <a target="_blank" rel="noopener" href="https://github.com/ruyadorno/ntl">ntl</a>  , 交互执行脚本。表中的术语：</p>
 <ul>
 <li>包： 依赖或者二进制文件</li>
@@ -538,7 +619,77 @@ pnpm<br>通过 <font color="red">workspace: </font>协议， pnpm 使得像 Yarn
 <h4 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h4><p>Yarn Classic 和 Yarn Berry 从一开始就用存储在 <font color="red">yanr.lock</font> 中的 <a target="_blank" rel="noopener" href="https://yarnpkg.com/features/offline-cache#cache-integrity">校验和</a> 验证了每一个包的完整性。Yarn 还试图阻止你在安装期间检索 <font color="red">package.json</font> 中没有声明的恶意包：如果发现不匹配，安装就会被终止。</p>
 <p>PnP 模式的 Yarn Berry 不存在 传统的<font color="red">node_modules</font> 方法的安全问题。与 Yarn Classic 相比，Yarn Berry 提高了命令执行的安全性。你只能执行依赖中的二进制文件，并且是你已经在你的package.json中<a target="_blank" rel="noopener" href="https://github.com/yarnpkg/berry/issues/2784#issuecomment-831825366">显示声明</a>了的。这个安全功能和pnpm 相似，我们将在下一节学到。</p>
 <h4 id="pnpm-3"><a href="#pnpm-3" class="headerlink" title="pnpm"></a>pnpm</h4><p>pnpm 也使用 <a target="_blank" rel="noopener" href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">校验和</a> 验证每一个安装包的代码被执行之前的完整性。<br>正如上面所说，npm 和 Yarn Classic 都因为 <a target="_blank" rel="noopener" href="https://www.mo4tech.com/deep-thoughts-on-modern-package-managers-why-do-i-now-recommend-pnpm-over-npm-yarn-2.html">依赖提升有安全问题</a>。pnpm 避免了这些问题，是因为它没有依赖提升(hoisting)。相反，它生成嵌套的 node_modules文件来消除不合法的依赖引用。这意味着，你只能访问 在 package.json 中显示声明的依赖。<br>正如我们讨论的，这在monorepo的设置中尤为重要，因为依赖提升算法有时候会导致<a target="_blank" rel="noopener" href="https://www.jonathancreamer.com/inside-the-pain-of-monorepos-and-hoisting/">幻影依赖和二重身</a>。</p>
-<h3 id="流行项目的使用情况"><a href="#流行项目的使用情况" class="headerlink" title="流行项目的使用情况"></a>流行项目的使用情况</h3><p>我分析了很多流行的开源项目来知道现在”开发精英们”用哪些包管理器。对我来讲，这些项目的积极维护和最近的更新都是重要的。这也是你选择包管理器的另一个重要视角。<br>| npm | Yarn Classic | Yarn Berry | pnpm<br>| — | — | — |—<br>|<a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">Svelte</a>|<a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a>|<a target="_blank" rel="noopener" href="https://github.com/facebook/jest">Jest</a>(with node_modules) | <a target="_blank" rel="noopener" href="https://github.com/vuejs/core">Vue 3</a><br>|<a target="_blank" rel="noopener" href="https://github.com/preactjs/preact">Preact</a>|<a target="_blank" rel="noopener" href="https://github.com/angular/angular">Angular</a>|<a target="_blank" rel="noopener" href="https://github.com/storybookjs/storybook">Storybook</a> (with node_modules)|<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">Browserlist</a><br>|<a target="_blank" rel="noopener" href="https://github.com/expressjs/express">Express.js</a>|<a target="_blank" rel="noopener" href="https://github.com/emberjs/ember.js">Ember</a>|<a target="_blank" rel="noopener" href="https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/2dyQs7tost/fQ4fEnYEt7K1Pl">Babel</a> (with node_modules)|<a target="_blank" rel="noopener" href="https://github.com/prisma/prisma">Prisma</a><br>|<a target="_blank" rel="noopener" href="https://github.com/meteor/meteor">Meteor</a>|<a target="_blank" rel="noopener" href="https://github.com/vercel/next.js">Next.js</a>|<a target="_blank" rel="noopener" href="https://github.com/reduxjs/redux-toolkit">Redux Toolkit</a> (with node_modules)|<a target="_blank" rel="noopener" href="https://github.com/sveltejs/kit">SvelteKit</a><br>|<a target="_blank" rel="noopener" href="https://github.com/apollographql/apollo-server">Apollo Server</a>|<a target="_blank" rel="noopener" href="https://github.com/gatsbyjs/gatsby">Gatsby</a>||<br>||<a target="_blank" rel="noopener" href="https://github.com/nuxt/nuxt.js">Nuxt</a><br>||<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">Create React App</a><br>||<a target="_blank" rel="noopener" href="https://github.com/webpack/webpack-cli">webpack-cli</a><br>||<a target="_blank" rel="noopener" href="https://github.com/emotion-js/emotion">Emotion</a><br>有趣的是，在写这篇文章的时候（2022年2月16日），都没有一个开源的项目使用 PnP 方式。</p>
+<h3 id="流行项目的使用情况"><a href="#流行项目的使用情况" class="headerlink" title="流行项目的使用情况"></a>流行项目的使用情况</h3><p>我分析了很多流行的开源项目来知道现在”开发精英们”用哪些包管理器。对我来讲，这些项目的积极维护和最近的更新都是重要的。这也是你选择包管理器的另一个重要视角。</p>
+<table>
+<thead>
+<tr>
+<th>npm</th>
+<th>Yarn Classic</th>
+<th>Yarn Berry</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">Svelte</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebook/jest">Jest</a>(with node_modules)</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vuejs/core">Vue 3</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/preactjs/preact">Preact</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/angular/angular">Angular</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/storybookjs/storybook">Storybook</a> (with node_modules)</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">Browserlist</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/expressjs/express">Express.js</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/emberjs/ember.js">Ember</a></td>
+<td><a target="_blank" rel="noopener" href="https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/2dyQs7tost/fQ4fEnYEt7K1Pl">Babel</a> (with node_modules)</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/prisma/prisma">Prisma</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/meteor/meteor">Meteor</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vercel/next.js">Next.js</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/reduxjs/redux-toolkit">Redux Toolkit</a> (with node_modules)</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/sveltejs/kit">SvelteKit</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/apollographql/apollo-server">Apollo Server</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/gatsbyjs/gatsby">Gatsby</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/nuxt/nuxt.js">Nuxt</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">Create React App</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/webpack/webpack-cli">webpack-cli</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/emotion-js/emotion">Emotion</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>有趣的是，在写这篇文章的时候（2022年2月16日），都没有一个开源的项目使用 PnP 方式。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当前的包管理器状态特别好。在主流的包管理器中，功能上几乎已经达到了均等。但是他们在本质上仍然有很大的区别。</p>
 <p>pnpm 一开始看起来和 npm 相似，到那时他们管理依赖的方式是完全不同的；pnpm 的方式有着更好的性能和最佳的磁盘利用率。Yarn Classic 仍然是流行的，但它被认为是遗留软件，在不久的将来可能不再支持。Yarn Berry PnP 是这个领域的新成员，但是还没有实现他改变包管理器生态的潜力。</p>
 <p>多年来，许多用户都在问 谁在使用哪些包管理器，总的来说，大家似乎对于 Yarn Berry PnP 的成熟和采纳更感兴趣。</p>
